@@ -1,0 +1,114 @@
+/* Footer.module.css */
+
+.footer {
+    background-color: #f4efe7; 
+    color: #0e5d30; 
+    padding: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .contactSection, .addressSection, .navigation, .socialSection {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contactDetails h2, .addressSection h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .navigation ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navigation li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .socialSection {
+    
+  }
+  
+  .disclaimer {
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logos {
+   
+  }
+  
+  .poweredBy, .copyRight {
+   
+  }
+  
+
+
+.newsletterContainer {
+  background-color: #f8f8f8; 
+  padding: 2rem;
+  text-align: center;
+  margin: 0rem;
+}
+
+.newsletterHeading {
+  margin: 0 0 1rem 0; 
+  font-size: 1.5rem; 
+}
+
+.newsletterText {
+  margin: 0 0 2rem 0; 
+  color: #666; 
+}
+
+.newsletterForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.newsletterInput {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px; 
+}
+
+.newsletterButton {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .newsletterForm {
+    flex-direction: column;
+  }
+
+  .newsletterInput,
+  .newsletterButton {
+    width: 100%;
+    margin: 0.5rem 0; 
+  }
+}
