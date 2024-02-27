@@ -1,95 +1,150 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import styles from "./page.module.css";
+import Header from "./component/header/Header";
+import Footer from "./component/footer/Footer";
+import ListingComponent from "./component/listing/Listing";
+import React from "react";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <>
+      <Header />
+      <ListingComponent />
+      <section className={styles.featuredNeighborhoodsContainer}>
+        <h2 className={styles.featuredNeighborhoodsTitle}>
+          FEATURED NEIGHBORHOODS
+        </h2>
+        <div className={styles.featuredNeighborhoods}>
+          <div className={styles.neighborhoodImageContainer}>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+              src="/district/district1.png"
+              alt="District 1"
+              layout="fill"
             />
-          </a>
+            <div className={styles.neighborhoodOverlay}>DISTRICT 1</div>
+          </div>
+          <div className={styles.neighborhoodImageContainer}>
+            <Image
+              src="/district/district2.png"
+              alt="District 2"
+              layout="fill"
+            />
+            <div className={styles.neighborhoodOverlay}>DISTRICT 2</div>
+          </div>
+          <div className={styles.neighborhoodImageContainer}>
+            <Image
+              src="/district/district4.png"
+              alt="District 3"
+              layout="fill"
+            />
+            <div className={styles.neighborhoodOverlay}>DISTRICT 3</div>
+          </div>
+
+          <div className={styles.neighborhoodImageContainer}>
+            <Image
+              src="/district/district5.png"
+              alt="District 4"
+              layout="fill"
+            />
+            <div className={styles.neighborhoodOverlay}>DISTRICT 4</div>
+          </div>
+          <div className={styles.neighborhoodImageContainer}>
+            <Image
+              src="/district/district6.png"
+              alt="District 5"
+              layout="fill"
+            />
+            <div className={styles.neighborhoodOverlay}>DISTRICT 5</div>
+          </div>
+          <div className={styles.neighborhoodImageContainer}>
+            <Image
+              src="/district/district9.png"
+              alt="District 6"
+              layout="fill"
+            />
+            <div className={styles.neighborhoodOverlay}>DISTRICT 6</div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.flexContainer}>
+        <div className={styles.leftColumn}>
+          <div className={styles.image}>
+            <Image
+              src="/aboutImage.png"
+              alt="Key Image"
+              width={700}
+              height={500}
+            />
+          </div>
+          <div className={styles.textSection}>
+            <h1>THE ECOMIND</h1>
+            <p>
+              Founded by Hiep Truong, one of the most recognizable faces in the
+              world of real estate, The EcoMind team is one of the largest and
+              most exciting luxury real estate brokerages in the country. Our
+              team represents a shared enthusiasm towards people,bespoke
+              properties, and of course, the Southern California lifestyle.
+            </p>
+            <p>
+              Not only does the team continue to bring in record transactions
+              year after year, ranking among Real Trends America’s Best Real
+              Estate Agents for 2017, but The EcoMind Team performs under a
+              “living life to the fullest” mentality, which means customer
+              service is a top priority—as is staying ahead of the ever-changing
+              industry.
+            </p>
+          </div>
+        </div>
+        <div className={styles.rightColumn}>
+          <Image
+            src="/building.png"
+            alt="Building Image"
+            width={600}
+            height={350}
+            layout="responsive"
+          />
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
+      <div className={styles.newsletterSection}>
+        <div className={styles.newsletterContent}>
+          <h2>BE IN THE KNOW. LET&apos;S STAY IN TOUCH.</h2>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Madison incorporated The EcoMind, Inc., enlisting a team of
+            specialists who work together to make record transactions, exerting
+            passion, professionalism, integrity, and uncanny industry knowledge.
+            Madison’s ability to connect and communicate with a wide range of
+            clientele is guided by his passion for travel and his experiences
+            living in various countries, states, and cities.
           </p>
-        </a>
+          <form className={styles.newsletterForm}>
+            <input
+              type="email"
+              placeholder="Email"
+              className={styles.newsletterInput}
+            />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              className={styles.newsletterInput}
+            />
+            <button type="submit" className={styles.newsletterButton}>
+              SUBMIT
+            </button>
+          </form>
+        </div>
       </div>
-    </main>
-  )
+      <Image
+        src="/workwithus.png"
+        alt="workwithus"
+        width={600}
+        height={350}
+        layout="responsive"
+      />
+      <main className={styles.main}></main>
+
+      <Footer />
+    </>
+  );
 }

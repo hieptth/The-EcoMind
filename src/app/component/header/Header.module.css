@@ -1,0 +1,35 @@
+.header {
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.logo {
+  position: relative;
+  gap: 30rem;
+}
+
+.headerContent {
+  left: 40rem;
+  display: flex;
+  position: absolute;
+
+}
+
+.navigation {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+
+}
+
+.navigation li a {
+  color: brown;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: normal;
+}

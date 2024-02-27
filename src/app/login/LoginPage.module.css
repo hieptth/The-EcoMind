@@ -1,0 +1,150 @@
+.body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
+
+.leftPane,
+.rightPane {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.leftPane {
+    background: #8f3524;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* If you're adding text or other content in the left pane, style it here */
+.leftPane h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.leftPane p {
+    font-size: 1.2em;
+}
+
+/* Update this path to the actual image path if you're using an image */
+.backgroundImage {
+    background-image: url('/login-image.svg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.rightPane {
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.loginForm {
+    width: 70%;
+    text-align: center;
+}
+
+.loginForm input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.loginForm button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #8f3524;
+    color: white;
+    cursor: pointer;
+}
+
+.loginForm button:hover {
+    background-color: #772110;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: small;
+}
+
+.rememberMe {
+    display: flex;
+    align-items: center;
+    flex: 0 0 60%;
+    /* Takes up 70% of the options space */
+}
+
+.rememberMe input[type="checkbox"] {
+    flex: 0 0 10%;
+    margin: 10px 0;
+    padding: 0;
+    border: none;
+}
+
+.rememberMe label {
+    white-space: nowrap;
+    margin-left: 0;
+}
+
+.forgotPassword {
+    flex: 0 0 40%;
+    white-space: nowrap;
+    text-align: right;
+}
+
+
+
+.alternateLogin button {
+    width: calc(50%);
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border-width: 100px;
+    background-color: #ffffff;
+    color: #737d8c;
+    border: 2px outset #8e3524;
+    cursor: pointer;
+}
+
+.alternateLogin button:hover {
+    background-color: #bbb;
+}
+
+.formLabel {
+    display: block;
+    text-align: left;
+}
+
+
+.iconWrapper {
+    display: inline-block;
+    padding: 5px;
+}
+
+.icon {
+    /* display: inline-block; */
+    padding-top: 5px;
+}
