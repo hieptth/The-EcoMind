@@ -8,28 +8,30 @@
   background-color: #fbf6ed;
 }
 
-.featuredNeighborhoodsContainer{
+.featuredNeighborhoodsContainer {
   background-color: #fbf6ed;
 }
-.featuredNeighborhoodsTitle{
+
+.featuredNeighborhoodsTitle {
   text-align: right;
   margin-bottom: 2rem;
   color: #0e5d30;
   font-weight: normal;
   font-size: 30px;
 }
+
 .featuredNeighborhoods {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin-top: 2rem;
- 
+
 }
 
 .neighborhoodImageContainer {
   position: relative;
-  height: 350px; 
-  border-radius: 0px; 
+  height: 350px;
+  border-radius: 0px;
   overflow: hidden;
 }
 
@@ -45,12 +47,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white; 
-  font-size: 24px; 
+  color: white;
+  font-size: 24px;
   text-transform: uppercase;
 }
 
@@ -64,25 +66,25 @@
 
 .leftColumn {
   display: flex;
-  flex-direction: column; 
-  align-items: flex-start; 
-  width: 50%; 
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
 }
 
 .rightColumn {
-  width: 50%; 
+  width: 50%;
   position: relative;
 }
 
 .textSection {
-  padding: 3rem; 
+  padding: 3rem;
   color: #0e5d30;
   font-weight: normal;
 }
 
 .image {
-  width: 100%; 
-  margin-bottom: 1rem; 
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -90,8 +92,9 @@
     flex-direction: column;
   }
 
-  .leftColumn, .rightColumn {
-    width: 100%; 
+  .leftColumn,
+  .rightColumn {
+    width: 100%;
   }
 
   .image {
@@ -100,7 +103,7 @@
 }
 
 .newsletterSection {
-  background-color: #fbf6ed; 
+  background-color: #fbf6ed;
   padding: 2rem;
   text-align: center;
   border-radius: 0 1000px 0 0;
@@ -108,29 +111,29 @@
 
 .newsletterContent {
   margin: auto;
-  max-width: 800px; 
+  max-width: 800px;
   color: #0e5d30;
 }
 
 .newsletterForm {
   display: flex;
   justify-content: center;
-  gap: 1rem; 
+  gap: 1rem;
   margin-top: 1rem;
- 
+
 }
 
 .newsletterInput,
 .newsletterButton {
   padding: 0.5rem;
-  border: 1px solid #ccc; 
+  border: 1px solid #ccc;
   border-radius: 4px;
   color: #0e5d30;
 }
 
 .newsletterButton {
-  background-color: #fbf6ed; 
-  color: #0e5d30; 
+  background-color: #fbf6ed;
+  color: #0e5d30;
   cursor: pointer;
   border-color: #0e5d30;
   border-radius: 0px;
@@ -248,6 +251,7 @@
 .logo {
   position: relative;
 }
+
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
@@ -318,11 +322,9 @@
     border-radius: 0;
     border: none;
     border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
+    background: linear-gradient(to bottom,
+        rgba(var(--background-start-rgb), 1),
+        rgba(var(--callout-rgb), 0.5));
     background-clip: padding-box;
     backdrop-filter: blur(24px);
   }
@@ -333,11 +335,9 @@
     inset: auto 0 0;
     padding: 2rem;
     height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgb(var(--background-end-rgb)) 40%);
     z-index: 1;
   }
 }
@@ -363,6 +363,7 @@
   from {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(0deg);
   }

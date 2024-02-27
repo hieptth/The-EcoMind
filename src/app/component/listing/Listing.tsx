@@ -1,8 +1,7 @@
-import Image from 'next/image';
-import styles from './Listing.module.css'; 
-import { Listing } from './interface/listing'; 
-import listingsData from './listing.json'; 
-
+import Image from "next/image";
+import styles from "./Listing.module.css";
+import { Listing } from "./interface/listing";
+import listingsData from "./listing.json";
 
 const ListingComponent: React.FC = () => {
   const listings: Listing[] = listingsData as Listing[];
@@ -16,7 +15,7 @@ const ListingComponent: React.FC = () => {
             <Image
               src={listing.image}
               alt={listing.description}
-              width={300} 
+              width={300}
               height={200}
               layout="responsive"
             />
@@ -25,7 +24,9 @@ const ListingComponent: React.FC = () => {
               <span className={styles.price}>{listing.price}</span>
               <span className={styles.description}>{listing.description}</span>
               <span className={styles.address}>{listing.address}</span>
-              <span className={styles.meta}>{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
+              <span
+                className={styles.meta}
+              >{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
             </div>
           </div>
         ))}

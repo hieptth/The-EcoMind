@@ -1,15 +1,16 @@
 .header {
- position: relative;
-  height: 500px; 
+  position: relative;
+  height: 500px;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px; }
+  padding: 0 20px;
+}
 
-.logo{
+.logo {
   position: relative;
-  gap:30rem;
- }
-  
+  gap: 30rem;
+}
+
 .headerContent {
   left: 40rem;
   display: flex;
@@ -20,15 +21,15 @@
 .navigation {
   list-style: none;
   display: flex;
-  gap: 30px; margin: 0;
+  gap: 30px;
+  margin: 0;
   padding: 0;
- 
+
 }
 
 .navigation li a {
-  color: brown; 
+  color: brown;
   text-decoration: none;
   padding: 10px;
   font-weight: normal;
 }
-

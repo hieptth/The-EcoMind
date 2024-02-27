@@ -109,7 +109,7 @@ export default function Home() {
 
       <div className={styles.newsletterSection}>
         <div className={styles.newsletterContent}>
-          <h2>BE IN THE KNOW. LET'S STAY IN TOUCH.</h2>
+          <h2>BE IN THE KNOW. LET&apos;S STAY IN TOUCH.</h2>
           <p>
             Madison incorporated The EcoMind, Inc., enlisting a team of
             specialists who work together to make record transactions, exerting
