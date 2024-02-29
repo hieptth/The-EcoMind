@@ -25,6 +25,8 @@
   overflow: hidden;
   width: 30%;
   position: relative;
+  transition: transform 0.3s ease-in-out;
+
 }
 
 .listingDetails {
@@ -60,4 +62,7 @@
   border-radius: 0px;
   border-color: #0e5d30;
   cursor: pointer;
+}
+.listing:hover {
+  transform: scale(1.1); /* Scale the element to 110% of its original size */
 }

@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import styles from './Listing.module.css'; 
-import { Listing } from './interface/listing'; 
-import listingsData from './listing.json'; 
+import styles from './Listing.module.css';
+import { Listing } from './interface/listing';
+import listingsData from './listing.json';
 
 
 const ListingComponent: React.FC = () => {
@@ -16,7 +16,7 @@ const ListingComponent: React.FC = () => {
             <Image
               src={listing.image}
               alt={listing.description}
-              width={300} 
+              width={300}
               height={200}
               layout="responsive"
             />

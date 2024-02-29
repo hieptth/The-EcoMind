@@ -27,8 +27,8 @@ const Footer = () => {
           <Image
             src="/logo.png" 
             alt="The EcoMind Logo"
-            width={100} 
-            height={100} 
+            width={50} 
+            height={50} 
           />
           <div className={styles.contactDetails}>
             <h2>THE ECOMIND TEAM</h2>
@@ -64,7 +64,7 @@ const Footer = () => {
       
       <div className={styles.footerBottom}>
         <div className={styles.logos}>
-          <Image src="/realtorlogo.png" alt="Realtor" width={50} height={50} />
+          <Image src="/realtorlogo.png" alt="Realtor" width={70} height={50} />
         </div>
         <div className={styles.poweredBy}>
           Powered by Loc Le
