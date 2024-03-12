@@ -4,12 +4,14 @@ import Header from "./component/header/Header";
 import Footer from "./component/footer/Footer";
 import ListingComponent from "./component/listing/Listing";
 import React from "react";
+import { Navbar } from "@components";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <ListingComponent />
+      <Navbar/>
+      <Header/>
+      <ListingComponent/>
       <section className={styles.featuredNeighborhoodsContainer}>
         <h2 className={styles.featuredNeighborhoodsTitle}>
           FEATURED NEIGHBORHOODS
@@ -109,7 +111,7 @@ export default function Home() {
 
       <div className={styles.newsletterSection}>
         <div className={styles.newsletterContent}>
-          <h2>BE IN THE KNOW. LET'S STAY IN TOUCH.</h2>
+          <h2>BE IN THE KNOW. LET&apos;S STAY IN TOUCH.</h2>
           <p>
             Madison incorporated The EcoMind, Inc., enlisting a team of
             specialists who work together to make record transactions, exerting
@@ -144,7 +146,7 @@ export default function Home() {
       />
       <main className={styles.main}></main>
 
-      <Footer />
+      <Footer/>
     </>
   );
 }
