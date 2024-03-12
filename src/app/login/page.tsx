@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
             <p className={styles.forgotPassword}>Forgot your password?</p>
           </div>
           <p className={styles.rememberMe}>
-            Don&apos;t have an account? Sign up here
+            Don't have an account? Sign up here
           </p>
           <button type="submit">Log In</button>
           <div

@@ -1,0 +1,121 @@
+.container {
+  width: 100%;
+  margin: auto;
+  font-family: "Arial", sans-serif;
+  background-color: #fbf6ed;
+  color: brown;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.price {
+  color: brown; /* Example color */
+  margin-bottom: 1rem;
+}
+
+.content {
+  display: flex;
+}
+
+.leftColumn,
+.rightColumn {
+  width: 50%;
+  padding: 1rem;
+}
+
+.leftColumn {
+  border-right: none;
+}
+
+.amenities {
+  text-align: center;
+  padding: 2rem;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+.content {
+  display: flex;
+}
+
+.leftColumn,
+.rightColumn {
+  flex: 1;
+}
+
+.heading {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.description {
+  margin-bottom: 1em;
+}
+
+.detailSection {
+  margin-bottom: 1em; /* Space between sections */
+}
+
+/* Add a border to the right of each section on the right */
+.rightColumn .detailSection {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #a52a2a;
+}
+
+.leftColumn .heading {
+  padding-bottom: 26px;
+  border-bottom: 1px solid #a52a2a;
+}
+
+.amenities {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.amenitiesTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.amenitiesSubtitle {
+  margin-bottom: 1rem;
+  color: #757575;
+}
+
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+}
+
+.interior,
+.exterior,
+.areaLot,
+.finance {
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: 0.5rem;
+  align-content: start;
+  text-align: left;
+}
+
+.amenitiesSectionTitle {
+  font-size: 1.2rem;
+  border-bottom: 1px solid #a52a2a; /* Brown line under each title */
+  padding-bottom: 0.5rem;
+}

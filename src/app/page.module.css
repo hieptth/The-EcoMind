@@ -3,15 +3,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  padding: 1rem;
+  min-height: 100%;
   background-color: #fbf6ed;
 }
 
 .featuredNeighborhoodsContainer {
   background-color: #fbf6ed;
 }
-
 .featuredNeighborhoodsTitle {
   text-align: right;
   margin-bottom: 2rem;
@@ -25,7 +24,6 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin-top: 2rem;
-
 }
 
 .neighborhoodImageContainer {
@@ -33,12 +31,16 @@
   height: 350px;
   border-radius: 0px;
   overflow: hidden;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
 .neighborhoodImageContainer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.neighborhoodImageContainer:hover {
+  filter: brightness(2);
 }
 
 .neighborhoodOverlay {
@@ -120,7 +122,6 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
-
 }
 
 .newsletterInput,
@@ -149,7 +150,6 @@
     width: 100%;
   }
 }
-
 
 .description {
   display: inherit;
@@ -241,7 +241,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);

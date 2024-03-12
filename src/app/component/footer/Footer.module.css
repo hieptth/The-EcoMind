@@ -1,80 +1,92 @@
 /* Footer.module.css */
 
 .footer {
-  background-color: #f4efe7;
-  color: #0e5d30;
-  padding: 2rem;
-  font-size: 0.8rem;
-}
+    background-color: #f4efe7;
+    color: #0e5d30;
+    font-size: 0.8rem;
+  }
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  .contactSection{
+    gap: 20px;
+  }
+  .socialSection{
+    gap: 10px;
+  }
+  .contactSection, .addressSection, .navigation, .socialSection {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
 
-.footerContent {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
+  .contactDetails h2, .addressSection h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 
-.contactSection,
-.addressSection,
-.navigation,
-.socialSection {
-  display: flex;
-  flex-direction: column;
-}
+  .navigation ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-.contactDetails h2,
-.addressSection h2 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-}
+  .navigation li {
+    margin-bottom: 0.5rem;
+  }
 
-.navigation ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .socialSection {
 
-.navigation li {
-  margin-bottom: 0.5rem;
-}
+  }
 
-.socialSection {}
+  .disclaimer {
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+  }
 
-.disclaimer {
-  margin-bottom: 1rem;
-  font-size: 0.75rem;
-}
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.footerBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .logos {
+   margin-left: 20px;
+   height: fit-content;
+   width: 100px;
+  }
 
-.logos {}
+  .poweredBy, .copyRight {
 
-.poweredBy,
-.copyRight {}
+  }
 
 
 
 .newsletterContainer {
-  background-color: #f8f8f8;
-  padding: 2rem;
+  background-color: #fbf6ed;
   text-align: center;
-  margin: 0rem;
+  margin-bottom: 200px;
 }
-
 .newsletterHeading {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
 .newsletterText {
   margin: 0 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #666;
+
 }
 
 .newsletterForm {
