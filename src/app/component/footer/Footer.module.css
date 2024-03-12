@@ -1,92 +1,80 @@
 /* Footer.module.css */
 
 .footer {
-    background-color: #f4efe7;
-    color: #0e5d30;
-    font-size: 0.8rem;
-  }
-  .footerContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-  }
-  .contactSection{
-    gap: 20px;
-  }
-  .socialSection{
-    gap: 10px;
-  }
-  .contactSection, .addressSection, .navigation, .socialSection {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-  }
+  background-color: #f4efe7;
+  color: #0e5d30;
+  padding: 2rem;
+  font-size: 0.8rem;
+}
 
-  .contactDetails h2, .addressSection h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-  }
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
 
-  .navigation ul {
-    list-style-type: none;
-    padding: 0;
-  }
+.contactSection,
+.addressSection,
+.navigation,
+.socialSection {
+  display: flex;
+  flex-direction: column;
+}
 
-  .navigation li {
-    margin-bottom: 0.5rem;
-  }
+.contactDetails h2,
+.addressSection h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
 
-  .socialSection {
+.navigation ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  }
+.navigation li {
+  margin-bottom: 0.5rem;
+}
 
-  .disclaimer {
-    margin-bottom: 1rem;
-    font-size: 0.75rem;
-  }
+.socialSection {}
 
-  .footerBottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.disclaimer {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+}
 
-  .logos {
-   margin-left: 20px;
-   height: fit-content;
-   width: 100px;
-  }
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .poweredBy, .copyRight {
+.logos {}
 
-  }
+.poweredBy,
+.copyRight {}
 
 
 
 .newsletterContainer {
-  background-color: #fbf6ed;
+  background-color: #f8f8f8;
+  padding: 2rem;
   text-align: center;
-  margin-bottom: 200px;
+  margin: 0rem;
 }
+
 .newsletterHeading {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
 }
+
 .newsletterText {
   margin: 0 0 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #666;
-
 }
 
 .newsletterForm {
