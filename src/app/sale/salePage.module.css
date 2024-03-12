@@ -1,0 +1,40 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.searchBar input {
+  width: 50%; /* Or any width you prefer */
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem; /* Space below the search bar */
+}
+
+.listings {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Adjust the number of columns as needed */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Style for individual listing, similar to the hover effect provided earlier */
+.listing {
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.listing:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* Add more styles based on your design requirements */

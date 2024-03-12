@@ -4,12 +4,14 @@ import Header from "./component/header/Header";
 import Footer from "./component/footer/Footer";
 import ListingComponent from "./component/listing/Listing";
 import React from "react";
+import { Navbar } from "@components";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <ListingComponent />
+      <Navbar/>
+      <Header/>
+      <ListingComponent/>
       <section className={styles.featuredNeighborhoodsContainer}>
         <h2 className={styles.featuredNeighborhoodsTitle}>
           FEATURED NEIGHBORHOODS
@@ -139,12 +141,12 @@ export default function Home() {
         src="/workwithus.png"
         alt="workwithus"
         width={600}
-        height={350}
+        height={500}
         layout="responsive"
       />
       <main className={styles.main}></main>
 
-      <Footer />
+      <Footer/>
     </>
   );
 }

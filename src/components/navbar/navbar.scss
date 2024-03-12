@@ -1,0 +1,187 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background-color: transparent;
+  transform: translateY(0) scaleY(1);
+  transition: 0.2s all;
+  -webkit-transition: .2s all;
+
+  &.show:not(.onTop) {
+    background-image: linear-gradient(rgba(251, 246, 237, 0.7), rgba(251, 246, 237, 0.7)), url(https://res.cloudinary.com/luxuryp/images/w_2560,c_limit,f_auto,q_auto/nbq9zmhtfo8p1thunjxr/bernard-hermant-1ndw7bjbj1s-unsplash-1-1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+
+  &.hide {
+    transform: translateY(-100%) scaleY(0);
+  }
+}
+
+.header {
+  padding: 22px 0;
+
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 1348px;
+
+    &__logo .logo {
+      height: 100px;
+      max-width: 280px;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        overflow: clip;
+        object-fit: contain;
+        object-position: 0 50%;
+        overflow-clip-margin: content-box;
+      }
+    }
+
+    &__nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-basis: 50%;
+      flex-grow: 1;
+
+      .navigation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 1;
+        margin: 0;
+        padding: 0;
+        list-style: outside none none;
+
+        &__item {
+          display: list-item;
+          height: auto;
+          margin: 0;
+          padding-left: 1.5rem;
+        }
+
+        &__link {
+          position: relative;
+          max-width: 200px;
+          padding: 5px 10px;
+          z-index: 2;
+
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          line-height: 18px;
+          text-align: left;
+          text-decoration: none var(--green-200) solid auto;
+          text-transform: uppercase;
+          color: var(--green-200);
+          cursor: pointer;
+
+          background-color: transparent;
+          border: none;
+          border-bottom: 2px solid transparent;
+          border-top: 2px solid transparent;
+          outline: none;
+          transition: color .3s linear;
+
+          &:hover {
+            outline-width: 0;
+          }
+
+          &:after {
+            background: var(--green-200);
+          }
+        }
+      }
+
+      .hamburger {
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        padding: 0;
+        margin-left: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        width: 60px;
+        height: 60px;
+        border: none;
+
+        .line {
+          height: 2px;
+          width: 24px;
+          x: 18px;
+          y: 26px;
+          transition: .2s all;
+
+          &--bottom {
+            width: 12px;
+            x: 30px;
+            y: 32px;
+          }
+        }
+
+        svg {
+          width: 100%;
+          height: 100%;
+
+          circle {
+            fill: var(--green-200);
+          }
+
+          rect {
+            fill: var(--yellow-200)
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  nav .navigation .navigation__item:not(.sub-nav-container) .navigation__link {
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--green-200);
+      transition: width .3s linear;
+    }
+
+    &:hover:after {
+      width: 100%;
+
+    }
+  }
+
+  nav .hamburger:hover {
+    .line--top {
+      width: 12px;
+      x: 30px;
+    }
+
+    .line--bottom {
+      width: 24px;
+      x: 18px;
+    }
+  }
+}

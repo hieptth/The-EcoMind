@@ -1,4 +1,4 @@
-export interface Listing {
+export type Listing = {
   id: number;
   status: string;
   price: string;
@@ -8,4 +8,4 @@ export interface Listing {
   baths: number;
   sqft: string;
   image: string;
-}
+};

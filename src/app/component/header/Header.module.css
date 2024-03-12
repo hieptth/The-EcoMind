@@ -3,19 +3,31 @@
   height: 500px;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
-}
+  padding: 0 20px; }
 
-.logo {
-  position: relative;
-  gap: 30rem;
+.logo{
+    position: absolute;
+}
+.headerleftcontainer{
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+.textLogo{
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 30px;
+  color: #a5292a;
+  margin-top: 10px;
+  border-left: 2px solid #a5292a;
+  height: 40px;
+  padding-left: 10px;
 }
 
 .headerContent {
   left: 40rem;
   display: flex;
   position: absolute;
-
+  top: 30px;
 }
 
 .navigation {
@@ -32,4 +44,18 @@
   text-decoration: none;
   padding: 10px;
   font-weight: normal;
+}
+
+.imageContainer {
+  position: block;
+}
+
+.overlayText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  font-size: 5rem;
+  font-family: 'Dancing Script', cursive;
 }
