@@ -7,6 +7,7 @@ import Header from "app/component/header/Header";
 import Footer from "app/component/footer/Footer";
 import { Pagination } from "antd";
 import { Input, Slider, Row, Col, Select } from "antd";
+import { Navbar } from "@components";
 
 const HomeSearch = () => {
   const PAGE_SIZE = 9;
@@ -59,89 +60,92 @@ const HomeSearch = () => {
   };
   return (
     <>
-      <Header />
-
+      <Navbar />
       <div className={styles.listingsContainers}>
         <div className={styles.searchContainers}>
           <Search
             placeholder="Search by Address, City, or Neighborhood"
-            enterButton={<i className="fas fa-search"></i>}
             size="large"
             onSearch={(value) => console.log(value)}
           />
 
           {/* ... Other components ... */}
-          <Row gutter={0} className={styles.roomContainers}>
-            <Col span={8}>
-              <Select
-                value={propertyType}
-                onChange={setPropertyType}
-                placeholder="Select property type"
-                style={{ width: "100%" }}
-              >
-                <Option value="forSale">For Sale</Option>
-                <Option value="forRent">For Rent</Option>
-              </Select>
-            </Col>
-            <Col span={8}>
-              <Select
-                value={bathrooms}
-                onChange={setBathrooms}
-                placeholder="Bathrooms"
-                style={{ width: "100%" }}
-              >
-                <Option value={1}>1</Option>
-                <Option value={2}>2</Option>
-                <Option value={3}>3</Option>
-              </Select>
-            </Col>
-            <Col span={8}>
-              <Select
-                value={bedrooms}
-                onChange={setBedrooms}
-                placeholder="Bedrooms"
-                style={{ width: "100%" }}
-              >
-                <Option value={1}>1</Option>
-                <Option value={2}>2</Option>
-                <Option value={3}>3</Option>
-                <Option value={4}>4</Option>
-              </Select>
-            </Col>
-          </Row>
-          {/* Price and SQFT Sliders */}
-          <Row gutter={50} className={styles.sliderContainer}>
-            <Col span={12}>
-              <Slider
-                range
-                step={0.1}
-                min={1}
-                max={5}
-                value={price}
-                onChange={onPriceChange}
-                marks={{ 1: "$1M", 5: "$5M+" }}
-              />
-            </Col>
-            <Col span={12}>
-              <Slider
-                range
-                step={100}
-                min={500}
-                max={10000}
-                value={sqft}
-                onChange={onSqftChange}
-                marks={{ 500: "<500 sqft", 10000: "10K+ sqft" }}
-              />
-            </Col>
-          </Row>
+          <div className={styles.roomContainers}>
+            <Row gutter={0}>
+              <Col span={8}>
+                <Select
+                  value={propertyType}
+                  onChange={setPropertyType}
+                  placeholder="Select property type"
+                  style={{ width: "100%" }}
+                >
+                  <Option value="forSale">For Sale</Option>
+                  <Option value="forRent">For Rent</Option>
+                </Select>
+              </Col>
+              <Col span={8}>
+                <Select
+                  value={bathrooms}
+                  onChange={setBathrooms}
+                  placeholder="Bathrooms"
+                  style={{ width: "100%" }}
+                >
+                  <Option value={1}>1</Option>
+                  <Option value={2}>2</Option>
+                  <Option value={3}>3</Option>
+                </Select>
+              </Col>
+              <Col span={8}>
+                <Select
+                  value={bedrooms}
+                  onChange={setBedrooms}
+                  placeholder="Bedrooms"
+                  style={{ width: "100%" }}
+                >
+                  <Option value={1}>1</Option>
+                  <Option value={2}>2</Option>
+                  <Option value={3}>3</Option>
+                  <Option value={4}>4</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+          <div className={styles.sliderContainer}>
+            <Row gutter={48}>
+              <Col span={12}>
+                <h1 className={styles.upperSlider}>PRICE</h1>
+                <Slider
+                  range
+                  step={0.1}
+                  min={1}
+                  max={5}
+                  value={price}
+                  onChange={onPriceChange}
+                  marks={{ 1: "$1M", 5: "$5M+" }}
+                />
+              </Col>
+              <Col span={12}>
+                <h1 className={styles.upperSlider}>LIVING AREA</h1>
+                <Slider
+                  range
+                  step={100}
+                  min={500}
+                  max={10000}
+                  value={sqft}
+                  onChange={onSqftChange}
+                  marks={{ 500: "<500 sqft", 10000: "10K+ sqft" }}
+                />
+              </Col>
+            </Row>
+          </div>
         </div>
         <div className={styles.listings}>
           {currentListings.map((listing) => (
             <div key={listing.id} className={styles.listingItem}>
               <Image
                 src={"/div.image-wrap.png"}
-                width={50}
-                height={50}
+                width={300}
+                height={200}
                 alt={"listingimage"}
                 layout="responsive"
               />
@@ -152,9 +156,9 @@ const HomeSearch = () => {
                   {listing.description}
                 </span>
                 <span className={styles.address}>{listing.address}</span>
-                <span className={styles.meta}>
-                  {`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}
-                </span>
+                <span
+                  className={styles.meta}
+                >{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
               </div>
             </div>
           ))}

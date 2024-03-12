@@ -40,7 +40,8 @@
   margin-bottom: 0.5rem;
 }
 
-.socialSection {}
+.socialSection {
+}
 
 .disclaimer {
   margin-bottom: 1rem;
@@ -53,18 +54,17 @@
   align-items: center;
 }
 
-.logos {}
+.logos {
+}
 
 .poweredBy,
-.copyRight {}
-
-
+.copyRight {
+}
 
 .newsletterContainer {
-  background-color: #f8f8f8;
+  background-color: #f4efe7;
   padding: 2rem;
   text-align: center;
-  margin: 0rem;
 }
 
 .newsletterHeading {
@@ -93,7 +93,7 @@
 
 .newsletterButton {
   padding: 0.5rem 1rem;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
