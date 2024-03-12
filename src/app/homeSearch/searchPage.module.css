@@ -1,0 +1,81 @@
+.listingsContainers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+.searchContainers {
+  width: 90%;
+  padding: 2rem;
+}
+.roomContainers {
+  padding: 15px;
+  width: 100%;
+}
+
+.listings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* This will space your listing items evenly */
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 1200px; /* Set a max width if necessary */
+  margin: auto; /* Center the container */
+}
+.listingItem {
+  flex: 0 1 calc(33.333% - 1rem); /* Updated to take up 1/3 of the space minus gap */
+  border: 1px solid #ccc; /* Placeholder for border */
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem; /* Space below each listing */
+}
+
+.listingItem:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.listingDetails {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: None;
+  color: #fbee24;
+  padding: 0.5rem;
+}
+.price {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.description {
+  color: #333;
+}
+
+.address {
+  color: #666;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.description,
+.address,
+.meta {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.sliderContainer :global(.ant-slider-track),
+.sliderContainer :global(.ant-slider:hover .ant-slider-track) {
+  background-color: black;
+  border: 2px solid black;
+}

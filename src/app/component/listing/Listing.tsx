@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import styles from './Listing.module.css';
-import { Listing } from './interface/listing';
-import listingsData from './listing.json';
-
+import Image from "next/image";
+import styles from "./Listing.module.css";
+import { Listing } from "./interface/listing";
+import listingsData from "./listing.json";
+import Header from "../header/Header";
 
 const ListingComponent: React.FC = () => {
   const listings: Listing[] = listingsData as Listing[];
 
   return (
-    <div className={styles.listingsContainer}>
+    <div className={styles.listingsContainers}>
       <h2 className={styles.title}>EXPLORE EXCLUSIVE LISTINGS</h2>
       <div className={styles.listings}>
         {listings.map((listing) => (
@@ -25,7 +25,9 @@ const ListingComponent: React.FC = () => {
               <span className={styles.price}>{listing.price}</span>
               <span className={styles.description}>{listing.description}</span>
               <span className={styles.address}>{listing.address}</span>
-              <span className={styles.meta}>{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
+              <span
+                className={styles.meta}
+              >{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
             </div>
           </div>
         ))}
