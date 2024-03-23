@@ -1,99 +1,89 @@
 "use client";
-import React, { FormEvent } from "react";
-import styles from "./LoginPage.module.css";
+
+import { LoginImage, LoginForm, LoginWrapper } from "./login.styles";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-cards";
+import LoginImage1 from "@assets/login_image_1.jpg";
+import LoginImage2 from "@assets/login_image_2.jpg";
+import LoginImage3 from "@assets/login_image_3.jpeg";
 import Image from "next/image";
+import { CustomTypography } from "@common/components";
+import { Image as ImageConstants } from "@constants";
 
-const LoginPage: React.FC = () => {
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    // Handle the login logic here
-  };
-
+export const LoginPageWrapper = (props: {
+  children: React.ReactElement | React.ReactNode;
+}) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.leftPane}>
-        <Image
-          src="/login-image.png"
-          alt="Login Image"
-          width={500}
-          height={500}
-        />
-      </div>
-      <div className={styles.rightPane}>
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <Image src="/logo.png" alt="Login Logo" width={100} height={100} />
-          <h1>Welcome to EcoMind</h1>
-          <p style={{ color: "#737d8c" }}>
-            Welcome back! login with your data that you entered during
-            registration.
-          </p>
-          <label htmlFor="email" className={styles.formLabel}>
-            Email Address
-          </label>
-          <input type="email" placeholder="Email" />
-
-          <label htmlFor="password" className={styles.formLabel}>
-            Password
-          </label>
-          <input type="password" placeholder="Password" />
-
-          <div className={styles.options}>
-            <div className={styles.rememberMe}>
-              <input type="checkbox" id="rememberMe" />
-              <label htmlFor="rememberMe">Remember Password</label>
-            </div>
-            <p className={styles.forgotPassword}>Forgot your password?</p>
-          </div>
-          <p className={styles.rememberMe}>
-            Don&apos;t have an account? Sign up here
-          </p>
-          <button type="submit">Log In</button>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "10px",
-            }}
+    <LoginWrapper>
+      <LoginImage>
+        <div className="image-wrapper">
+          <Swiper
+            effect={"cards"}
+            grabCursor={true}
+            modules={[EffectCards]}
+            className="mySwiper"
           >
-            <div style={{ flex: 1, height: "1px", backgroundColor: "black" }} />
-            <div>
-              <p style={{ width: "70px", textAlign: "center" }}>Or</p>
-            </div>
-
-            <div style={{ flex: 1, height: "1px", backgroundColor: "black" }} />
+            <SwiperSlide>
+              <Image
+                src={LoginImage1}
+                alt={"Card1"}
+                layout="responsive"
+                objectFit="cover"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src={LoginImage2}
+                alt={"Card2"}
+                layout="responsive"
+                objectFit="cover"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image
+                src={LoginImage3}
+                alt={"Card3"}
+                layout="responsive"
+                objectFit="cover"
+              />
+            </SwiperSlide>
+          </Swiper>
+          <div className="image-subtitle">
+            <CustomTypography variant="T36M">
+              Find Your Perfect Place <br /> With EcoMind
+            </CustomTypography>
           </div>
-
-          <div className={styles.alternateLogin}>
-            <button className={styles.belowButton}>
-              <span className={styles.iconWrapper}>
-                <Image
-                  src="/icon/google.svg"
-                  alt="Google icon"
-                  width={15}
-                  height={15}
-                  className={styles.icon}
-                />
-              </span>
-              <span className={styles.buttonText}>Login with Google</span>
-            </button>
-            <button className={styles.belowButton}>
-              <span className={styles.iconWrapper}>
-                <Image
-                  src="/icon/facebook.svg"
-                  alt="Facebook icon"
-                  width={15}
-                  height={15}
-                  className={styles.icon}
-                />
-              </span>
-              <span className={styles.buttonText}>Login with Facebook</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </LoginImage>
+      <LoginForm>
+        <div className="logo">
+          <Image
+            src={`${ImageConstants.LOGO}/ecomind-logo.png`}
+            alt={"The EcoMind Logo"}
+            quality={100}
+            objectFit="contain"
+            width={120}
+            height={120}
+          />
+        </div>
+        <div className="form-title">
+          <CustomTypography variant="T30M">
+            Welcome to The EcoMind
+          </CustomTypography>
+          <CustomTypography variant="T16R" color="#737D8C">
+            Experience sustainable living beyond boundaries:
+            <br />
+            Find your green home with us today!
+          </CustomTypography>
+        </div>
+        {props.children}
+      </LoginForm>
+    </LoginWrapper>
   );
 };
 
-export default LoginPage;
+export default function LoginPage() {
+  return <LoginPageWrapper>sad</LoginPageWrapper>;
+}
