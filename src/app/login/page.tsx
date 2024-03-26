@@ -1,89 +1,41 @@
 "use client";
 
-import { LoginImage, LoginForm, LoginWrapper } from "./login.styles";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-cards";
-import LoginImage1 from "@assets/login_image_1.jpg";
-import LoginImage2 from "@assets/login_image_2.jpg";
-import LoginImage3 from "@assets/login_image_3.jpeg";
-import Image from "next/image";
-import { CustomTypography } from "@common/components";
-import { Image as ImageConstants } from "@constants";
+import { LoginPageWrapper } from "@components";
+import { Form } from "antd";
+import { BaseForm } from "@common/components";
 
-export const LoginPageWrapper = (props: {
-  children: React.ReactElement | React.ReactNode;
-}) => {
-  return (
-    <LoginWrapper>
-      <LoginImage>
-        <div className="image-wrapper">
-          <Swiper
-            effect={"cards"}
-            grabCursor={true}
-            modules={[EffectCards]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
-              <Image
-                src={LoginImage1}
-                alt={"Card1"}
-                layout="responsive"
-                objectFit="cover"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src={LoginImage2}
-                alt={"Card2"}
-                layout="responsive"
-                objectFit="cover"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Image
-                src={LoginImage3}
-                alt={"Card3"}
-                layout="responsive"
-                objectFit="cover"
-              />
-            </SwiperSlide>
-          </Swiper>
-          <div className="image-subtitle">
-            <CustomTypography variant="T36M">
-              Find Your Perfect Place <br /> With EcoMind
-            </CustomTypography>
-          </div>
-        </div>
-      </LoginImage>
-      <LoginForm>
-        <div className="logo">
-          <Image
-            src={`${ImageConstants.LOGO}/ecomind-logo.png`}
-            alt={"The EcoMind Logo"}
-            quality={100}
-            objectFit="contain"
-            width={120}
-            height={120}
-          />
-        </div>
-        <div className="form-title">
-          <CustomTypography variant="T30M">
-            Welcome to The EcoMind
-          </CustomTypography>
-          <CustomTypography variant="T16R" color="#737D8C">
-            Experience sustainable living beyond boundaries:
-            <br />
-            Find your green home with us today!
-          </CustomTypography>
-        </div>
-        {props.children}
-      </LoginForm>
-    </LoginWrapper>
-  );
-};
+const formID = "login-form";
 
 export default function LoginPage() {
-  return <LoginPageWrapper>sad</LoginPageWrapper>;
+
+  const [loginForm] = Form.useForm();
+
+  return <LoginPageWrapper>
+    <BaseForm layout="vertical" form={loginForm} id={formID}>
+      <BaseForm.Text
+        itemProps={{
+          label: "Email",
+          name: "email",
+          required: true,
+          rules: {
+            type: "email",
+            message: "Invalid email",
+          },
+        }}
+        inputProps={{
+          placeholder: "Enter your email",
+        }}
+      />
+      <BaseForm.Text
+        itemProps={{
+          label: "Password",
+          name: "password",
+          required: true,
+        }}
+        inputProps={{
+          placeholder: "Enter your password",
+        }}
+      />
+    </BaseForm>
+  </LoginPageWrapper>;
 }
