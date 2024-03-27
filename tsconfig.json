@@ -26,27 +26,13 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "@common/*": [
-        "./common/*"
-      ],
-      "@components": [
-        "./components"
-      ],
-      "@constants": [
-        "./constants"
-      ],
-      "@hooks": [
-        "./hooks"
-      ]
+      "@common/*": ["./common/*"],
+      "@components": ["./components"],
+      "@constants": ["./constants"],
+      "@hooks": ["./hooks"],
+      "@assets/*": ["../public/assets/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
