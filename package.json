@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "antd": "^5.14.2",
+    "iconsax-react": "^0.0.8",
     "next": "^14.0.1",
     "next-cloudinary": "^6.2.1",
     "react": "^18",

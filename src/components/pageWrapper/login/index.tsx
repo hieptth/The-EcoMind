@@ -1,3 +1,5 @@
+"use client";
+
 import { LoginForm, LoginImage, LoginWrapper } from "./login.styles";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards } from "swiper/modules";

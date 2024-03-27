@@ -1,8 +1,10 @@
-import { ReactNode, useEffect, useState } from "react";
+"use client";
+
+import React, { ReactNode, useEffect, useState } from "react";
 import { StyledForm } from "./form.styles";
 import { Form, FormInstance, FormProps, Input, InputProps } from "antd";
 import { Rule } from "antd/es/form";
-import { TextAreaProps } from "antd/es/input";
+import { PasswordProps, TextAreaProps } from "antd/es/input";
 
 type BaseLayoutType = "horizontal" | "vertical" | "inline";
 
@@ -58,6 +60,7 @@ type ItemProps = {
   name: string;
   rules?: Rule;
   required?: boolean;
+  className?: string
 }
 
 type TextInputProps = {
@@ -79,6 +82,29 @@ const TextInput = (props: TextInputProps) => {
       label={renderItemLabel(itemProps.label, itemProps?.required || false)}
     >
       <Input {...inputProps} />
+    </Form.Item>
+  );
+};
+
+type PasswordInputProps = {
+  itemProps: ItemProps,
+  inputProps: PasswordProps
+};
+
+const PasswordInput = (props: PasswordInputProps) => {
+  const { itemProps, inputProps } = props;
+  // const { t } = useTranslation({ keyPrefix: "common" });
+  const { t } = { t: (key: string) => key };
+
+  return (
+    <Form.Item {...itemProps}
+      rules={[
+        { required: itemProps?.required, message: `${itemProps.label + " " + t("inputRequired")}` },
+        { ...itemProps?.rules },
+      ]}
+      label={renderItemLabel(itemProps.label, itemProps?.required || false)}
+    >
+      <Input.Password {...inputProps} />
     </Form.Item>
   );
 };
@@ -107,8 +133,5 @@ const TextareaInput = (props: TextareaInputProps) => {
 };
 
 BaseForm.Text = TextInput;
+BaseForm.Password = PasswordInput;
 BaseForm.Textarea = TextareaInput;
-
-BaseForm.defaultProps = {
-  layout: "horizontal",
-};

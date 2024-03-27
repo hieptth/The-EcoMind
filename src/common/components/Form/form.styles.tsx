@@ -40,7 +40,7 @@ export const StyledForm = styled(Form)<{ layout: string }>`
   }};
 
         label {
-          font-family: Nunito Sans, sans-serif;
+          //font-family: Nunito Sans, sans-serif;
           font-size: ${(props) => (props.layout === "vertical" ? 12 : 14)}px;
           font-style: normal;
           font-weight: 600;
@@ -65,6 +65,10 @@ export const StyledForm = styled(Form)<{ layout: string }>`
           align-items: center;
           column-gap: 1.5rem;
 
+          span.custom-input input.ant-input {
+            padding: unset;
+            border: unset;
+          }
 
           input.ant-input,
           textarea {
@@ -74,7 +78,22 @@ export const StyledForm = styled(Form)<{ layout: string }>`
             line-height: 20px;
             border-radius: 4px;
             border: 2px solid #eaedf0;
-            font-family: "Nunito Sans", sans-serif;
+            //font-family: "Nunito Sans", sans-serif;
+
+            // remove autofill background color
+            &:-webkit-autofill,
+            input:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+            }
+
+            svg {
+              cursor: pointer;
+
+              path {
+                stroke: #737D8C;
+                stroke-width: 1.8;
+              }
+            }
 
             &:focus {
               border: 2px solid rgba(255, 120, 40, 0.7);
@@ -101,7 +120,7 @@ export const StyledForm = styled(Form)<{ layout: string }>`
             }
 
             &-input {
-              font-family: "Nunito Sans", sans-serif;
+              //font-family: "Nunito Sans", sans-serif;
               font-size: 14px;
               font-weight: 400;
               line-height: 20px;
@@ -182,7 +201,7 @@ export const StyledForm = styled(Form)<{ layout: string }>`
           }
 
           .ant-upload-list-item {
-            aspect-ratio: 1/1;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
 
             &-container {
@@ -207,7 +226,7 @@ export const StyledForm = styled(Form)<{ layout: string }>`
             padding: 1rem 1.5rem;
             width: 100%;
             text-align: center;
-            font-family: Nunito Sans, sans-serif;
+            //font-family: Nunito Sans, sans-serif;
             font-size: 14px;
             font-style: normal;
             font-weight: 400;
