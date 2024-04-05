@@ -1,30 +1,23 @@
 import React from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import styles from "./chat.module.css";
 
 const userList = [
   { id: "1", name: "Joe" },
   { id: "2", name: "Peter" },
+  // ... other users
 ];
 
 const MessageListPage = () => {
-  const router = useRouter();
-
-  const handleSelectUser = (userId: string) => {
-    router.push(`/message/${userId}`);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.chatHistory}>
         {userList.map((user) => (
-          <div
-            key={user.id}
-            className={styles.userItem}
-            onClick={() => handleSelectUser(user.id)}
-          >
-            <p>{user.name}</p>
-          </div>
+          <Link href={`/message/${user.id}`} key={user.id} passHref>
+            <div className={styles.userItem}>
+              <p>{user.name}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
