@@ -5,6 +5,12 @@ import styles from "./chat.module.css";
 const userList = [
   { id: "1", name: "Joe" },
   { id: "2", name: "Peter" },
+  { id: "3", name: "Peter" },
+  { id: "4", name: "Peter" },
+  { id: "5", name: "Peter" },
+  { id: "6", name: "Peter" },
+  { id: "7", name: "Peter" },
+  { id: "8", name: "Peter" },
   // ... other users
 ];
 

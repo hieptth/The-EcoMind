@@ -25,11 +25,11 @@
 .listings {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   width: 100%;
   max-width: 1200px;
   margin: auto;
   color: #0e5d30;
+  gap: 20px;
 }
 .listingItem {
   flex: 0 1 calc(33.333% - 1rem);
@@ -72,4 +72,12 @@
 .sliderContainer :global(.ant-slider:hover .ant-slider-track) {
   background-color: black;
   border: 2px solid black;
+}
+
+.sliderContainer :global(.ant-slider-handle::after),
+.sliderContainer :global(.ant-slider-handle:hover::after) {
+  box-shadow: 0 0 0 2px black !important;
+}
+.sliderContainer :global(.ant-slider-mark-text) {
+  width: max-content;
 }

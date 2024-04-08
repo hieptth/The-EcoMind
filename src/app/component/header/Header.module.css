@@ -3,18 +3,19 @@
   height: 500px;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px; }
-
-.logo{
-    position: absolute;
+  padding: 0 20px;
 }
-.headerleftcontainer{
+
+.logo {
+  position: absolute;
+}
+.headerleftcontainer {
   display: flex;
   gap: 20px;
   margin-top: 10px;
 }
-.textLogo{
-  font-family: 'Julius Sans One', sans-serif;
+.textLogo {
+  font-family: "Julius Sans One", sans-serif;
   font-size: 30px;
   color: #a5292a;
   margin-top: 10px;
@@ -36,7 +37,6 @@
   gap: 30px;
   margin: 0;
   padding: 0;
-
 }
 
 .navigation li a {
@@ -57,5 +57,5 @@
   transform: translate(-50%, -50%);
   color: yellow;
   font-size: 5rem;
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }

@@ -1,17 +1,20 @@
 "use client";
 
 import "./navbar.scss";
-import { Image } from "@constants";
+import { Image as ImageConstants } from "@constants";
+import Image from "next/image";
 import { useScrollDirection } from "@hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const [isOnTop, setIsOnTop] = useState(true);
   const scrollDirection = useScrollDirection();
 
-  window.onscroll = () => {
-    setIsOnTop(window.scrollY < 50);
-  };
+  useEffect(() => {
+    window.onscroll = () => {
+      setIsOnTop(window.scrollY < 50);
+    };
+  }, []);
 
   return (
     <nav
@@ -24,9 +27,11 @@ export const Navbar = () => {
         <div className={"header-container"}>
           <div className={"header-container__logo"}>
             <a href={"/"} className={"logo"}>
-              <img
-                src={`${Image.LOGO}/ecomind-logo-w-text_zkdzk1.png`}
+              <Image
+                src={`${ImageConstants.LOGO}/ecomind-logo-w-text.png`}
                 alt={"The EcoMind"}
+                width={280}
+                height={100}
               />
             </a>
           </div>
@@ -43,7 +48,7 @@ export const Navbar = () => {
                 </a>
               </li>
               <li className={"navigation__item"}>
-                <a href={"/homeSearch"} className={"navigation__link"}>
+                <a href={"/search"} className={"navigation__link"}>
                   Home Search
                 </a>
               </li>
