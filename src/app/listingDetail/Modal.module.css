@@ -1,0 +1,70 @@
+.modalContainer {
+  display: flex;
+  height: 60%;
+  overflow: hidden;
+  background: #fbf6ed;
+}
+
+.modalCustomBody .ant-modal .ant-modal-body .ant-modal-content {
+  padding: 0 !important;
+}
+
+.formSection {
+  flex: 1;
+  padding: 24px;
+  background: #fbf6ed;
+}
+
+.modalTitle {
+}
+.imageSection {
+  flex: 2;
+  position: relative;
+  background: url("/Rightpanel.png") no-repeat center center;
+  background-size: "cover";
+}
+
+.contactDetails {
+  padding: 24px;
+  color: #fff;
+}
+.ant-row {
+  margin-bottom: 16px;
+}
+
+.ant-col {
+  margin-bottom: 0;
+}
+
+.ant-form-item {
+  margin-bottom: 16px; /* Space between form items */
+}
+
+.ant-input,
+.ant-btn {
+  border-radius: 0; /* Makes the input and button have square edges */
+}
+
+.ant-btn-primary {
+  border-color: #0e5d30 !important; 
+  color: #0e5d30 !important;
+  background-color: #fbf6ed !important;
+  height: 40px !important;
+  line-height: 100px !important; /* Center the text vertically */
+  padding: 0 30px !important; /* Button padding */
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: #333; /* Darker background on hover/focus */
+  border-color: #333; /* Darker border on hover/focus */
+}
+
+.legalText {
+  font-size: 12px; /* Smaller font size for legal text */
+  color: #666; /* Grey text color */
+  line-height: 1.5; /* Spacing between lines */
+  margin-top: 20px; /* Space above the legal text */
+}
+
+/* Add additional styling as needed */

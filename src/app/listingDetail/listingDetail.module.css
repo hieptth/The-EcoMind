@@ -53,6 +53,7 @@
   display: grid;
   grid-template-rows: repeat(4, auto); /* Creates four rows */
   row-gap: 1px;
+  padding: 20px;
 }
 .row {
   display: grid;
@@ -60,10 +61,6 @@
   align-items: center;
   border-top: 1px solid brown;
   padding: 20px 0;
-}
-.amenities {
-  text-align: center;
-  padding: 2rem;
 }
 
 .imageContainer {
@@ -89,8 +86,9 @@
 
 .amenities {
   text-align: center;
-  padding: 2rem;
+  padding: 20px;
   margin-top: 2rem;
+  text-align: center;
 }
 
 .amenitiesTitle {
@@ -119,10 +117,14 @@
   row-gap: 0.5rem;
   align-content: start;
   text-align: left;
+  padding: 30px;
 }
 
 .amenitiesSectionTitle {
   font-size: 1.2rem;
   border-bottom: 1px solid #a52a2a; /* Brown line under each title */
   padding-bottom: 0.5rem;
+}
+.amenityItem {
+  padding: 10px;
 }

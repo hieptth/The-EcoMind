@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import styles from "./listingDetail.module.css";
 import Footer from "app/component/footer/Footer";
@@ -5,6 +6,10 @@ import { Navbar } from "@components";
 import { HeartAdd, Facebook, Instagram } from "iconsax-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import React, { useState } from "react";
+import { Modal, Form, Input, Button, Row, Col } from "antd";
+import modalStyles from "./Modal.module.css";
+
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -24,7 +29,7 @@ const propertyMock = {
   title: "213 NOWHERE, NOPLACE",
   price: "$59,500,000",
   description:
-    'A multi-generational compound with a global "hello" architectural pedigree is  museums.',
+    'A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.A multi-generational compound with a global "hello" architectural pedigree is  museums.',
   location: "48100 Pacific Coast Hwy, Malibu, CA 90265",
   status: "For Sale",
   amenities: {
@@ -69,33 +74,58 @@ const propertyMock = {
 };
 
 const ListingDetailPage = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
+  };
+
   return (
     <>
       {/* <Navbar /> */}
       <div className={styles.container}>
-        {/* <Swiper
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-        spaceBetween={50}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        mousewheel={true}
-        keyboard={true}
-        style={{ width: "100%", height: "auto" }}
-      >
-        {propertyImages.map((imageSrc, index) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={imageSrc}
-              alt={`Property Image ${index + 1}`}
-              layout="responsive"
-              width={1220}
-              height={768}
-              objectFit="cover"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper> */}
+        <Swiper
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          spaceBetween={50}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          mousewheel={true}
+          keyboard={true}
+          style={{ width: "100%", height: "auto" }}
+        >
+          {propertyImages.map((imageSrc, index) => (
+            <SwiperSlide className={styles.SwiperSlide} key={index}>
+              <Image
+                src={imageSrc}
+                alt={`Property Image ${index + 1}`}
+                layout="responsive"
+                width={1220}
+                height={768}
+                objectFit="cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         <div className={styles.header}>
           <h2 className={styles.price}>{propertyMock.price}</h2>
           <h1 className={styles.title}>{propertyMock.title}</h1>
@@ -103,7 +133,85 @@ const ListingDetailPage = () => {
             {`${propertyMock.amenities.interior.TotalBedrooms} BEDS | ${propertyMock.amenities.interior.TotalBathrooms} BATHS | ${propertyMock.areaLot} AREA`}
           </h2>
           <div className={styles.belowHeader}>
-            <button className={styles.buttonInquire}> INQUIRE NOW</button>
+            <button onClick={showModal} className={styles.buttonInquire}>
+              INQUIRE NOW
+            </button>
+            <Modal
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              width={1200}
+              footer={null}
+              wrapClassName={modalStyles.modalCustomBody}
+            >
+              <div className={modalStyles.modalContainer}>
+                <div className={modalStyles.formSection}>
+                  <h1 className={modalStyles.modalTitle}>GET IN TOUCH</h1>
+                  <Form layout="vertical">
+                    <Row gutter={16}>
+                      <Col xs={24} sm={12}>
+                        <Form.Item
+                          name="firstName"
+                          rules={[{ required: true }]}
+                        >
+                          <Input placeholder="First Name" />
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} sm={12}>
+                        <Form.Item name="lastName" rules={[{ required: true }]}>
+                          <Input placeholder="Last Name" />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Row gutter={16}>
+                      <Col xs={24} sm={12}>
+                        <Form.Item
+                          name="email"
+                          rules={[{ type: "email", required: true }]}
+                        >
+                          <Input placeholder="Email" />
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} sm={12}>
+                        <Form.Item name="phone">
+                          <Input placeholder="Phone" />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Form.Item name="message">
+                      <Input.TextArea placeholder="Message" />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit">
+                        Submit
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                  <p style={{ color: "#aaa" }}>
+                    By providing The EcoMind your contact information, you
+                    acknowledge and agree to our Privacy Policy and consent to
+                    receiving marketing communications...
+                  </p>
+                </div>
+                <div className={modalStyles.imageSection}>
+                  <div className={modalStyles.contactDetails}>
+                    <h2>Contact Details</h2>
+                    <p>The EcoMind Team</p>
+                    <p>Truong Tan Hao Hiep | hiep.truongtanhaot@gmail.com</p>
+                    <p>Le Phuoc Gia Loc | loc.le2502@hcmut.edu.vn</p>
+                    <p>(+84) 901 392 331</p>
+                    <p>team@ecomind.com</p>
+                    <p>268 Ly Thuong Kiet, Ward 14</p>
+                    <p>District 10, Ho Chi Minh City</p>
+
+                    <div className={modalStyles.socialIcons}>
+                      <Facebook size="24" color="#fff" />
+                      <Instagram size="24" color="#fff" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Modal>
             <div className={styles.outHeartIcon}>
               <div className={styles.heartIcon}>
                 <HeartAdd size="24" color="#8f3524" />
@@ -143,7 +251,7 @@ const ListingDetailPage = () => {
                 ([key, value]) => (
                   <div key={key} className={styles.amenityItem}>
                     <span className={styles.amenityKey}>
-                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:
+                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:{" "}
                     </span>
                     <span className={styles.amenityValue}>{value}</span>
                   </div>
@@ -156,7 +264,7 @@ const ListingDetailPage = () => {
                 ([key, value]) => (
                   <div key={key} className={styles.amenityItem}>
                     <span className={styles.amenityKey}>
-                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:
+                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:{" "}
                     </span>
                     <span className={styles.amenityValue}>{value}</span>
                   </div>
@@ -169,7 +277,7 @@ const ListingDetailPage = () => {
                 ([key, value]) => (
                   <div key={key} className={styles.amenityItem}>
                     <span className={styles.amenityKey}>
-                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:
+                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:{" "}
                     </span>
                     <span className={styles.amenityValue}>{value}</span>
                   </div>
@@ -182,7 +290,7 @@ const ListingDetailPage = () => {
                 ([key, value]) => (
                   <div key={key} className={styles.amenityItem}>
                     <span className={styles.amenityKey}>
-                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:
+                      {key.replace(/([A-Z])/g, " $1").toUpperCase()}:{" "}
                     </span>
                     <span className={styles.amenityValue}>{value}</span>
                   </div>
