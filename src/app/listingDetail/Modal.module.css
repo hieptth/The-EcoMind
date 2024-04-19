@@ -16,6 +16,7 @@
 }
 
 .modalTitle {
+  color: green;
 }
 .imageSection {
   flex: 2;
@@ -40,31 +41,20 @@
   margin-bottom: 16px; /* Space between form items */
 }
 
-.ant-input,
-.ant-btn {
-  border-radius: 0; /* Makes the input and button have square edges */
-}
-
-.ant-btn-primary {
-  border-color: #0e5d30 !important; 
-  color: #0e5d30 !important;
-  background-color: #fbf6ed !important;
-  height: 40px !important;
-  line-height: 100px !important; /* Center the text vertically */
-  padding: 0 30px !important; /* Button padding */
-}
-
-.ant-btn-primary:hover,
-.ant-btn-primary:focus {
-  background-color: #333; /* Darker background on hover/focus */
-  border-color: #333; /* Darker border on hover/focus */
-}
-
 .legalText {
   font-size: 12px; /* Smaller font size for legal text */
   color: #666; /* Grey text color */
   line-height: 1.5; /* Spacing between lines */
   margin-top: 20px; /* Space above the legal text */
 }
-
+.buttonSubmit {
+  border-radius: 0px;
+  color: green;
+  background-color: #fbf6ed;
+  padding: 8px;
+  border-color: green;
+}
+.Input {
+  background-color: green;
+}
 /* Add additional styling as needed */

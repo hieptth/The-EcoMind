@@ -102,29 +102,31 @@ const ListingDetailPage = () => {
     <>
       {/* <Navbar /> */}
       <div className={styles.container}>
-        <Swiper
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          spaceBetween={50}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          mousewheel={true}
-          keyboard={true}
-          style={{ width: "100%", height: "auto" }}
-        >
-          {propertyImages.map((imageSrc, index) => (
-            <SwiperSlide className={styles.SwiperSlide} key={index}>
-              <Image
-                src={imageSrc}
-                alt={`Property Image ${index + 1}`}
-                layout="responsive"
-                width={1220}
-                height={768}
-                objectFit="cover"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className={styles.slideContainer}>
+          <Swiper
+            modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            mousewheel={true}
+            keyboard={true}
+            style={{ width: "100%", height: "auto" }}
+          >
+            {propertyImages.map((imageSrc, index) => (
+              <SwiperSlide className={styles.SwiperSlide} key={index}>
+                <Image
+                  src={imageSrc}
+                  alt={`Property Image ${index + 1}`}
+                  layout="responsive"
+                  width={1220}
+                  height={760}
+                  objectFit="cover"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
         <div className={styles.header}>
           <h2 className={styles.price}>{propertyMock.price}</h2>
@@ -182,9 +184,9 @@ const ListingDetailPage = () => {
                       <Input.TextArea placeholder="Message" />
                     </Form.Item>
                     <Form.Item>
-                      <Button type="primary" htmlType="submit">
+                      <button className={modalStyles.buttonSubmit}>
                         Submit
-                      </Button>
+                      </button>
                     </Form.Item>
                   </Form>
                   <p style={{ color: "#aaa" }}>
@@ -203,7 +205,6 @@ const ListingDetailPage = () => {
                     <p>team@ecomind.com</p>
                     <p>268 Ly Thuong Kiet, Ward 14</p>
                     <p>District 10, Ho Chi Minh City</p>
-
                     <div className={modalStyles.socialIcons}>
                       <Facebook size="24" color="#fff" />
                       <Instagram size="24" color="#fff" />
