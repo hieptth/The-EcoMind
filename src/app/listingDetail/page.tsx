@@ -10,10 +10,10 @@ import React, { useState } from "react";
 import { Modal, Form, Input, Button, Row, Col } from "antd";
 import modalStyles from "./Modal.module.css";
 
+import MapComponent from "app/component/map/MapComponent";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 
 // install Swiper modules
@@ -70,7 +70,10 @@ const propertyMock = {
     },
   },
   areaLot: "8280 Acres",
-  // mapUrl: "/path-to-map-image.jpg",
+  mapPosition: {
+    lat: 34.0259,
+    lng: -118.7798,
+  },
 };
 
 const ListingDetailPage = () => {
@@ -300,7 +303,11 @@ const ListingDetailPage = () => {
             </div>
           </div>
         </div>
-
+        <MapComponent
+          lat={propertyMock.mapPosition.lat}
+          lng={propertyMock.mapPosition.lng}
+          address={propertyMock.location}
+        />
         <Footer />
       </div>
     </>

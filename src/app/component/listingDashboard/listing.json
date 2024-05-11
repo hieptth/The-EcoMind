@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "status": "FOR SALE",
+    "price": "$14,995,000",
+    "description": "FLINT HILL LUXURIOUS HOUSE",
+    "address": "1904 Drummond Newark, NJ 07102",
+    "beds": 4,
+    "baths": 3,
+    "sqft": "3,502",
+    "image": "/div.image-wrap.png"
+  },
+  {
+    "id": 2,
+    "status": "FOR RENT",
+    "price": "$14,995,000",
+    "description": "A MODERN ACCENTUATES HOUSE",
+    "address": "1904 Drummond Newark, NJ 07102",
+    "beds": 4,
+    "baths": 3,
+    "sqft": "3,502",
+    "image": "/div.image-wrap.png"
+  },
+  {
+    "id": 3,
+    "status": "FOR SALE",
+    "price": "$7,988,000",
+    "description": "THE SKAY VIEW FARM HOUSE",
+    "address": "1904 Drummond Newark, NJ 07102",
+    "beds": 6,
+    "baths": 8,
+    "sqft": "7,173",
+    "image": "/div.image-wrap.png"
+  }
+]
