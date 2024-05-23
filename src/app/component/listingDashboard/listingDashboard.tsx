@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import Image from "next/image";
 import styles from "./listingDashboard.module.css";
 import { Listing } from "./interface/listing";
 import { Pagination } from "antd";
-import { MoreOutlined } from "@ant-design/icons";
+import { MoreOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import { UploadChangeParam } from "antd/lib/upload/interface";
 
 import {
   Input,
@@ -15,9 +16,23 @@ import {
   Button,
   Checkbox,
   Modal,
+  Upload,
   Menu,
+  Form,
+  message,
   Dropdown,
 } from "antd";
+
+interface ModalFormData {
+  status: string;
+  price: string;
+  description: string;
+  address: string;
+  beds: number;
+  baths: number;
+  sqft: string;
+  image?: string;
+}
 
 const ListingDashboard = () => {
   const PAGE_SIZE = 9;
@@ -33,8 +48,6 @@ const ListingDashboard = () => {
 
   const [selectMode, setSelectMode] = useState(false);
   const [selectedListings, setSelectedListings] = useState(new Set<number>());
-
-  // ... existing functions
 
   const toggleSelectMode = () => {
     setSelectMode(!selectMode);
@@ -74,15 +87,6 @@ const ListingDashboard = () => {
       newSelection.add(id);
     }
     setSelectedListings(newSelection);
-  };
-  const handleAddProperty = () => {
-    console.log("Add Property");
-    // Add functionality or Modal to add a new property
-  };
-
-  const handleEditListing = (id: number) => {
-    console.log("Edit Listing:", id);
-    // Add functionality or Modal to edit the listing
   };
 
   const handleDeleteListing = (id: number) => {
@@ -143,6 +147,91 @@ const ListingDashboard = () => {
       setSqft(value as [number, number]);
     }
   };
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalFormData, setModalFormData] = useState<ModalFormData>({
+    status: "",
+    price: "",
+    description: "",
+    address: "",
+    beds: 0,
+    baths: 0,
+    sqft: "",
+  });
+
+  const [editListingData, setEditListingData] = useState<ModalFormData>({
+    status: "",
+    price: "",
+    description: "",
+    address: "",
+    beds: 0,
+    baths: 0,
+    sqft: "",
+  });
+
+  const [editListingId, setEditListingId] = useState<number | null>(null);
+
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+
+  const showModal = () => setIsModalVisible(true);
+  const handleModalCancel = () => setIsModalVisible(false);
+  const handleModalSubmit = () => {
+    setIsModalVisible(false);
+  };
+
+  const onModalFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setModalFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onUploadChange = (info: UploadChangeParam) => {
+    if (info.file.status === "done") {
+      // Ensure originFileObj is not undefined before using it
+      if (info.file.originFileObj) {
+        console.log("File uploaded successfully:", info.file.name);
+        // Create object URL only if the file object is available
+        const imageUrl = URL.createObjectURL(info.file.originFileObj);
+        // Example: setting imageUrl in state (adjust according to your state management)
+        setEditListingData((prev) => ({ ...prev, image: imageUrl }));
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else {
+        // Handle the case where file object is undefined
+        message.error("File upload failed: No file data available.");
+      }
+    } else if (info.file.status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  };
+  const handleEditListing = (id: number) => {
+    const listingToEdit = listings.find((listing) => listing.id === id);
+    if (listingToEdit) {
+      setEditListingData({
+        status: listingToEdit.status || "",
+        price: listingToEdit.price || "",
+        description: listingToEdit.description || "",
+        address: listingToEdit.address || "",
+        beds: listingToEdit.beds || 0,
+        baths: listingToEdit.baths || 0,
+        sqft: listingToEdit.sqft || "",
+      });
+      setEditListingId(id); // Set the current editing listing's ID
+      setIsEditModalVisible(true);
+    }
+  };
+
+  const handleSaveChanges = () => {
+    if (editListingId == null) return;
+
+    const updatedListings = listings.map((listing) => {
+      if (listing.id === editListingId) {
+        return { ...listing, ...editListingData };
+      }
+      return listing;
+    });
+    setListings(updatedListings);
+    setIsEditModalVisible(false);
+    setEditListingId(null);
+  };
+
   return (
     <>
       <div className={styles.listingsContainers}>
@@ -154,7 +243,7 @@ const ListingDashboard = () => {
           />
 
           <div className={styles.roomContainers}>
-            <Row gutter={0}>
+            <Row gutter={8}>
               <Col span={8}>
                 <Select
                   value={propertyType}
@@ -232,10 +321,186 @@ const ListingDashboard = () => {
                   </Button>
                 </>
               )}
-              <Button onClick={handleAddProperty}>Add Property</Button>
+              <Button onClick={showModal}>Add Property</Button>
+              <Modal
+                title="Add New Property"
+                visible={isModalVisible}
+                onCancel={handleModalCancel}
+                onOk={handleModalSubmit}
+                okText="Add Business"
+                cancelText="Cancel"
+              >
+                <Form layout="vertical">
+                  <Form.Item label="Status">
+                    <Input
+                      name="Status"
+                      value={modalFormData.status}
+                      onChange={onModalFormChange}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Price">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="Price"
+                      value={modalFormData.price}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Description">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="Description"
+                      value={modalFormData.description}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Address">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="address"
+                      value={modalFormData.address}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Beds">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="beds"
+                      value={modalFormData.beds}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Baths">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="baths"
+                      value={modalFormData.baths}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Sqft">
+                    <Input
+                      onChange={onModalFormChange}
+                      name="sqft"
+                      value={modalFormData.sqft}
+                    />
+                  </Form.Item>
+                  <Form.Item label="Logo">
+                    <Upload
+                      name="logo"
+                      listType="picture-card"
+                      className="avatar-uploader"
+                      showUploadList={false}
+                      beforeUpload={() => false}
+                      onChange={onUploadChange}
+                    >
+                      {<PlusOutlined />}
+                      <div style={{ marginTop: 8 }}>Upload</div>
+                    </Upload>
+                  </Form.Item>
+                </Form>
+              </Modal>
             </div>
           </div>
         </div>
+        <Modal
+          title="Edit Property"
+          visible={isEditModalVisible}
+          onCancel={() => setIsEditModalVisible(false)}
+          onOk={handleSaveChanges}
+          okText="Save Changes"
+          cancelText="Cancel"
+        >
+          <Form layout="vertical">
+            <Form.Item label="Status">
+              <Input
+                name="status"
+                value={editListingData?.status}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    status: e.target.value,
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Price">
+              <Input
+                name="price"
+                value={editListingData?.price}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    price: e.target.value,
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Address">
+              <Input
+                name="address"
+                value={editListingData?.address}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    address: e.target.value,
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Beds">
+              <Input
+                name="beds"
+                value={editListingData?.beds}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    beds: Number(e.target.value),
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Baths">
+              <Input
+                name="baths"
+                value={editListingData?.baths}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    baths: Number(e.target.value),
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Sqft">
+              <Input
+                name="sqft"
+                value={editListingData?.sqft}
+                onChange={(e) =>
+                  setEditListingData({
+                    ...editListingData,
+                    sqft: e.target.value,
+                  })
+                }
+              />
+            </Form.Item>
+            <Form.Item label="Image">
+              <Upload
+                name="image"
+                listType="picture-card"
+                showUploadList={false}
+                beforeUpload={() => false}
+                onChange={onUploadChange}
+              >
+                {editListingData?.image ? (
+                  <Image
+                    src={editListingData?.image}
+                    alt="avatar"
+                    style={{ width: "100%" }}
+                  />
+                ) : (
+                  <UploadOutlined />
+                )}
+              </Upload>
+            </Form.Item>
+          </Form>
+        </Modal>
+
         <div className={styles.listings}>
           {currentListings.map((listing) => (
             <div key={listing.id} className={styles.listingItem}>

@@ -6,7 +6,7 @@
 
 .sidebar {
   width: 100px;
-  background: #fff; 
+  background: #fff;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -16,12 +16,17 @@
   border-bottom: 1px solid #eee;
   margin-bottom: 20px;
 }
-.content{
+
+.content {
   width: 100%;
+}
+.icon {
+  color: gray;
 }
 
 .iconContainer {
-  margin-bottom: 20px;
+  margin-bottom: 100px;
   cursor: pointer;
+  margin-left: 9px;
+  /* font-weight: normal;  */
 }
-

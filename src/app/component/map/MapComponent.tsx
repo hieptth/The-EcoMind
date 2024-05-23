@@ -2,6 +2,9 @@ import React from "react";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 interface MapProps {
   lat: number;
@@ -10,9 +13,9 @@ interface MapProps {
 }
 
 const customIcon = new L.Icon({
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  iconUrl: markerIcon.src,
+  iconRetinaUrl: markerIconRetina.src,
+  shadowUrl: markerShadow.src,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],

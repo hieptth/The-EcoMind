@@ -5,13 +5,15 @@ import Footer from "./component/footer/Footer";
 import ListingComponent from "./component/listing/Listing";
 import React from "react";
 import { Navbar } from "@components";
+import ChatBot from "./component/ChatBot/ChatBot";
 
 export default function Home() {
   return (
     <>
-      <Navbar/>
-      <Header/>
-      <ListingComponent/>
+      <Navbar />
+      <Header />
+      <ListingComponent />
+      <ChatBot />
       <section className={styles.featuredNeighborhoodsContainer}>
         <h2 className={styles.featuredNeighborhoodsTitle}>
           FEATURED NEIGHBORHOODS
@@ -146,7 +148,7 @@ export default function Home() {
       />
       <main className={styles.main}></main>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
