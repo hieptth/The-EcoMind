@@ -4,19 +4,26 @@
   align-items: center;
   background-color: #ffffff;
   padding: 1rem;
-  /* flex: 1; */
   width: 100%;
   justify-content: center;
+  padding-top: 10rem;
+}
+.searchContainers {
+  text-align: left;
+  margin-bottom: 2rem;
+  color: #0e5d30;
+  font-weight: normal;
+  font-size: 25px;
+  /* padding: 0px; */
+  border-bottom: #0e5d30 1px solid;
+  width: 90%;
 }
 
 .upperSlider {
   color: black;
   font-size: 20px;
 }
-.searchContainers {
-  width: 90%;
-  padding: 2rem;
-}
+
 .roomContainers {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -80,24 +87,4 @@
 }
 .sliderContainer :global(.ant-slider-mark-text) {
   width: max-content;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px;
-}
-
-.checkbox {
-  position: absolute;
-}
-.dropdownContainer {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  cursor: pointer;
-}
-
-.addButton {
-  background-color: #0e5d30;
 }

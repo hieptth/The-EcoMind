@@ -6,6 +6,7 @@ import { Listing } from "./interface/listing";
 import { Pagination } from "antd";
 import { MoreOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/lib/upload/interface";
+import listingsData from "./listing.json"; // Adjust the path as necessary
 
 import {
   Input,
@@ -36,7 +37,9 @@ interface ModalFormData {
 
 const ListingDashboard = () => {
   const PAGE_SIZE = 9;
-  const [listings, setListings] = useState<Listing[]>([]);
+  const [listings, setListings] = useState<Listing[]>(listingsData);
+
+  // const [listings, setListings] = useState<Listing[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const [propertyType, setPropertyType] = useState(undefined);
@@ -109,21 +112,6 @@ const ListingDashboard = () => {
       </Menu.Item>
     </Menu>
   );
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://65f04039da8c6584131b40de.mockapi.io/listing/v1/realestateapilisting"
-        );
-        const data = await response.json();
-        setListings(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const currentListings = listings.slice(
     (currentPage - 1) * PAGE_SIZE,
@@ -236,12 +224,27 @@ const ListingDashboard = () => {
     <>
       <div className={styles.listingsContainers}>
         <div className={styles.searchContainers}>
-          <Search
-            placeholder="Search by Address, City, or Neighborhood"
-            size="large"
-            onSearch={(value) => console.log(value)}
-          />
-
+          <Row gutter={16} align="middle">
+            {" "}
+            {/* Added align="middle" to vertically center align items */}
+            <Col span={19}>
+              <Search
+                placeholder="Search by Address, City, or Neighborhood"
+                size="large"
+                onSearch={(value) => console.log(value)}
+              />
+            </Col>
+            <Col>
+              <Button onClick={toggleSelectMode}>
+                {selectMode ? "Cancel" : "Select"}
+              </Button>
+            </Col>
+            <Col>
+              <Button className={styles.addButton} onClick={showModal}>
+                Add Property
+              </Button>
+            </Col>
+          </Row>
           <div className={styles.roomContainers}>
             <Row gutter={8}>
               <Col span={8}>
@@ -310,9 +313,6 @@ const ListingDashboard = () => {
               </Col>
             </Row>
             <div className={styles.actions}>
-              <Button onClick={toggleSelectMode}>
-                {selectMode ? "Cancel" : "Select"}
-              </Button>
               {selectMode && (
                 <>
                   <Button onClick={handleSelectAll}>Select All</Button>
@@ -321,7 +321,6 @@ const ListingDashboard = () => {
                   </Button>
                 </>
               )}
-              <Button onClick={showModal}>Add Property</Button>
               <Modal
                 title="Add New Property"
                 visible={isModalVisible}

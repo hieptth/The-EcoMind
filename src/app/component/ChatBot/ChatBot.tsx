@@ -20,13 +20,18 @@ const ChatBot = () => {
   };
 
   const sendMessage = async (message: string) => {
-    const botMessage = await sendToBotLibre(message);
-    setChatHistory((prev) => [
-      ...prev,
-      { sender: "user", message },
-      botMessage,
-    ]);
-    setUserInput("");
+    setChatHistory((prev) => [...prev, { sender: "user", message }]);
+    try {
+      setUserInput("");
+      const botMessage = await sendToBotLibre(message);
+      setChatHistory((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error while sending message to bot:", error);
+      setChatHistory((prev) => [
+        ...prev,
+        { sender: "bot", message: "Failed to fetch response." },
+      ]);
+    }
   };
 
   const sendToBotLibre = async (message: string): Promise<Message> => {
@@ -70,13 +75,23 @@ const ChatBot = () => {
       sendMessage(userInput.trim());
     }
   };
+  const calculateWidth = (message: string): string => {
+    const length = message.length;
+    if (length < 15) {
+      return "10%";
+    } else if (length < 20) {
+      return "42%";
+    } else {
+      return "70%";
+    }
+  };
 
   return (
     <div className={styles.chatBotIcon} onClick={toggleChat}>
       {isVisible && (
         <div className={styles.chatWindow} onClick={handleChatWindowClick}>
           <div className={styles.chatHeader}>
-            <button onClick={toggleChat}>-</button>
+            <button onClick={toggleChat}>X</button>
           </div>
           <ul className={styles.chatMessages}>
             {chatHistory.map((msg, index) => (
@@ -85,11 +100,22 @@ const ChatBot = () => {
                 className={
                   msg.sender === "user" ? styles.userMsg : styles.botMsg
                 }
+                style={{ width: calculateWidth(msg.message) }}
               >
-                {msg.message}
+                {msg.sender === "bot" && (
+                  <div className={styles.botAvatarContainer}>
+                    <img
+                      src="/images/chatbotavt.png"
+                      alt="Bot Avatar"
+                      className={styles.botAvatar}
+                    />
+                  </div>
+                )}
+                <div className={styles.messageContent}>{msg.message}</div>
               </li>
             ))}
           </ul>
+
           <div className={styles.chatInput}>
             <input
               type="text"
