@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import styles from "./ChatBot.module.css";
 
@@ -41,7 +41,7 @@ const ChatBot = () => {
         {
           application: "8637748296618626261",
           instance: "165",
-          message: message,
+          message,
         },
         {
           headers: {
@@ -127,7 +127,7 @@ const ChatBot = () => {
           </div>
         </div>
       )}
-      <img src="/images/chat-icon.png" alt="Chat Icon" />{" "}
+      <img src="/images/chat-icon.png" alt="Chat Icon"/>{" "}
     </div>
   );
 };

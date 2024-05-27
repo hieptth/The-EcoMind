@@ -1,59 +1,92 @@
 "use client";
-import React, { FormEvent } from "react";
-import styles from "./registerPage.module.css";
-import Image from "next/image";
 
-const registerPage: React.FC = () => {
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-  };
+import { LoginPageWrapper } from "@components";
+import { Checkbox, Divider, Form } from "antd";
+import { BaseForm, CustomTypography } from "@common/components";
+import {
+  ArrowLeft,
+  Bubble,
+  Eye,
+  EyeSlash,
+  Facebook,
+  Google,
+} from "iconsax-react";
+import Link from "next/link";
+import { BaseButton } from "@common/UI";
+import { SocialLogin } from "./register.styles";
+
+const formID = "login-form";
+
+export default function LoginPage() {
+  const [loginForm] = Form.useForm();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.leftPane}>
-        <Image
-          src="/login-image.png"
-          alt="Login Image"
-          width={500}
-          height={500}
+    <LoginPageWrapper>
+      <BaseForm
+        layout="vertical"
+        form={loginForm}
+        id={formID}
+        autoComplete={"off"}
+      >
+        <BaseForm.Text
+          itemProps={{
+            label: "Email",
+            name: "email",
+            required: true,
+            className: "form-row",
+            rules: {
+              type: "email",
+              message: "Invalid email",
+            },
+          }}
+          inputProps={{
+            placeholder: "Enter your email",
+            className: "custom-input",
+            suffix: <Bubble />,
+          }}
         />
-      </div>
-      <div className={styles.rightPane}>
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <Image
-            src="/logo.png"
-            alt="Login Logo"
-            width={100}
-            height={100}
-          />
-          <h1>Welcome to EcoMind</h1>
-          <p style={{ color: "#737d8c" }}>Welcome back! login with your data that you entered during registration.</p>
-          <label htmlFor="email" className={styles.formLabel}>Email Address</label>
-          <input type="email" placeholder="Email" />
+        <BaseForm.Password
+          itemProps={{
+            label: "Password",
+            name: "password",
+            required: true,
+            className: "form-row",
+          }}
+          inputProps={{
+            placeholder: "Enter your password",
+            iconRender: (visible) => (visible ? <Eye /> : <EyeSlash />),
+            className: "custom-input",
+            autoComplete: "on",
+          }}
+        />
+        <BaseForm.Password
+          itemProps={{
+            label: "Re-enter Password",
+            name: "re-password",
+            required: true,
+            className: "form-row",
+          }}
+          inputProps={{
+            placeholder: "Enter your password again",
+            iconRender: (visible) => (visible ? <Eye /> : <EyeSlash />),
+            className: "custom-input",
+            autoComplete: "on",
+          }}
+        />
+      </BaseForm>
 
-          <label htmlFor="password" className={styles.formLabel}>Password</label>
-          <input type="password" placeholder="Password" />
+      <BaseButton
+        onClick={() => loginForm.submit()}
+        type="primary"
+        className="login-btn"
+      >
+        Sign up
+      </BaseButton>
 
-          <label htmlFor="Phone number" className={styles.formLabel}>Phone number</label>
-          <input type="Phone number" placeholder="Phone number" />
-
-          <button type="submit">Register</button>
-          <div
-            style={{ display: "flex", flexDirection: "row", alignItems: "center", padding: "10px" }}
-          >
-            <div style={{ flex: 1, height: "1px", backgroundColor: "black" }} />
-            <div>
-              <p style={{ width: "70px", textAlign: "center" }}>Or</p>
-            </div>
-
-            <div style={{ flex: 1, height: "1px", backgroundColor: "black" }} />
-          </div>
-
-          <button type="submit">Return to log in page</button>
-        </form>
-      </div>
-    </div>
+      <SocialLogin>
+        <ArrowLeft size="16" color="#737D8C" />
+        <Link href={"./login"}>{"Return to login"}</Link>
+      </SocialLogin>
+    </LoginPageWrapper>
   );
-};
-
-export default registerPage;
+}
