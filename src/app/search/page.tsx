@@ -8,10 +8,11 @@ import Footer from "app/component/footer/Footer";
 import { Pagination } from "antd";
 import { Input, Slider, Row, Col, Select } from "antd";
 import { Navbar } from "@components";
+import listingsData from "./listing.json";
 
 const HomeSearch = () => {
   const PAGE_SIZE = 9;
-  const [listings, setListings] = useState<Listing[]>([]);
+  const [listings, setListings] = useState<Listing[]>(listingsData);
   const [currentPage, setCurrentPage] = useState(1);
 
   const [propertyType, setPropertyType] = useState(undefined);
@@ -20,21 +21,21 @@ const HomeSearch = () => {
 
   const [price, setPrice] = useState<[number, number]>([1, 5]);
   const [sqft, setSqft] = useState<[number, number]>([500, 10000]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://65f04039da8c6584131b40de.mockapi.io/listing/v1/realestateapilisting"
-        );
-        const data = await response.json();
-        setListings(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://65f04039da8c6584131b40de.mockapi.io/listing/v1/realestateapilisting"
+  //       );
+  //       const data = await response.json();
+  //       setListings(data);
+  //     } catch (error) {
+  //       console.error("Error fetching data: ", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const currentListings = listings.slice(
     (currentPage - 1) * PAGE_SIZE,
@@ -71,7 +72,7 @@ const HomeSearch = () => {
 
           {/* ... Other components ... */}
           <div className={styles.roomContainers}>
-            <Row gutter={0}>
+            <Row gutter={8}>
               <Col span={8}>
                 <Select
                   value={propertyType}
