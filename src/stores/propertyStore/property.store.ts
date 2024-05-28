@@ -1,3 +1,4 @@
+import { dummyPropertyData } from "dummy";
 import { BaseStore } from "shared";
 
 export type Property = {
@@ -13,5 +14,5 @@ export type Property = {
 };
 
 export const PropertyStore = new BaseStore<Property[]>({
-  initValue: [],
+  initValue: dummyPropertyData,
 });
