@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./ChatBot.module.css";
+import Image from "next/image";
 
 interface Message {
   sender: string;
@@ -104,10 +105,11 @@ const ChatBot = () => {
               >
                 {msg.sender === "bot" && (
                   <div className={styles.botAvatarContainer}>
-                    <img
+                    <Image
                       src="/images/chatbotavt.png"
                       alt="Bot Avatar"
-                      className={styles.botAvatar}
+                      width={30}
+                      height={30}
                     />
                   </div>
                 )}
@@ -127,7 +129,7 @@ const ChatBot = () => {
           </div>
         </div>
       )}
-      <img src="/images/chat-icon.png" alt="Chat Icon"/>{" "}
+      <img src="/images/chat-icon.png" alt="Chat Icon" />{" "}
     </div>
   );
 };

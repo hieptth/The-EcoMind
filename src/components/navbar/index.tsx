@@ -52,6 +52,11 @@ export const Navbar = () => {
                   Home Search
                 </a>
               </li>
+              <li className={"navigation__item"}>
+                <a href={"/login"} className={"navigation__link"}>
+                  Login
+                </a>
+              </li>
             </ul>
             <button className={"hamburger"}>
               <svg
