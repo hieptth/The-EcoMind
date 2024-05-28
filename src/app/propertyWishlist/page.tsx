@@ -1,11 +1,13 @@
 "use client";
-import { Navbar } from "@components";
-import { Input, Pagination, Select } from "antd";
-import Footer from "app/component/footer/Footer";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Listing } from "./interface/listing";
+import Image from "next/image";
 import styles from "./propertyWishlist.module.css";
+import { Listing } from "./interface/listing";
+import Header from "app/component/header/Header";
+import Footer from "app/component/footer/Footer";
+import { Pagination } from "antd";
+import { Input, Slider, Row, Col, Select } from "antd";
+import { Navbar } from "@components";
 
 const PropertyWishlist = () => {
   const PAGE_SIZE = 9;
@@ -18,7 +20,6 @@ const PropertyWishlist = () => {
 
   const [price, setPrice] = useState<[number, number]>([1, 5]);
   const [sqft, setSqft] = useState<[number, number]>([500, 10000]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
