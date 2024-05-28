@@ -84,10 +84,11 @@ export const LoginForm = styled.div`
   }
 `;
 
-export const RegisterLink = styled.div`
+export const SocialLogin = styled.div`
+  cursor: pointer;
   display: flex;
   flex-flow: row nowrap;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: center;
   align-items: center;
 
@@ -96,30 +97,4 @@ export const RegisterLink = styled.div`
   font-size: 15px;
   line-height: 20px;
   color: #737d8c;
-`;
-
-export const SocialLogin = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-
-  .social-btn {
-    all: unset;
-    cursor: pointer;
-    border-radius: 50px;
-    border: 1px solid #cdd6e1;
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 0.5rem;
-    align-items: center;
-    padding: 0.5rem 1rem;
-
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 20px;
-    color: #737d8c;
-  }
 `;

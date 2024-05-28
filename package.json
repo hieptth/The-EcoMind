@@ -17,6 +17,7 @@
     "@types/leaflet": "^1.9.11",
     "antd": "^5.14.2",
     "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "faker": "^6.6.6",
     "iconsax-react": "^0.0.8",
     "leaflet": "^1.9.4",

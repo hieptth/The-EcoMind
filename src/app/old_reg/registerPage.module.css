@@ -1,8 +1,7 @@
 .body {
     margin: 0;
     padding: 0;
-    /*font-family: Arial, sans-serif;*/
-    font-family: "Poiret One", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 .container {
@@ -115,6 +114,7 @@
     white-space: nowrap;
     text-align: right;
 }
+
 
 
 .alternateLogin button {
