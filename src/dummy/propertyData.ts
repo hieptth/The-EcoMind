@@ -1,6 +1,6 @@
 export const dummyPropertyData = [
   {
-    id: "1",
+    id: 1,
     imageUrl: "https://via.placeholder.com/150",
     title: "Property 1",
     price: "1,000,000",
@@ -45,7 +45,7 @@ export const dummyPropertyData = [
     },
   },
   {
-    id: "2",
+    id: 1,
     imageUrl: "https://via.placeholder.com/150",
     title: "Property 2",
     price: "1,500,000",

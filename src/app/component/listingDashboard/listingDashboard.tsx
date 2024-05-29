@@ -6,7 +6,8 @@ import { Listing } from "./interface/listing";
 import { Pagination } from "antd";
 import { MoreOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/lib/upload/interface";
-import listingsData from "./listing.json"; // Adjust the path as necessary
+import listingsData from "./listing.json";
+import { dummyPropertyData } from "dummy";
 
 import {
   Input,
