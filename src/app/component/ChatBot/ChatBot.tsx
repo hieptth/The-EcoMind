@@ -16,13 +16,11 @@ const ChatBot = () => {
   const geminiRef = useRef<GoogleGenerativeAI | null>(null);
 
   useEffect(() => {
-    // Initialize the Gemini model when the component mounts
     if (!geminiRef.current) {
-      const apiKey = "AIzaSyALck7ko4DXXWwQFj7lRHDKIa0H84SB3Vk"; // Ensure your API key is securely stored
+      const apiKey = "AIzaSyALck7ko4DXXWwQFj7lRHDKIa0H84SB3Vk";
       geminiRef.current = new GoogleGenerativeAI(apiKey);
     }
   }, []);
-
   const toggleChat = () => setIsVisible(!isVisible);
 
   const sendMessage = async (message: string) => {
@@ -67,8 +65,16 @@ const ChatBot = () => {
     <div className={styles.chatBotIcon} onClick={toggleChat}>
       {isVisible && (
         <div className={styles.chatWindow} onClick={(e) => e.stopPropagation()}>
+          {" "}
           <div className={styles.chatHeader}>
-            <button onClick={toggleChat}>-</button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleChat();
+              }}
+            >
+              X
+            </button>{" "}
           </div>
           <ul className={styles.chatMessages}>
             {chatHistory.map((msg, index) => (
@@ -78,7 +84,17 @@ const ChatBot = () => {
                   msg.sender === "user" ? styles.userMsg : styles.botMsg
                 }
               >
-                {msg.message}
+                {msg.sender === "bot" && (
+                  <div className={styles.botAvatarContainer}>
+                    <Image
+                      src="/images/chatbotavt.png"
+                      alt="Bot Avatar"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                )}
+                <div className={styles.messageContent}>{msg.message}</div>
               </li>
             ))}
           </ul>
@@ -93,12 +109,7 @@ const ChatBot = () => {
           </div>
         </div>
       )}
-      <Image
-        src="/images/chat-icon.png"
-        alt="Chat Icon"
-        width={50}
-        height={50}
-      />
+      <img src="/images/chat-icon.png" alt="Chat Icon" />
     </div>
   );
 };
