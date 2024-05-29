@@ -8,6 +8,7 @@ import Footer from "app/component/footer/Footer";
 import { Pagination } from "antd";
 import { Input, Slider, Row, Col, Select } from "antd";
 import { Navbar } from "@components";
+import listingsData from "./listing.json";
 import { dummyPropertyData } from "dummy";
 
 const HomeSearch = () => {

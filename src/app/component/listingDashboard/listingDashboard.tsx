@@ -317,7 +317,10 @@ const ListingDashboard = () => {
               {selectMode && (
                 <>
                   <Button onClick={handleSelectAll}>Select All</Button>
-                  <Button onClick={handleDeleteSelected}>
+                  <Button
+                    className={styles.buttonDelete}
+                    onClick={handleDeleteSelected}
+                  >
                     Delete Selected
                   </Button>
                 </>
@@ -327,7 +330,7 @@ const ListingDashboard = () => {
                 visible={isModalVisible}
                 onCancel={handleModalCancel}
                 onOk={handleModalSubmit}
-                okText="Add Business"
+                okText="Add Property"
                 cancelText="Cancel"
               >
                 <Form layout="vertical">
@@ -380,7 +383,7 @@ const ListingDashboard = () => {
                       value={modalFormData.sqft}
                     />
                   </Form.Item>
-                  <Form.Item label="Logo">
+                  <Form.Item label="Property image">
                     <Upload
                       name="logo"
                       listType="picture-card"

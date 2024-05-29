@@ -99,5 +99,10 @@
 }
 
 .addButton {
-  background-color: #0e5d30;
+  background-color: #558664;
+  color: white;
+}
+.buttonDelete {
+  background-color: red;
+  color: white;
 }

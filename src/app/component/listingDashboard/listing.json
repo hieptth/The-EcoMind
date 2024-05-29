@@ -2,7 +2,7 @@
   {
     "id": 1,
     "status": "FOR SALE",
-    "price": "$13889402",
+    "price": "$13.889.402",
     "description": "Luxurious and modern home",
     "address": "67291 Murphy Walk\nMeganville, DC 67068",
     "beds": 3,
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "status": "FOR SALE",
-    "price": "$11442597",
+    "price": "$11.442.597",
     "description": "Luxurious and modern home",
     "address": "89313 Thompson Stravenue Suite 729\nLake Patrickport, NV 04709",
     "beds": 2,
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "status": "FOR SALE",
-    "price": "$13814314",
+    "price": "$13.814.314",
     "description": "Luxurious and modern home",
     "address": "USNV Kelly\nFPO AA 03531",
     "beds": 3,
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "status": "FOR SALE",
-    "price": "$7560875",
+    "price": "$7.560.875",
     "description": "Luxurious and modern home",
     "address": "64512 Eric Streets\nNew Rachael, TX 44871",
     "beds": 2,
@@ -46,7 +46,7 @@
   {
     "id": 5,
     "status": "FOR SALE",
-    "price": "$10151529",
+    "price": "$10.151.529",
     "description": "Luxurious and modern home",
     "address": "USNS Cox\nFPO AE 94224",
     "beds": 2,
@@ -57,7 +57,7 @@
   {
     "id": 6,
     "status": "FOR RENT",
-    "price": "$15149186",
+    "price": "$15.149.186",
     "description": "Luxurious and modern home",
     "address": "34770 Chris",
     "beds": 3,
@@ -68,7 +68,7 @@
   {
     "id": 7,
     "status": "FOR RENT",
-    "price": "$11964832",
+    "price": "$11.964.832",
     "description": "Luxurious and modern home",
     "address": "PSC 8518, Box 4796\nAPO AP 33064",
     "beds": 2,
@@ -79,7 +79,7 @@
   {
     "id": 8,
     "status": "FOR RENT",
-    "price": "$11395972",
+    "price": "$11.395.972",
     "description": "Luxurious and modern home",
     "address": "73316 Gonzalez Forks\nMicheleside, SD 60727",
     "beds": 4,
@@ -90,7 +90,7 @@
   {
     "id": 9,
     "status": "FOR RENT",
-    "price": "$4763906",
+    "price": "$4.763.906",
     "description": "Luxurious and modern home",
     "address": "8654 Jones Row Suite 541\nNorth Sarah,",
     "beds": 1,
@@ -101,7 +101,7 @@
   {
     "id": 10,
     "status": "FOR RENT",
-    "price": "$1199134",
+    "price": "$1.199.134",
     "description": "Luxurious and modern home",
     "address": "9278 Gardner Overpass Apt. 053\nLake Ryanshire, MN 14281",
     "beds": 2,
@@ -112,7 +112,7 @@
   {
     "id": 11,
     "status": "FOR SALE",
-    "price": "$15404749",
+    "price": "$15.404.749",
     "description": "Luxurious and modern home",
     "address": "Unit 3253 Box 9730\nDPO AE 27079",
     "beds": 1,
@@ -123,7 +123,7 @@
   {
     "id": 12,
     "status": "FOR SALE",
-    "price": "$14163541",
+    "price": "$14.163.541",
     "description": "Luxurious and modern home",
     "address": "746 Edwards River\nAlexisshire, VT 73862",
     "beds": 4,
@@ -134,7 +134,7 @@
   {
     "id": 13,
     "status": "FOR RENT",
-    "price": "$8119779",
+    "price": "$8.119.779",
     "description": "Luxurious and modern home",
     "address": "521 Melissa Plaza Suite 066\nLake Jacob, IA 41633",
     "beds": 2,
@@ -145,7 +145,7 @@
   {
     "id": 14,
     "status": "FOR SALE",
-    "price": "$1027990",
+    "price": "$1.027.990",
     "description": "Luxurious and modern home",
     "address": "79861 Travis Common\nEast Danielle, CO 62221",
     "beds": 2,
@@ -156,7 +156,7 @@
   {
     "id": 15,
     "status": "FOR RENT",
-    "price": "$3068186",
+    "price": "$3.068.186",
     "description": "Luxurious and modern home",
     "address": "935 Whitaker Plaza\nKimtown, MS 81745",
     "beds": 2,
@@ -167,7 +167,7 @@
   {
     "id": 16,
     "status": "FOR SALE",
-    "price": "$12172756",
+    "price": "$12.172.756",
     "description": "Luxurious and modern home",
     "address": "593 Ro",
     "beds": 3,
@@ -178,7 +178,7 @@
   {
     "id": 17,
     "status": "FOR SALE",
-    "price": "$16929935",
+    "price": "$16.929.935",
     "description": "Luxurious and modern home",
     "address": "4382 Kemp Island Apt. 838\nParsonsville, ME 88453",
     "beds": 3,
@@ -189,7 +189,7 @@
   {
     "id": 18,
     "status": "FOR RENT",
-    "price": "$9996979",
+    "price": "$9.996.979",
     "description": "Luxurious and modern home",
     "address": "31963 Morales Mount",
     "beds": 2,
@@ -200,7 +200,7 @@
   {
     "id": 19,
     "status": "FOR RENT",
-    "price": "$8608651",
+    "price": "$8.608.651",
     "description": "Luxurious and modern home",
     "address": "6492 Brent River Apt. 375\nEast Lori, CA 40879",
     "beds": 4,
@@ -211,7 +211,7 @@
   {
     "id": 20,
     "status": "FOR RENT",
-    "price": "$5769252",
+    "price": "$5.769.252",
     "description": "Luxurious and modern home",
     "address": "494 Lisa Court\nJohnside, GA 50145",
     "beds": 4,
@@ -222,7 +222,7 @@
   {
     "id": 21,
     "status": "FOR SALE",
-    "price": "$8164611",
+    "price": "$8.164.611",
     "description": "Luxurious and modern home",
     "address": "7181 Jennifer Mount Suite 310\nPort ",
     "beds": 4,
@@ -233,7 +233,7 @@
   {
     "id": 22,
     "status": "FOR SALE",
-    "price": "$3058514",
+    "price": "$3.058.514",
     "description": "Luxurious and modern home",
     "address": "748 Pen",
     "beds": 2,
@@ -244,7 +244,7 @@
   {
     "id": 23,
     "status": "FOR RENT",
-    "price": "$9917678",
+    "price": "$9.917.678",
     "description": "Luxurious and modern home",
     "address": "5568 Kimberly Via\nNorth Thomas, MS 16455",
     "beds": 1,
@@ -255,7 +255,7 @@
   {
     "id": 24,
     "status": "FOR RENT",
-    "price": "$1840772",
+    "price": "$1.840.772",
     "description": "Luxurious and modern home",
     "address": "10202 Dalton Motorway Suite 250\nEast Erika, PA 05760",
     "beds": 4,
@@ -266,7 +266,7 @@
   {
     "id": 25,
     "status": "FOR RENT",
-    "price": "$18445054",
+    "price": "$18.445.054",
     "description": "Luxurious and modern home",
     "address": "869 Vargas Groves\nTravisside, TN 17306",
     "beds": 1,
@@ -277,7 +277,7 @@
   {
     "id": 26,
     "status": "FOR SALE",
-    "price": "$16435456",
+    "price": "$16.435.456",
     "description": "Luxurious and modern home",
     "address": "5352 Christian Port\nPort Tiffany, VI 30777",
     "beds": 4,
@@ -288,7 +288,7 @@
   {
     "id": 27,
     "status": "FOR RENT",
-    "price": "$15492178",
+    "price": "$15.492.178",
     "description": "Luxurious and modern home",
     "address": "70578 Roberts Mill Apt. 070\nEast Brettfurt, WI 12225",
     "beds": 3,
@@ -299,7 +299,7 @@
   {
     "id": 28,
     "status": "FOR SALE",
-    "price": "$8879131",
+    "price": "$8.879.131",
     "description": "Luxurious and modern home",
     "address": "85988 Allen Fork\nNorth Elizabethland, ME 03343",
     "beds": 4,
@@ -310,7 +310,7 @@
   {
     "id": 29,
     "status": "FOR RENT",
-    "price": "$18084699",
+    "price": "$18.084.699",
     "description": "Luxurious and modern home",
     "address": "41718 Tucker Trail Suite 567\nNorth Brittney, VA 88716",
     "beds": 3,
@@ -321,7 +321,7 @@
   {
     "id": 30,
     "status": "FOR RENT",
-    "price": "$8379852",
+    "price": "$8.379.852",
     "description": "Luxurious and modern home",
     "address": "USCGC Tanner\nFPO AE 48151",
     "beds": 2,
@@ -332,7 +332,7 @@
   {
     "id": 31,
     "status": "FOR SALE",
-    "price": "$13852750",
+    "price": "$13.852.750",
     "description": "Luxurious and modern home",
     "address": "409 Sa",
     "beds": 1,
@@ -343,7 +343,7 @@
   {
     "id": 32,
     "status": "FOR RENT",
-    "price": "$8238519",
+    "price": "$8.238.519",
     "description": "Luxurious and modern home",
     "address": "244 Brett Motorway Suite 819\nDerrickhaven, WI 72150",
     "beds": 1,
@@ -354,7 +354,7 @@
   {
     "id": 33,
     "status": "FOR SALE",
-    "price": "$8679960",
+    "price": "$8.679.960",
     "description": "Luxurious and modern home",
     "address": "919 John Squares Suite 596\nKimberlyland, KS 39553",
     "beds": 2,
@@ -365,7 +365,7 @@
   {
     "id": 34,
     "status": "FOR RENT",
-    "price": "$5830783",
+    "price": "$5.830.783",
     "description": "Luxurious and modern home",
     "address": "67487 Kristi Fork\nSouth Maria, AR 35154",
     "beds": 3,
@@ -376,7 +376,7 @@
   {
     "id": 35,
     "status": "FOR SALE",
-    "price": "$3414060",
+    "price": "$3.414.060",
     "description": "Luxurious and modern home",
     "address": "359 Benja",
     "beds": 3,
@@ -387,7 +387,7 @@
   {
     "id": 36,
     "status": "FOR RENT",
-    "price": "$11879052",
+    "price": "$11.879.052",
     "description": "Luxurious and modern home",
     "address": "3317 Olsen Trafficway\nSouth Karen, MH 18220",
     "beds": 3,
@@ -398,7 +398,7 @@
   {
     "id": 37,
     "status": "FOR SALE",
-    "price": "$15952184",
+    "price": "$15.952.184",
     "description": "Luxurious and modern home",
     "address": "01606 Jones Rapids Suite 168\nSouth Robert, IA 91141",
     "beds": 3,
@@ -409,7 +409,7 @@
   {
     "id": 38,
     "status": "FOR SALE",
-    "price": "$13217777",
+    "price": "$13.217.777",
     "description": "Luxurious and modern home",
     "address": "858 Jessica Wells\nGutierrezhaven, VI 23238",
     "beds": 3,
@@ -420,7 +420,7 @@
   {
     "id": 39,
     "status": "FOR SALE",
-    "price": "$19683979",
+    "price": "$19.683.979",
     "description": "Luxurious and modern home",
     "address": "99254 Wright Coves\nAshleyhaven, WI 10332",
     "beds": 3,
@@ -431,7 +431,7 @@
   {
     "id": 40,
     "status": "FOR SALE",
-    "price": "$11443599",
+    "price": "$11.443.599",
     "description": "Luxurious and modern home",
     "address": "34177 ",
     "beds": 3,
@@ -442,7 +442,7 @@
   {
     "id": 41,
     "status": "FOR SALE",
-    "price": "$8221783",
+    "price": "$8.221.783",
     "description": "Luxurious and modern home",
     "address": "47934 May Grove\nLake Jessicamouth, CO 42807",
     "beds": 3,
@@ -453,7 +453,7 @@
   {
     "id": 42,
     "status": "FOR RENT",
-    "price": "$6702064",
+    "price": "$6.702.064",
     "description": "Luxurious and modern home",
     "address": "480 Ramirez Mills Suite 287\nLake Clayton, MI 04578",
     "beds": 1,
@@ -464,7 +464,7 @@
   {
     "id": 43,
     "status": "FOR SALE",
-    "price": "$14238278",
+    "price": "$14.238.278",
     "description": "Luxurious and modern home",
     "address": "USCGC Smith\nFPO AE 21381",
     "beds": 2,
@@ -475,7 +475,7 @@
   {
     "id": 44,
     "status": "FOR SALE",
-    "price": "$15045182",
+    "price": "$15.045.182",
     "description": "Luxurious and modern home",
     "address": "399 Kelly Glen Suite 686\nSosaville, AZ 08834",
     "beds": 2,
@@ -486,7 +486,7 @@
   {
     "id": 45,
     "status": "FOR SALE",
-    "price": "$17531101",
+    "price": "$17.531.101",
     "description": "Luxurious and modern home",
     "address": "605 Schwartz Key\nNew Aaron, PR 20372",
     "beds": 3,
@@ -497,7 +497,7 @@
   {
     "id": 46,
     "status": "FOR SALE",
-    "price": "$8790875",
+    "price": "$8.790.875",
     "description": "Luxurious and modern home",
     "address": "934 Cooke Lakes\nTracyhaven, KS 15146",
     "beds": 4,
@@ -508,7 +508,7 @@
   {
     "id": 47,
     "status": "FOR RENT",
-    "price": "$15160980",
+    "price": "$15.160.980",
     "description": "Luxurious and modern home",
     "address": "PSC 7688, Box 4661\nAPO AP 38530",
     "beds": 3,
@@ -519,7 +519,7 @@
   {
     "id": 48,
     "status": "FOR SALE",
-    "price": "$11616716",
+    "price": "$11.616.716",
     "description": "Luxurious and modern home",
     "address": "2003 Ann Parkways Apt. 426\nPort Brittanyville, IA 69015",
     "beds": 4,
@@ -530,7 +530,7 @@
   {
     "id": 49,
     "status": "FOR RENT",
-    "price": "$1901702",
+    "price": "$1.901.702",
     "description": "Luxurious and modern home",
     "address": "229 Graham Glens Suite 666\nNew Nicoleborough, NM 78858",
     "beds": 4,
@@ -541,7 +541,7 @@
   {
     "id": 50,
     "status": "FOR SALE",
-    "price": "$1586935",
+    "price": "$1.586.935",
     "description": "Luxurious and modern home",
     "address": "566 Norma Parkways\nNorth Ericstad, LA 30439",
     "beds": 3,
@@ -552,7 +552,7 @@
   {
     "id": 51,
     "status": "FOR RENT",
-    "price": "$8198313",
+    "price": "$8.198.313",
     "description": "Luxurious and modern home",
     "address": "90181 Smith Pass Suite 168\nAutumnburgh, PW 62604",
     "beds": 4,
@@ -563,7 +563,7 @@
   {
     "id": 52,
     "status": "FOR SALE",
-    "price": "$17372798",
+    "price": "$17.372.798",
     "description": "Luxurious and modern home",
     "address": "43682 Mitchell Turnpike Apt. 845\nWest Carolynchester, AL 66392",
     "beds": 1,
@@ -574,7 +574,7 @@
   {
     "id": 53,
     "status": "FOR RENT",
-    "price": "$3133933",
+    "price": "$3.133.933",
     "description": "Luxurious and modern home",
     "address": "57257 Proctor Mount",
     "beds": 1,
@@ -585,7 +585,7 @@
   {
     "id": 54,
     "status": "FOR RENT",
-    "price": "$18559761",
+    "price": "$18.559.761",
     "description": "Luxurious and modern home",
     "address": "159 Laurie Knoll Apt. 259\nTerrencebury, NJ 26017",
     "beds": 3,
@@ -596,7 +596,7 @@
   {
     "id": 55,
     "status": "FOR SALE",
-    "price": "$8708177",
+    "price": "$8.708.177",
     "description": "Luxurious and modern home",
     "address": "36165 Elliott Trace Suite 973\nNew Christopher, OK 94971",
     "beds": 4,
@@ -607,7 +607,7 @@
   {
     "id": 56,
     "status": "FOR RENT",
-    "price": "$17134533",
+    "price": "$17.134.533",
     "description": "Luxurious and modern home",
     "address": "9979 Jeff Mews Apt. 251\nConnieburgh, PA 36676",
     "beds": 2,
@@ -618,7 +618,7 @@
   {
     "id": 57,
     "status": "FOR RENT",
-    "price": "$17827868",
+    "price": "$17.827.868",
     "description": "Luxurious and modern home",
     "address": "71046 Blair Throughway Apt. 463\nEugeneport, TX 60884",
     "beds": 3,
@@ -629,7 +629,7 @@
   {
     "id": 58,
     "status": "FOR RENT",
-    "price": "$18032777",
+    "price": "$18.032.777",
     "description": "Luxurious and modern home",
     "address": "31564 Diane Village\nTeresamouth, VA 10033",
     "beds": 4,
@@ -640,7 +640,7 @@
   {
     "id": 59,
     "status": "FOR RENT",
-    "price": "$10702056",
+    "price": "$10.702.056",
     "description": "Luxurious and modern home",
     "address": "PSC 6304, Box 4559\nAPO AA 36620",
     "beds": 4,
@@ -651,7 +651,7 @@
   {
     "id": 60,
     "status": "FOR SALE",
-    "price": "$3004440",
+    "price": "$3.004.440",
     "description": "Luxurious and modern home",
     "address": "248 Natasha Meadow Suite 379\nEast Melanie, HI 45797",
     "beds": 2,
@@ -662,7 +662,7 @@
   {
     "id": 61,
     "status": "FOR RENT",
-    "price": "$15929685",
+    "price": "$15.929.685",
     "description": "Luxurious and modern home",
     "address": "589 Mary Valleys Suite 227\nJessicahaven, MN 92254",
     "beds": 1,
@@ -673,7 +673,7 @@
   {
     "id": 62,
     "status": "FOR SALE",
-    "price": "$8258139",
+    "price": "$8.258.139",
     "description": "Luxurious and modern home",
     "address": "99730 Richards Road Suite 721\nWest Davidhaven, MA 99823",
     "beds": 1,
@@ -684,7 +684,7 @@
   {
     "id": 63,
     "status": "FOR SALE",
-    "price": "$18918706",
+    "price": "$18.918.706",
     "description": "Luxurious and modern home",
     "address": "73196 Figueroa Roads\nSouth David, ND 55722",
     "beds": 3,
@@ -695,7 +695,7 @@
   {
     "id": 64,
     "status": "FOR SALE",
-    "price": "$12463247",
+    "price": "$12.463.247",
     "description": "Luxurious and modern home",
     "address": "253 Miller Forks Apt. 304\nKimfurt, MO 20520",
     "beds": 1,
@@ -706,7 +706,7 @@
   {
     "id": 65,
     "status": "FOR SALE",
-    "price": "$4596334",
+    "price": "$4.596.334",
     "description": "Luxurious and modern home",
     "address": "720 Michele Drive Suite 172\nSouth Davidville, MA 86163",
     "beds": 3,
@@ -717,7 +717,7 @@
   {
     "id": 66,
     "status": "FOR RENT",
-    "price": "$6984303",
+    "price": "$6.984.303",
     "description": "Luxurious and modern home",
     "address": "PSC 8445, Box 2756\nAPO AE 63473",
     "beds": 4,
@@ -728,7 +728,7 @@
   {
     "id": 67,
     "status": "FOR SALE",
-    "price": "$4389416",
+    "price": "$4.389.416",
     "description": "Luxurious and modern home",
     "address": "731 Jordan Meadows Apt. 557\nDanielfurt, FL 40286",
     "beds": 2,
@@ -739,7 +739,7 @@
   {
     "id": 68,
     "status": "FOR SALE",
-    "price": "$4186589",
+    "price": "$4.186.589",
     "description": "Luxurious and modern home",
     "address": "31539 Gross Roads Suite 810\nWest Benja",
     "beds": 1,
@@ -750,7 +750,7 @@
   {
     "id": 69,
     "status": "FOR SALE",
-    "price": "$10536951",
+    "price": "$10.536.951",
     "description": "Luxurious and modern home",
     "address": "35134 Wilson Loaf Apt. 824\nSouth Adrienne, NC 26204",
     "beds": 4,
@@ -761,7 +761,7 @@
   {
     "id": 70,
     "status": "FOR SALE",
-    "price": "$16585304",
+    "price": "$16.585.304",
     "description": "Luxurious and modern home",
     "address": "7400 Daniel Grove Apt. 688\nNew Misty, TX 70239",
     "beds": 4,
@@ -772,7 +772,7 @@
   {
     "id": 71,
     "status": "FOR SALE",
-    "price": "$17732410",
+    "price": "$17.732.410",
     "description": "Luxurious and modern home",
     "address": "2208 Johnson Viaduct Suite 398\nSouth Beckyfurt, GA 49476",
     "beds": 1,
@@ -783,7 +783,7 @@
   {
     "id": 72,
     "status": "FOR SALE",
-    "price": "$9839139",
+    "price": "$9.839.139",
     "description": "Luxurious and modern home",
     "address": "738 Sharon Field Apt. 664\nSouth Kayla, HI 52270",
     "beds": 2,
@@ -794,7 +794,7 @@
   {
     "id": 73,
     "status": "FOR RENT",
-    "price": "$17998957",
+    "price": "$17.998.957",
     "description": "Luxurious and modern home",
     "address": "791 Terrell Prairie Apt. 108\nWest Kenneth, WV 74025",
     "beds": 1,
@@ -805,7 +805,7 @@
   {
     "id": 74,
     "status": "FOR RENT",
-    "price": "$14156995",
+    "price": "$14.156.995",
     "description": "Luxurious and modern home",
     "address": "529 Rice Ways\nNorth Lisabury, MH 18600",
     "beds": 4,
@@ -816,7 +816,7 @@
   {
     "id": 75,
     "status": "FOR RENT",
-    "price": "$12202636",
+    "price": "$12.202.636",
     "description": "Luxurious and modern home",
     "address": "28330 Steven Mount",
     "beds": 2,
@@ -827,7 +827,7 @@
   {
     "id": 76,
     "status": "FOR SALE",
-    "price": "$12260819",
+    "price": "$12.260.819",
     "description": "Luxurious and modern home",
     "address": "75511 Jennifer Via\nSouth Dus",
     "beds": 3,
@@ -838,7 +838,7 @@
   {
     "id": 77,
     "status": "FOR RENT",
-    "price": "$11086509",
+    "price": "$11.086.509",
     "description": "Luxurious and modern home",
     "address": "0806 Jason Flat Apt. 022\nNew Edgar, DE 08532",
     "beds": 4,
@@ -849,7 +849,7 @@
   {
     "id": 78,
     "status": "FOR RENT",
-    "price": "$9665816",
+    "price": "$9.665.816",
     "description": "Luxurious and modern home",
     "address": "823 Hale Square Apt. 101\nJacksonmouth, ME 15166",
     "beds": 1,
@@ -860,7 +860,7 @@
   {
     "id": 79,
     "status": "FOR RENT",
-    "price": "$998153",
+    "price": "$.998.153",
     "description": "Luxurious and modern home",
     "address": "27798 Kim Ports\nSouth Raymond, HI 63762",
     "beds": 2,
@@ -871,7 +871,7 @@
   {
     "id": 80,
     "status": "FOR SALE",
-    "price": "$18552479",
+    "price": "$18.552.479",
     "description": "Luxurious and modern home",
     "address": "3503 Holt Roads Apt. 985\nZunigabury, CO 20462",
     "beds": 3,
@@ -882,7 +882,7 @@
   {
     "id": 81,
     "status": "FOR RENT",
-    "price": "$8464412",
+    "price": "$8.464.412",
     "description": "Luxurious and modern home",
     "address": "8545 Garcia Forest\nNew Robertmouth, PA 35047",
     "beds": 4,
@@ -893,7 +893,7 @@
   {
     "id": 82,
     "status": "FOR RENT",
-    "price": "$5721895",
+    "price": "$5.721.895",
     "description": "Luxurious and modern home",
     "address": "448 Howard Haven Apt. 357\nWillishaven, WY 18378",
     "beds": 4,
@@ -904,7 +904,7 @@
   {
     "id": 83,
     "status": "FOR SALE",
-    "price": "$5388636",
+    "price": "$5.388.636",
     "description": "Luxurious and modern home",
     "address": "4998 Williams Squares Suite 566\nDeannaville, UT 89370",
     "beds": 3,
@@ -915,7 +915,7 @@
   {
     "id": 84,
     "status": "FOR SALE",
-    "price": "$6132688",
+    "price": "$6.132.688",
     "description": "Luxurious and modern home",
     "address": "974 Michael Ferry Suite 045\nPrattland, VT 19240",
     "beds": 4,
@@ -926,7 +926,7 @@
   {
     "id": 85,
     "status": "FOR SALE",
-    "price": "$14711384",
+    "price": "$14.711.384",
     "description": "Luxurious and modern home",
     "address": "4531 Mar",
     "beds": 4,
@@ -937,7 +937,7 @@
   {
     "id": 86,
     "status": "FOR SALE",
-    "price": "$10461936",
+    "price": "$10.461.936",
     "description": "Luxurious and modern home",
     "address": "135 Cynthia Glens Apt. 204\nNorth Yolandastad, WV 09489",
     "beds": 1,
@@ -948,7 +948,7 @@
   {
     "id": 87,
     "status": "FOR RENT",
-    "price": "$19220977",
+    "price": "$19.220.977",
     "description": "Luxurious and modern home",
     "address": "3848 Jamie Shores Apt. 962\nNicholasmouth, NE 20402",
     "beds": 2,
@@ -959,7 +959,7 @@
   {
     "id": 88,
     "status": "FOR SALE",
-    "price": "$14951403",
+    "price": "$14.951.403",
     "description": "Luxurious and modern home",
     "address": "7441 Shaw Stravenue\nEast Preston, ND 56434",
     "beds": 3,
@@ -970,7 +970,7 @@
   {
     "id": 89,
     "status": "FOR RENT",
-    "price": "$13334432",
+    "price": "$13.334.432",
     "description": "Luxurious and modern home",
     "address": "7040 Abbott Mission\nWilsonbury, RI 05407",
     "beds": 3,
@@ -981,7 +981,7 @@
   {
     "id": 90,
     "status": "FOR RENT",
-    "price": "$17745765",
+    "price": "$17.745.765",
     "description": "Luxurious and modern home",
     "address": "Unit 2757 Box 1132\nDPO AE 07190",
     "beds": 2,
@@ -992,7 +992,7 @@
   {
     "id": 91,
     "status": "FOR SALE",
-    "price": "$4175446",
+    "price": "$4.175.446",
     "description": "Luxurious and modern home",
     "address": "5349 Karl Passage Apt. 159\nSotochester, PR 98976",
     "beds": 3,
@@ -1003,7 +1003,7 @@
   {
     "id": 92,
     "status": "FOR SALE",
-    "price": "$6154856",
+    "price": "$6.154.856",
     "description": "Luxurious and modern home",
     "address": "Unit 1173 Box 3172\nDPO AE 71843",
     "beds": 3,
@@ -1014,7 +1014,7 @@
   {
     "id": 93,
     "status": "FOR RENT",
-    "price": "$8744910",
+    "price": "$8.744.910",
     "description": "Luxurious and modern home",
     "address": "USCGC Thomas\nFPO AA 63763",
     "beds": 4,
@@ -1025,7 +1025,7 @@
   {
     "id": 94,
     "status": "FOR SALE",
-    "price": "$1308480",
+    "price": "$1.308.480",
     "description": "Luxurious and modern home",
     "address": "92914 Gomez Ridges Apt. 140\nWest Christopherside, FM 57091",
     "beds": 1,
@@ -1036,7 +1036,7 @@
   {
     "id": 95,
     "status": "FOR RENT",
-    "price": "$8230134",
+    "price": "$8.230.134",
     "description": "Luxurious and modern home",
     "address": "PSC 2770, Box 6718\nAPO AA 10589",
     "beds": 3,
@@ -1047,7 +1047,7 @@
   {
     "id": 96,
     "status": "FOR RENT",
-    "price": "$10338960",
+    "price": "$10.338.960",
     "description": "Luxurious and modern home",
     "address": "6429 Stacy Viaduct Suite 772\nBeardville, NV 09569",
     "beds": 4,
@@ -1058,7 +1058,7 @@
   {
     "id": 97,
     "status": "FOR RENT",
-    "price": "$16786955",
+    "price": "$16.786.955",
     "description": "Luxurious and modern home",
     "address": "160 Henderson Underpass\nJacksonview, TN 35598",
     "beds": 4,
@@ -1069,7 +1069,7 @@
   {
     "id": 98,
     "status": "FOR RENT",
-    "price": "$6072140",
+    "price": "$6.072.140",
     "description": "Luxurious and modern home",
     "address": "385 Gibson Burg\nButlerstad, MP 68579",
     "beds": 2,
@@ -1080,7 +1080,7 @@
   {
     "id": 99,
     "status": "FOR SALE",
-    "price": "$11790926",
+    "price": "$11.790.926",
     "description": "Luxurious and modern home",
     "address": "387 Ashley Knoll\nMonicachester, WA 14703",
     "beds": 1,
@@ -1091,7 +1091,7 @@
   {
     "id": 100,
     "status": "FOR SALE",
-    "price": "$19089113",
+    "price": "$19.089.113",
     "description": "Luxurious and modern home",
     "address": "90801 Samantha Forks\nPort Joe, MT 25267",
     "beds": 4,
