@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import styles from "./ChatBot.module.css";
 import Image from "next/image";
 
@@ -13,57 +13,41 @@ const ChatBot = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [chatHistory, setChatHistory] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
+  const geminiRef = useRef<GoogleGenerativeAI | null>(null);
 
+  useEffect(() => {
+    if (!geminiRef.current) {
+      const apiKey = "AIzaSyALck7ko4DXXWwQFj7lRHDKIa0H84SB3Vk";
+      geminiRef.current = new GoogleGenerativeAI(apiKey);
+    }
+  }, []);
   const toggleChat = () => setIsVisible(!isVisible);
-
-  const handleChatWindowClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-  };
 
   const sendMessage = async (message: string) => {
     setChatHistory((prev) => [...prev, { sender: "user", message }]);
+    setUserInput("");
+
+    if (!geminiRef.current) {
+      console.error("Gemini model not initialized.");
+      return;
+    }
+
     try {
-      setUserInput("");
-      const botMessage = await sendToBotLibre(message);
-      setChatHistory((prev) => [...prev, botMessage]);
+      const model = geminiRef.current.getGenerativeModel({
+        model: "gemini-1.5-flash",
+      });
+      const result = await model.generateContent(message);
+      const botMessage = await result.response.text();
+      setChatHistory((prev) => [
+        ...prev,
+        { sender: "bot", message: botMessage },
+      ]);
     } catch (error) {
-      console.error("Error while sending message to bot:", error);
+      console.error("Error while sending message to Gemini:", error);
       setChatHistory((prev) => [
         ...prev,
         { sender: "bot", message: "Failed to fetch response." },
       ]);
-    }
-  };
-
-  const sendToBotLibre = async (message: string): Promise<Message> => {
-    try {
-      const response = await axios.post(
-        "https://www.botlibre.com/rest/json/chat",
-        {
-          application: "8637748296618626261",
-          instance: "165",
-          message,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // "Authorization": "Bearer your_api_key", // if required
-          },
-        }
-      );
-
-      if (response.data && response.status === 200) {
-        return { sender: "bot", message: response.data.message }; // Make sure response.data.message exists
-      } else {
-        console.error("Unexpected response:", response);
-        return {
-          sender: "bot",
-          message: "Failed to get a valid response from the server.",
-        };
-      }
-    } catch (error) {
-      console.error("Error sending message to Bot Libre:", error);
-      return { sender: "bot", message: "Error responding..." };
     }
   };
 
@@ -76,23 +60,21 @@ const ChatBot = () => {
       sendMessage(userInput.trim());
     }
   };
-  const calculateWidth = (message: string): string => {
-    const length = message.length;
-    if (length < 15) {
-      return "10%";
-    } else if (length < 20) {
-      return "42%";
-    } else {
-      return "70%";
-    }
-  };
 
   return (
     <div className={styles.chatBotIcon} onClick={toggleChat}>
       {isVisible && (
-        <div className={styles.chatWindow} onClick={handleChatWindowClick}>
+        <div className={styles.chatWindow} onClick={(e) => e.stopPropagation()}>
+          {" "}
           <div className={styles.chatHeader}>
-            <button onClick={toggleChat}>X</button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleChat();
+              }}
+            >
+              X
+            </button>{" "}
           </div>
           <ul className={styles.chatMessages}>
             {chatHistory.map((msg, index) => (
@@ -101,7 +83,6 @@ const ChatBot = () => {
                 className={
                   msg.sender === "user" ? styles.userMsg : styles.botMsg
                 }
-                style={{ width: calculateWidth(msg.message) }}
               >
                 {msg.sender === "bot" && (
                   <div className={styles.botAvatarContainer}>
@@ -117,7 +98,6 @@ const ChatBot = () => {
               </li>
             ))}
           </ul>
-
           <div className={styles.chatInput}>
             <input
               type="text"
@@ -129,7 +109,7 @@ const ChatBot = () => {
           </div>
         </div>
       )}
-      <img src="/images/chat-icon.png" alt="Chat Icon" />{" "}
+      <img src="/images/chat-icon.png" alt="Chat Icon" />
     </div>
   );
 };
