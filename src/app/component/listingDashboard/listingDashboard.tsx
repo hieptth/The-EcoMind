@@ -45,16 +45,68 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const { Search } = Input;
   const { Option } = Select;
 
-  const [propertyType, setPropertyType] = useState("");
-  const [bathrooms, setBathrooms] = useState(0);
-  const [bedrooms, setBedrooms] = useState(0);
-  const [price, setPrice] = useState<[number, number]>([1, 5]);
-  const [sqft, setSqft] = useState<[number, number]>([500, 10000]);
+  const [bathrooms, setBathrooms] = useState<number | undefined>();
+  const [bedrooms, setBedrooms] = useState<number | undefined>();
+  const [priceRange, setPriceRange] = useState<[number, number]>([1, 5]);
+  const [sqftRange, setSqftRange] = useState<[number, number]>([500, 10000]);
+  const [propertyStatus, setPropertyStatus] = useState("");
+  const [searchAddress, setSearchAddress] = useState("");
 
-  const currentListings = listings?.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
-  );
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const fetchListings = async () => {
+    // const allProperties = await PropertyService.getProperties();
+    // setListings(allProperties);
+  };
+
+  useEffect(() => {
+    fetchListings();
+  }, [
+    bathrooms,
+    bedrooms,
+    priceRange,
+    sqftRange,
+    searchAddress,
+    propertyStatus,
+  ]);
+  const filteredListings = listings
+    ?.filter((listing) => {
+      const price = parseInt(listing.price.replace(/[\D]/g, "")); // Remove non-digit characters for price comparison
+      return (
+        (!searchAddress ||
+          listing.location
+            .toLowerCase()
+            .includes(searchAddress.toLowerCase())) &&
+        (!propertyStatus || listing.status === propertyStatus) &&
+        (!bathrooms || listing?.amenities?.interior?.bathrooms === bathrooms) &&
+        (!bedrooms || listing?.amenities?.interior?.bedrooms === bedrooms) &&
+        price >= priceRange[0] * 1000000 &&
+        price <= priceRange[1] * 1000000 &&
+        parseInt(listing.sqft) >= sqftRange[0] &&
+        parseInt(listing.sqft) <= sqftRange[1]
+      );
+    })
+    .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  const handleAddressSearch = (value: string) => {
+    setSearchAddress(value);
+  };
+
+  const handleBedroomsChange = (value: any) => {
+    setBedrooms(value === "none" ? 0 : value);
+  };
+  const handleBathroomsChange = (value: any) => {
+    setBathrooms(value === "none" ? 0 : value);
+  };
+  const handleStatusChange = (value: string) => {
+    if (value === "none") {
+      setPropertyStatus(""); // Reset or set to an initial state that means no filter
+    } else {
+      setPropertyStatus(value);
+    }
+  };
 
   const handleListingSelect = (id: number) => {
     const property = listings.find((p) => p.id === id);
@@ -171,14 +223,14 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       imageUrl: modalFormData.image || "",
       title: modalFormData.title || "",
       price: modalFormData.price,
-      description: modalFormData.description || "", // Default to empty string if undefined
-      sqft: modalFormData.sqft || "",
-      status: modalFormData.status || "",
-      location: modalFormData.location || "",
       mapPosition: {
         lat: 0,
         lng: 0,
       },
+      description: modalFormData.description || "", // Default to empty string if undefined
+      sqft: modalFormData.sqft || "",
+      status: modalFormData.status || "",
+      location: modalFormData.location || "",
       amenities: modalFormData.amenities || {
         interior: {},
         exterior: {},
@@ -211,13 +263,13 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
 
   const handlePriceChange = (value: number | number[]) => {
     if (Array.isArray(value)) {
-      setPrice(value as [number, number]);
+      setPriceRange(value as [number, number]);
     }
   };
 
   const handleSqftChange = (value: number | number[]) => {
     if (Array.isArray(value)) {
-      setPrice(value as [number, number]);
+      setSqftRange(value as [number, number]);
     }
   };
   const handleSelectListing = (id: number) => {
@@ -245,17 +297,17 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       } = listing;
       const { interior, exterior, areaLot } = amenities || {};
       setEditListingData({
-        id,
-        imageUrl,
-        title,
-        price,
-        description,
-        sqft,
-        status,
-        location,
+        id: listing.id,
+        imageUrl: listing.imageUrl,
+        title: listing.title,
+        price: listing.price,
+        description: listing.description,
+        sqft: listing.sqft,
+        status: listing.status,
+        location: listing.location,
         mapPosition: {
-          lat: 0,
-          lng: 0,
+          lat: listing.mapPosition.lat,
+          lng: listing.mapPosition.lng,
         },
         amenities: {
           interior: interior || {
@@ -320,7 +372,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
               <Search
                 placeholder="Search by Address, City, or Neighborhood"
                 size="large"
-                onSearch={(value: string) => console.log(value)}
+                onSearch={handleAddressSearch}
               />
             </Col>
             <Col>
@@ -338,22 +390,24 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
             <Row gutter={8}>
               <Col span={8}>
                 <Select
-                  value={propertyType}
-                  onChange={setPropertyType}
+                  value={propertyStatus}
+                  onChange={handleStatusChange}
                   placeholder="Select property type"
                   style={{ width: "100%" }}
                 >
-                  <Option value="forSale">For Sale</Option>
-                  <Option value="forRent">For Rent</Option>
+                  <Option value="none">None</Option>
+                  <Option value="For Sale">For Sale</Option>
+                  <Option value="For Rent">For Rent</Option>
                 </Select>
               </Col>
               <Col span={8}>
                 <Select
                   value={bathrooms}
-                  onChange={setBathrooms}
+                  onChange={handleBathroomsChange}
                   placeholder="Bathrooms"
                   style={{ width: "100%" }}
                 >
+                  <Option value="none">None</Option>
                   <Option value={1}>1</Option>
                   <Option value={2}>2</Option>
                   <Option value={3}>3</Option>
@@ -362,10 +416,11 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
               <Col span={8}>
                 <Select
                   value={bedrooms}
-                  onChange={setBedrooms}
+                  onChange={handleBedroomsChange}
                   placeholder="Bedrooms"
                   style={{ width: "100%" }}
                 >
+                  <Option value="none">None</Option>
                   <Option value={1}>1</Option>
                   <Option value={2}>2</Option>
                   <Option value={3}>3</Option>
@@ -383,7 +438,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                   step={0.1}
                   min={1}
                   max={5}
-                  value={price}
+                  value={priceRange}
                   onChange={handlePriceChange}
                   marks={{ 1: "$1M", 5: "$5M+" }}
                 />
@@ -395,7 +450,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                   step={100}
                   min={500}
                   max={10000}
-                  value={sqft}
+                  value={sqftRange}
                   onChange={handleSqftChange}
                   marks={{ 500: "<500 sqft", 10000: "10K+ sqft" }}
                 />
@@ -549,7 +604,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                       amenities: {
                         ...prevState.amenities,
                         interior: {
-                          // Ensure all other interior properties are spread to preserve their values
                           ...prevState.amenities?.interior,
                           bedrooms: newBedrooms,
                         },
@@ -620,12 +674,8 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
         </Modal>
 
         <div className={styles.listings}>
-          {currentListings.map((listing) => (
-            <div
-              key={listing.id}
-              className={styles.listingItem}
-              onClick={() => handleListingSelect(listing.id)}
-            >
+          {filteredListings.map((listing) => (
+            <div key={listing.id} className={styles.listingItem}>
               {selectMode && (
                 <Checkbox
                   checked={selectedListings.has(listing.id)}
@@ -634,6 +684,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                 />
               )}
               <Image
+                onClick={() => handleListingSelect(listing.id)}
                 src={"/div.image-wrap.png"}
                 width={300}
                 height={200}
