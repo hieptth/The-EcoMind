@@ -15,13 +15,18 @@
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
-
 .contactSection,
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .addressSection,
 .navigation,
 .socialSection {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .contactDetails h2,

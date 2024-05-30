@@ -14,15 +14,15 @@ export type Property = {
     lat: number;
     lng: number;
   };
-  amenities: {
-    interior: {
+  amenities?: {
+    interior?: {
       kitchen?: string;
       laundry?: string;
       fireplace?: string;
       appliances?: string;
       flooring?: string;
-      bedrooms: number;
-      bathrooms: number;
+      bedrooms?: number;
+      bathrooms?: number;
     };
     exterior?: {
       stories?: string;
@@ -36,7 +36,7 @@ export type Property = {
       lotFeatures?: string;
       roof?: string;
     };
-    areaLot: {
+    areaLot?: {
       lotArea?: number;
       livingArea?: number | string;
       yearBuilt?: number | string;
