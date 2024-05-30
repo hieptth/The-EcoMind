@@ -45,8 +45,8 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const { Search } = Input;
   const { Option } = Select;
 
-  const [bathrooms, setBathrooms] = useState<number | undefined>();
-  const [bedrooms, setBedrooms] = useState<number | undefined>();
+  const [bathrooms, setBathrooms] = useState<number | null>(null);
+  const [bedrooms, setBedrooms] = useState<number | null>(null);
   const [priceRange, setPriceRange] = useState<[number, number]>([1, 5]);
   const [sqftRange, setSqftRange] = useState<[number, number]>([500, 10000]);
   const [propertyStatus, setPropertyStatus] = useState("");
@@ -74,18 +74,29 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const filteredListings = listings
     ?.filter((listing) => {
       const price = parseInt(listing.price.replace(/[\D]/g, "")); // Remove non-digit characters for price comparison
-      return (
-        (!searchAddress ||
-          listing.location
-            .toLowerCase()
-            .includes(searchAddress.toLowerCase())) &&
-        (!propertyStatus || listing.status === propertyStatus) &&
-        (!bathrooms || listing?.amenities?.interior?.bathrooms === bathrooms) &&
-        (!bedrooms || listing?.amenities?.interior?.bedrooms === bedrooms) &&
-        price >= priceRange[0] * 1000000 &&
-        price <= priceRange[1] * 1000000 &&
+      const addressCondition =
+        !searchAddress ||
+        listing.location.toLowerCase().includes(searchAddress.toLowerCase());
+      const statusCondition =
+        !propertyStatus || listing.status === propertyStatus;
+      const bathroomsCondition =
+        !bathrooms ||
+        (listing?.amenities?.interior?.bathrooms ?? 0) >= bathrooms;
+      const bedroomsCondition =
+        !bedrooms || (listing?.amenities?.interior?.bedrooms ?? 0) >= bedrooms;
+      const priceCondition =
+        price >= priceRange[0] * 1000000 && price <= priceRange[1] * 1000000;
+      const sqftCondition =
         parseInt(listing.sqft) >= sqftRange[0] &&
-        parseInt(listing.sqft) <= sqftRange[1]
+        parseInt(listing.sqft) <= sqftRange[1];
+
+      return (
+        addressCondition &&
+        statusCondition &&
+        bathroomsCondition &&
+        bedroomsCondition &&
+        priceCondition &&
+        sqftCondition
       );
     })
     .slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -95,17 +106,13 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   };
 
   const handleBedroomsChange = (value: any) => {
-    setBedrooms(value === "none" ? 0 : value);
+    setBedrooms(value === "none" ? null : parseInt(value));
   };
   const handleBathroomsChange = (value: any) => {
-    setBathrooms(value === "none" ? 0 : value);
+    setBathrooms(value === "none" ? null : parseInt(value));
   };
   const handleStatusChange = (value: string) => {
-    if (value === "none") {
-      setPropertyStatus(""); // Reset or set to an initial state that means no filter
-    } else {
-      setPropertyStatus(value);
-    }
+    setPropertyStatus(value === "none" ? "" : value);
   };
 
   const handleListingSelect = (id: number) => {
@@ -205,7 +212,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
     },
   });
 
-  // Other state and functions...
 
   const handleSaveChanges = () => {
     PropertyService.updateProperty(editListingData);
@@ -353,9 +359,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   if (!Array.isArray(listings)) {
     return <div>Loading...</div>; // Or some error handling
   }
-  const handleListingClick = (id: number) => {
-    window.location.href = `${window.location.origin}/dashboard/properties/${id}`;
-  };
 
   return (
     <>
@@ -386,9 +389,9 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
             <Row gutter={8}>
               <Col span={8}>
                 <Select
-                  value={propertyStatus}
-                  onChange={handleStatusChange}
                   placeholder="Select property type"
+                  value={propertyStatus || undefined}
+                  onChange={handleStatusChange}
                   style={{ width: "100%" }}
                 >
                   <Option value="none">None</Option>
@@ -398,29 +401,29 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
               </Col>
               <Col span={8}>
                 <Select
-                  value={bathrooms}
+                  value={bathrooms?.toString() || undefined}
                   onChange={handleBathroomsChange}
                   placeholder="Bathrooms"
                   style={{ width: "100%" }}
                 >
                   <Option value="none">None</Option>
-                  <Option value={1}>1</Option>
-                  <Option value={2}>2</Option>
-                  <Option value={3}>3</Option>
+                  <Option value="1">1+</Option>
+                  <Option value="2">2+</Option>
+                  <Option value="3">3+</Option>
                 </Select>
               </Col>
               <Col span={8}>
                 <Select
-                  value={bedrooms}
+                  value={bedrooms?.toString() || undefined}
                   onChange={handleBedroomsChange}
                   placeholder="Bedrooms"
                   style={{ width: "100%" }}
                 >
                   <Option value="none">None</Option>
-                  <Option value={1}>1</Option>
-                  <Option value={2}>2</Option>
-                  <Option value={3}>3</Option>
-                  <Option value={4}>4</Option>
+                  <Option value="1">1+</Option>
+                  <Option value="2">2+</Option>
+                  <Option value="3">3+</Option>
+                  <Option value="4">4+</Option>
                 </Select>
               </Col>
             </Row>
@@ -693,7 +696,15 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                     <Button icon={<MoreOutlined />} />
                   </Dropdown>
                 </div>
-                <span className={styles.status}>{listing.status}</span>
+                <span
+                  className={styles.status}
+                  style={{
+                    color:
+                      listing.status === "For Rent" ? "#8f3524" : "#fbee24",
+                  }}
+                >
+                  {listing.status}
+                </span>
                 <span className={styles.price}>{listing.price}</span>
                 <span className={styles.description}>
                   {listing.description}
