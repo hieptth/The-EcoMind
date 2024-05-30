@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Spin } from "antd";
 import { Chart, Building3, Calendar, Message, Setting2 } from "iconsax-react";
 import styles from "./dashboard.module.css";
+import Link from "next/link";
 
 // Dynamic imports for dashboard content
 const ChartsContent = React.lazy(() => import("./ChartsContent"));
@@ -37,7 +38,9 @@ const DashboardPage = () => {
     <div className={styles.dashboardContainer}>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
-          <Image src="/logo.png" alt="Logo" width={50} height={50} />
+          <Link href="/">
+            <Image src="/logo.png" alt="Logo" width={50} height={50} />
+          </Link>
         </div>
         <div
           className={`${styles.iconContainer} ${
