@@ -4,7 +4,7 @@ import { PropertyStore, Property } from "./property.store";
 export class PropertyService {
   // Adds a new property to the store
   public static async createProperty(property: Property) {
-    PropertyStore.updateStore([property]);
+    PropertyStore.setStore([...PropertyStore.getValue(), property]);
   }
 
   // Updates an existing property in the store

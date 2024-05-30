@@ -10,13 +10,18 @@ const PropertiesContent = () => {
 
   const handleListingClick = (property: Property) => {
     setSelectedProperty(property);
-    window.history.pushState({}, "", `/dashboard/properties/${property.id}`);
+    window.history.pushState({}, "", `/dashboard/properties?id=${property.id}`);
+  };
+
+  const goBack = () => {
+    setSelectedProperty(null);
+    window.history.pushState({}, "", "/dashboard/properties");
   };
 
   return (
     <>
       {selectedProperty ? (
-        <ListingDetailDashboard property={selectedProperty} />
+        <ListingDetailDashboard property={selectedProperty} goBack={goBack} />
       ) : (
         <ListingDashboard onListingClick={handleListingClick} />
       )}

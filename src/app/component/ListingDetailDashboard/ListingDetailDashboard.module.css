@@ -23,6 +23,12 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -34,6 +40,7 @@
   color: #666;
   margin-bottom: 20px;
 }
+
 .feature {
   display: flex;
   flex-direction: row;
@@ -43,9 +50,11 @@
 .propertyInfo {
   margin-bottom: 20px;
 }
+
 .interiorFeature li {
   margin-bottom: 10px;
 }
+
 .exteriorFeature li {
   margin-bottom: 10px;
 }
@@ -85,4 +94,25 @@
   font-size: 16px;
   cursor: pointer;
   outline: none;
+}
+
+.modalContent {
+  height: 60vh;
+  overflow-y: auto;
+  padding: 5px 0;
+  scrollbar-color: blue;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.modalContent :has(.spinner-container) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent::-webkit-scrollbar {
+  display: none;
 }
