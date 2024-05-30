@@ -1,0 +1,88 @@
+/* ListingDetailDashboard.module.css */
+.container {
+  display: flex;
+  margin: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.leftSection {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rightSection {
+  flex: 1.5;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 20px;
+}
+.feature {
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+}
+
+.propertyInfo {
+  margin-bottom: 20px;
+}
+.interiorFeature li {
+  margin-bottom: 10px;
+}
+.exteriorFeature li {
+  margin-bottom: 10px;
+}
+
+.propertyInfo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.propertyInfo li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.generateButton {
+  background-color: orange;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.editButton {
+  background-color: transparent;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}

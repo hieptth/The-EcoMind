@@ -7,8 +7,8 @@ export const dummyPropertyData = [
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     sqft: "2434",
     status: "For Sale",
-    location: "564 Carney Loaf\nLake Steven, MI 26348",
-    mapPosition: { lat: 86.903369, lng: -127.121986 },
+    location: "48100 Pacific Coast Hwy, Malibu, CA 90265",
+    mapPosition: { lat: 34.0259, lng: -118.7798 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -50,7 +50,7 @@ export const dummyPropertyData = [
     sqft: "9176",
     status: "For Sale",
     location: "40029 Autumn Court\nJonesburgh, RI 56821",
-    mapPosition: { lat: -5.967046, lng: 38.139040 },
+    mapPosition: { lat: -5.967046, lng: 38.13904 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -428,7 +428,7 @@ export const dummyPropertyData = [
     sqft: "4793",
     status: "For Rent",
     location: "PSC 1510, Box 1270\nAPO AA 68192",
-    mapPosition: { lat: 36.586334, lng: 141.292720 },
+    mapPosition: { lat: 36.586334, lng: 141.29272 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -1436,7 +1436,7 @@ export const dummyPropertyData = [
     sqft: "8749",
     status: "For Sale",
     location: "725 Geoffrey Garden\nWest William, CT 35406",
-    mapPosition: { lat: -15.688960, lng: 143.823148 },
+    mapPosition: { lat: -15.68896, lng: 143.823148 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -1478,7 +1478,7 @@ export const dummyPropertyData = [
     sqft: "2722",
     status: "For Sale",
     location: "561 Susan Drive\nFigueroabury, SD 90033",
-    mapPosition: { lat: 44.537867, lng: -50.381410 },
+    mapPosition: { lat: 44.537867, lng: -50.38141 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -1520,7 +1520,7 @@ export const dummyPropertyData = [
     sqft: "5421",
     status: "For Rent",
     location: "USNV Rodriguez\nFPO AP 31664",
-    mapPosition: { lat: -49.669491, lng: -94.540000 },
+    mapPosition: { lat: -49.669491, lng: -94.54 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -2108,7 +2108,7 @@ export const dummyPropertyData = [
     sqft: "587",
     status: "For Sale",
     location: "32363 Harris Corners\nMorrowtown, VA 86290",
-    mapPosition: { lat: 84.235350, lng: -41.171138 },
+    mapPosition: { lat: 84.23535, lng: -41.171138 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -2612,7 +2612,7 @@ export const dummyPropertyData = [
     sqft: "9706",
     status: "For Sale",
     location: "4658 Chris Valley\nNew David, NC 70274",
-    mapPosition: { lat: 40.6630725, lng: -95.602390 },
+    mapPosition: { lat: 40.6630725, lng: -95.60239 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -3494,7 +3494,7 @@ export const dummyPropertyData = [
     sqft: "5845",
     status: "For Rent",
     location: "53969 Renee Burg Suite 340\nPort William, NY 50866",
-    mapPosition: { lat: 58.648800, lng: 99.580883 },
+    mapPosition: { lat: 58.6488, lng: 99.580883 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
@@ -3830,7 +3830,7 @@ export const dummyPropertyData = [
     sqft: "8306",
     status: "For Rent",
     location: "4778 Keith Prairie Suite 617\nBauerfort, MN 18159",
-    mapPosition: { lat: -83.544640, lng: 59.576167 },
+    mapPosition: { lat: -83.54464, lng: 59.576167 },
     amenities: {
       interior: {
         kitchen: "Granite Countertops",
