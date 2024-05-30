@@ -9,11 +9,19 @@ import { useEffect, useState } from "react";
 export const Navbar = () => {
   const [isOnTop, setIsOnTop] = useState(true);
   const scrollDirection = useScrollDirection();
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     window.onscroll = () => {
       setIsOnTop(window.scrollY < 50);
     };
+
+    const accountInfo = localStorage.getItem("accountInfo");
+    if (accountInfo) {
+      setRole(JSON.parse(accountInfo).role);
+      setUsername(JSON.parse(accountInfo).username);
+    }
   }, []);
 
   return (
@@ -37,11 +45,13 @@ export const Navbar = () => {
           </div>
           <div className={"header-container__nav"}>
             <ul className={"navigation"}>
-              <li className={"navigation__item"}>
-                <a href={"#"} className={"navigation__link"}>
-                  Real Estate
-                </a>
-              </li>
+              {role === "agent" && (
+                <li className={"navigation__item"}>
+                  <a href={"/dashboard"} className={"navigation__link"}>
+                    Dashboard
+                  </a>
+                </li>
+              )}
               <li className={"navigation__item"}>
                 <a href={"/messages"} className={"navigation__link"}>
                   Message
@@ -52,11 +62,19 @@ export const Navbar = () => {
                   Home Search
                 </a>
               </li>
-              <li className={"navigation__item"}>
-                <a href={"/login"} className={"navigation__link"}>
-                  Login
-                </a>
-              </li>
+              {username ? (
+                <li className={"navigation__item"}>
+                  <a href={"/profile"} className={"navigation__link"}>
+                    {username}
+                  </a>
+                </li>
+              ) : (
+                <li className={"navigation__item"}>
+                  <a href={"/login"} className={"navigation__link"}>
+                    Login
+                  </a>
+                </li>
+              )}
             </ul>
             <button className={"hamburger"}>
               <svg

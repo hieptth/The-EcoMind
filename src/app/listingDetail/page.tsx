@@ -103,7 +103,7 @@ const ListingDetailPage = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className={styles.container}>
         <div className={styles.slideContainer}>
           <Swiper
@@ -147,7 +147,7 @@ const ListingDetailPage = () => {
               onCancel={handleCancel}
               width={1200}
               footer={null}
-              wrapClassName={modalStyles.modalCustomBody}
+              wrapClassName={`${modalStyles.modalCustomBody} contact-modal`}
             >
               <div className={modalStyles.modalContainer}>
                 <div className={modalStyles.formSection}>
@@ -187,7 +187,12 @@ const ListingDetailPage = () => {
                       <Input.TextArea placeholder="Message" />
                     </Form.Item>
                     <Form.Item>
-                      <button className={modalStyles.buttonSubmit}>
+                      <button
+                        className={modalStyles.buttonSubmit}
+                        onClick={() => {
+                          setIsModalVisible(false);
+                        }}
+                      >
                         Submit
                       </button>
                     </Form.Item>

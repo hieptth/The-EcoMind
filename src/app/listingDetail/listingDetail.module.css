@@ -5,11 +5,14 @@
   background-color: #fbf6ed;
   color: brown;
   height: 100%;
+  padding-top: 144px;
 }
 
 .slideContainer {
   height: 100%;
+  padding: 0 3rem;
 }
+
 .SwiperSlide {
   overflow: hidden;
   height: 100%;
@@ -21,6 +24,7 @@
   align-items: center;
   padding: 1rem;
 }
+
 .outHeartIcon {
   display: flex;
   align-items: center;
@@ -32,6 +36,7 @@
 .heartIcon {
   padding: 8px;
 }
+
 .belowHeader {
   display: flex;
   flex-direction: row;
@@ -39,6 +44,7 @@
   gap: 20px;
   margin-top: 10px;
 }
+
 .buttonInquire {
   padding: 10px;
   color: #8f3524;
@@ -52,17 +58,20 @@
 }
 
 .price {
-  color: brown; /* Example color */
+  color: brown;
+  /* Example color */
   margin-bottom: 1rem;
   font-weight: normal;
 }
 
 .content {
   display: grid;
-  grid-template-rows: repeat(4, auto); /* Creates four rows */
+  grid-template-rows: repeat(4, auto);
+  /* Creates four rows */
   row-gap: 1px;
   padding: 20px;
 }
+
 .row {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -89,7 +98,8 @@
 }
 
 .detailSection {
-  margin-bottom: 1em; /* Space between sections */
+  margin-bottom: 1em;
+  /* Space between sections */
 }
 
 .amenities {
@@ -130,9 +140,11 @@
 
 .amenitiesSectionTitle {
   font-size: 1.2rem;
-  border-bottom: 1px solid #a52a2a; /* Brown line under each title */
+  border-bottom: 1px solid #a52a2a;
+  /* Brown line under each title */
   padding-bottom: 0.5rem;
 }
+
 .amenityItem {
   padding: 10px;
 }

@@ -14,11 +14,16 @@ import {
 import Link from "next/link";
 import { BaseButton } from "@common/UI";
 import { RegisterLink, SocialLogin } from "./login.styles";
+import { LoginController } from "./login.controller";
 
 const formID = "login-form";
 
 export default function LoginPage() {
   const [loginForm] = Form.useForm();
+
+  const onSubmit = (values: any) => {
+    LoginController.login(values.email, values.password);
+  };
 
   return (
     <LoginPageWrapper>
@@ -76,7 +81,7 @@ export default function LoginPage() {
       </BaseForm>
 
       <BaseButton
-        onClick={() => loginForm.submit()}
+        onClick={() => onSubmit(loginForm.getFieldsValue())}
         type="primary"
         className="login-btn"
       >
