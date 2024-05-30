@@ -2,7 +2,7 @@ import { dummyPropertyData } from "dummy";
 import { BaseStore } from "shared";
 
 export type Property = {
-  id: string;
+  id: number;
   imageUrl: string;
   title: string;
   price: string;
