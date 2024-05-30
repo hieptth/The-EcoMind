@@ -1,13 +1,10 @@
 "use client";
-import { useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import Image from "next/image";
 import styles from "./listingDashboard.module.css";
-import { Listing } from "./interface/listing";
 import { Pagination } from "antd";
 import { MoreOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/lib/upload/interface";
-import listingsData from "./listing.json";
-import { dummyPropertyData } from "dummy";
 
 import {
   Input,
@@ -25,33 +22,49 @@ import {
   Dropdown,
 } from "antd";
 
-interface ModalFormData {
-  status: string;
-  price: string;
-  description: string;
-  address: string;
-  beds: number;
-  baths: number;
-  sqft: string;
+import { Property, PropertyService, PropertyStore } from "stores/propertyStore";
+import { useObservable } from "shared/useObservable";
+import { fa } from "@faker-js/faker";
+interface ModalFormData extends Partial<Property> {
   image?: string;
 }
 
 const ListingDashboard = () => {
   const PAGE_SIZE = 9;
-  const [listings, setListings] = useState<Listing[]>(listingsData);
 
-  // const [listings, setListings] = useState<Listing[]>([]);
+  // const [listings, setListings] = useState<Property[]>([]);
+  const listings = useObservable(PropertyStore);
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedListings, setSelectedListings] = useState(new Set<number>());
+  const [del, setDel] = useState(true);
+  const { Search } = Input;
+  const { Option } = Select;
 
-  const [propertyType, setPropertyType] = useState(undefined);
-  const [bathrooms, setBathrooms] = useState(undefined);
-  const [bedrooms, setBedrooms] = useState(undefined);
-
+  const [propertyType, setPropertyType] = useState("");
+  const [bathrooms, setBathrooms] = useState(0);
+  const [bedrooms, setBedrooms] = useState(0);
   const [price, setPrice] = useState<[number, number]>([1, 5]);
   const [sqft, setSqft] = useState<[number, number]>([500, 10000]);
 
-  const [selectMode, setSelectMode] = useState(false);
-  const [selectedListings, setSelectedListings] = useState(new Set<number>());
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const currentListings = listings?.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  useEffect(() => {
+    console.log(listings);
+  }, [listings]);
+
+  const fetchListings = async () => {
+    // const allProperties = await PropertyService.getProperties();
+    // setListings(allProperties);
+  };
 
   const toggleSelectMode = () => {
     setSelectMode(!selectMode);
@@ -61,12 +74,10 @@ const ListingDashboard = () => {
   };
 
   const handleSelectAll = () => {
-    if (selectedListings.size === currentListings.length) {
+    if (selectedListings.size === listings.length) {
       setSelectedListings(new Set());
     } else {
-      setSelectedListings(
-        new Set(currentListings.map((listing) => listing.id))
-      );
+      setSelectedListings(new Set(listings.map((listing) => listing.id)));
     }
   };
 
@@ -74,15 +85,158 @@ const ListingDashboard = () => {
     Modal.confirm({
       title: "Are you sure you want to delete these listings?",
       onOk: () => {
-        const newListings = listings.filter(
-          (listing) => !selectedListings.has(listing.id)
-        );
-        setListings(newListings);
-        setSelectedListings(new Set());
+        selectedListings.forEach((id) => PropertyService.deleteProperty(id));
+        setDel(!del);
+        fetchListings();
       },
     });
   };
 
+  const handleDeleteListing = (id: number) => {
+    Modal.confirm({
+      title: "Are you sure you want to delete this listing?",
+      onOk: () => {
+        PropertyService.deleteProperty(id);
+        setDel(!del);
+        fetchListings();
+      },
+    });
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalFormData, setModalFormData] = useState<ModalFormData>({});
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [editListingData, setEditListingData] = useState<Property>({
+    id: 0,
+    imageUrl: "",
+    title: "",
+    price: "",
+    description: "",
+    sqft: "",
+    status: "",
+    location: "",
+    mapPosition: {
+      lat: 0,
+      lng: 0,
+    },
+    amenities: {
+      interior: {
+        kitchen: "",
+        laundry: "",
+        fireplace: "",
+        appliances: "",
+        flooring: "",
+        bedrooms: 0,
+        bathrooms: 0,
+      },
+      exterior: {
+        stories: "",
+        pool: "",
+        heat: "",
+        garage: "",
+        security: "",
+        sewer: "",
+        other: "",
+        parking: "",
+        lotFeatures: "",
+        roof: "",
+      },
+      areaLot: {
+        lotArea: 0,
+        livingArea: "",
+        yearBuilt: "",
+        viewDescription: "",
+        architecturalStyle: "",
+        status: "",
+      },
+    },
+  });
+
+  // Other state and functions...
+
+  const handleSaveChanges = () => {
+    PropertyService.updateProperty(editListingData);
+    setIsEditModalVisible(false);
+  };
+
+  const showModal = () => setIsModalVisible(true);
+  const handleModalCancel = () => setIsModalVisible(false);
+  const handleModalSubmit = () => {
+    console.log("modalFormData", modalFormData);
+
+    if (!modalFormData.price) {
+      message.error("Please fill in all required fields.");
+      return;
+    }
+
+    const newProperty: Property = {
+      id: Math.max(...listings.map((l) => l.id), 0) + 1, // Generate ID
+      imageUrl: modalFormData.image || "",
+      title: modalFormData.title || "",
+      price: modalFormData.price,
+      description: modalFormData.description || "", // Default to empty string if undefined
+      sqft: modalFormData.sqft || "",
+      status: modalFormData.status || "",
+      location: modalFormData.location || "",
+      amenities: modalFormData.amenities || {
+        interior: {},
+        exterior: {},
+        areaLot: {},
+      }, // Provide defaults for complex nested structures
+    };
+
+    PropertyService.createProperty(newProperty);
+    // setListings([...listings, newProperty]);
+    console.log("listings", listings);
+
+    setIsModalVisible(false);
+  };
+
+  const onModalFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setModalFormData((prev) => ({ ...prev, [name.toLowerCase()]: value }));
+  };
+
+  const onUploadChange = (info: UploadChangeParam) => {
+    if (info.file.status === "done") {
+      if (info.file.originFileObj) {
+        const imageUrl = URL.createObjectURL(info.file.originFileObj);
+        setModalFormData((prev) => ({ ...prev, image: imageUrl }));
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else {
+        message.error("File upload failed: No file data available.");
+      }
+    } else if (info.file.status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  };
+  const handlePropertyTypeChange = (value: string) => {
+    setPropertyType(value);
+  };
+
+  const handleBathroomsChange = (value: number) => {
+    setBathrooms(value);
+  };
+
+  const handleBedroomsChange = (value: number) => {
+    setBedrooms(value);
+  };
+
+  const handlePriceChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setPrice(value as [number, number]);
+    }
+  };
+
+  const handleSqftChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setPrice(value as [number, number]);
+    }
+  };
   const handleSelectListing = (id: number) => {
     const newSelection = new Set(selectedListings);
     if (newSelection.has(id)) {
@@ -92,15 +246,52 @@ const ListingDashboard = () => {
     }
     setSelectedListings(newSelection);
   };
-
-  const handleDeleteListing = (id: number) => {
-    Modal.confirm({
-      title: "Are you sure you want to delete this listing?",
-      onOk: () => {
-        const newListings = listings.filter((listing) => listing.id !== id);
-        setListings(newListings);
-      },
-    });
+  const handleEditListing = (id: number) => {
+    const listing = listings.find((listing) => listing.id === id);
+    if (listing) {
+      setEditListingData({
+        id: listing.id,
+        imageUrl: listing.imageUrl,
+        title: listing.title,
+        price: listing.price,
+        description: listing.description,
+        sqft: listing.sqft,
+        status: listing.status,
+        location: listing.location,
+        amenities: {
+          interior: listing.amenities?.interior || {
+            kitchen: "",
+            laundry: "",
+            fireplace: "",
+            appliances: "",
+            flooring: "",
+            bedrooms: 0,
+            bathrooms: 0,
+          },
+          exterior: listing.amenities?.exterior || {
+            stories: "",
+            pool: "",
+            heat: "",
+            garage: "",
+            security: "",
+            sewer: "",
+            other: "",
+            parking: "",
+            lotFeatures: "",
+            roof: "",
+          },
+          areaLot: listing.amenities?.areaLot || {
+            lotArea: 0,
+            livingArea: "",
+            yearBuilt: "",
+            viewDescription: "",
+            architecturalStyle: "",
+            status: "",
+          },
+        },
+      });
+      setIsEditModalVisible(true);
+    }
   };
 
   const menu = (id: number) => (
@@ -113,113 +304,9 @@ const ListingDashboard = () => {
       </Menu.Item>
     </Menu>
   );
-
-  const currentListings = listings.slice(
-    (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
-  );
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-  const { Search } = Input;
-  const { Option } = Select;
-
-  const onPriceChange = (value: number | number[]) => {
-    if (Array.isArray(value) && value.length === 2) {
-      setPrice(value as [number, number]);
-    }
-  };
-
-  const onSqftChange = (value: number | number[]) => {
-    if (Array.isArray(value) && value.length === 2) {
-      setSqft(value as [number, number]);
-    }
-  };
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalFormData, setModalFormData] = useState<ModalFormData>({
-    status: "",
-    price: "",
-    description: "",
-    address: "",
-    beds: 0,
-    baths: 0,
-    sqft: "",
-  });
-
-  const [editListingData, setEditListingData] = useState<ModalFormData>({
-    status: "",
-    price: "",
-    description: "",
-    address: "",
-    beds: 0,
-    baths: 0,
-    sqft: "",
-  });
-
-  const [editListingId, setEditListingId] = useState<number | null>(null);
-
-  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-
-  const showModal = () => setIsModalVisible(true);
-  const handleModalCancel = () => setIsModalVisible(false);
-  const handleModalSubmit = () => {
-    setIsModalVisible(false);
-  };
-
-  const onModalFormChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setModalFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const onUploadChange = (info: UploadChangeParam) => {
-    if (info.file.status === "done") {
-      // Ensure originFileObj is not undefined before using it
-      if (info.file.originFileObj) {
-        console.log("File uploaded successfully:", info.file.name);
-        // Create object URL only if the file object is available
-        const imageUrl = URL.createObjectURL(info.file.originFileObj);
-        // Example: setting imageUrl in state (adjust according to your state management)
-        setEditListingData((prev) => ({ ...prev, image: imageUrl }));
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else {
-        // Handle the case where file object is undefined
-        message.error("File upload failed: No file data available.");
-      }
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  };
-  const handleEditListing = (id: number) => {
-    const listingToEdit = listings.find((listing) => listing.id === id);
-    if (listingToEdit) {
-      setEditListingData({
-        status: listingToEdit.status || "",
-        price: listingToEdit.price || "",
-        description: listingToEdit.description || "",
-        address: listingToEdit.address || "",
-        beds: listingToEdit.beds || 0,
-        baths: listingToEdit.baths || 0,
-        sqft: listingToEdit.sqft || "",
-      });
-      setEditListingId(id); // Set the current editing listing's ID
-      setIsEditModalVisible(true);
-    }
-  };
-
-  const handleSaveChanges = () => {
-    if (editListingId == null) return;
-
-    const updatedListings = listings.map((listing) => {
-      if (listing.id === editListingId) {
-        return { ...listing, ...editListingData };
-      }
-      return listing;
-    });
-    setListings(updatedListings);
-    setIsEditModalVisible(false);
-    setEditListingId(null);
-  };
+  if (!Array.isArray(listings)) {
+    return <div>Loading...</div>; // Or some error handling
+  }
 
   return (
     <>
@@ -232,7 +319,7 @@ const ListingDashboard = () => {
               <Search
                 placeholder="Search by Address, City, or Neighborhood"
                 size="large"
-                onSearch={(value) => console.log(value)}
+                onSearch={(value: string) => console.log(value)}
               />
             </Col>
             <Col>
@@ -296,7 +383,7 @@ const ListingDashboard = () => {
                   min={1}
                   max={5}
                   value={price}
-                  onChange={onPriceChange}
+                  onChange={handlePriceChange}
                   marks={{ 1: "$1M", 5: "$5M+" }}
                 />
               </Col>
@@ -308,7 +395,7 @@ const ListingDashboard = () => {
                   min={500}
                   max={10000}
                   value={sqft}
-                  onChange={onSqftChange}
+                  onChange={handleSqftChange}
                   marks={{ 500: "<500 sqft", 10000: "10K+ sqft" }}
                 />
               </Col>
@@ -336,7 +423,7 @@ const ListingDashboard = () => {
                 <Form layout="vertical">
                   <Form.Item label="Status">
                     <Input
-                      name="Status"
+                      name="status"
                       value={modalFormData.status}
                       onChange={onModalFormChange}
                     />
@@ -344,14 +431,14 @@ const ListingDashboard = () => {
                   <Form.Item label="Price">
                     <Input
                       onChange={onModalFormChange}
-                      name="Price"
+                      name="price"
                       value={modalFormData.price}
                     />
                   </Form.Item>
                   <Form.Item label="Description">
                     <Input
                       onChange={onModalFormChange}
-                      name="Description"
+                      name="description"
                       value={modalFormData.description}
                     />
                   </Form.Item>
@@ -359,21 +446,21 @@ const ListingDashboard = () => {
                     <Input
                       onChange={onModalFormChange}
                       name="address"
-                      value={modalFormData.address}
+                      value={modalFormData.location}
                     />
                   </Form.Item>
                   <Form.Item label="Beds">
                     <Input
                       onChange={onModalFormChange}
                       name="beds"
-                      value={modalFormData.beds}
+                      value={modalFormData.amenities?.interior?.bedrooms}
                     />
                   </Form.Item>
                   <Form.Item label="Baths">
                     <Input
                       onChange={onModalFormChange}
                       name="baths"
-                      value={modalFormData.baths}
+                      value={modalFormData.amenities?.interior?.bathrooms}
                     />
                   </Form.Item>
                   <Form.Item label="Sqft">
@@ -383,7 +470,7 @@ const ListingDashboard = () => {
                       value={modalFormData.sqft}
                     />
                   </Form.Item>
-                  <Form.Item label="Property image">
+                  {/* <Form.Item label="Property image">
                     <Upload
                       name="logo"
                       listType="picture-card"
@@ -395,7 +482,7 @@ const ListingDashboard = () => {
                       {<PlusOutlined />}
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </Upload>
-                  </Form.Item>
+                  </Form.Item> */}
                 </Form>
               </Modal>
             </div>
@@ -437,11 +524,11 @@ const ListingDashboard = () => {
             <Form.Item label="Address">
               <Input
                 name="address"
-                value={editListingData?.address}
+                value={editListingData?.location}
                 onChange={(e) =>
                   setEditListingData({
                     ...editListingData,
-                    address: e.target.value,
+                    location: e.target.value,
                   })
                 }
               />
@@ -449,27 +536,52 @@ const ListingDashboard = () => {
             <Form.Item label="Beds">
               <Input
                 name="beds"
-                value={editListingData?.beds}
-                onChange={(e) =>
-                  setEditListingData({
-                    ...editListingData,
-                    beds: Number(e.target.value),
-                  })
+                value={
+                  editListingData?.amenities?.interior?.bedrooms?.toString() ||
+                  ""
                 }
+                onChange={(e) => {
+                  setEditListingData((prevState) => {
+                    const newBedrooms = Number(e.target.value);
+                    return {
+                      ...prevState,
+                      amenities: {
+                        ...prevState.amenities,
+                        interior: {
+                          // Ensure all other interior properties are spread to preserve their values
+                          ...prevState.amenities?.interior,
+                          bedrooms: newBedrooms,
+                        },
+                      },
+                    };
+                  });
+                }}
               />
             </Form.Item>
+
             <Form.Item label="Baths">
               <Input
                 name="baths"
-                value={editListingData?.baths}
-                onChange={(e) =>
-                  setEditListingData({
-                    ...editListingData,
-                    baths: Number(e.target.value),
-                  })
+                value={
+                  editListingData?.amenities?.interior?.bathrooms?.toString() ||
+                  ""
                 }
+                onChange={(e) => {
+                  const newBathrooms = Number(e.target.value);
+                  setEditListingData((prevState) => ({
+                    ...prevState,
+                    amenities: {
+                      ...prevState.amenities,
+                      interior: {
+                        ...prevState.amenities?.interior,
+                        bathrooms: newBathrooms,
+                      },
+                    },
+                  }));
+                }}
               />
             </Form.Item>
+
             <Form.Item label="Sqft">
               <Input
                 name="sqft"
@@ -482,7 +594,7 @@ const ListingDashboard = () => {
                 }
               />
             </Form.Item>
-            <Form.Item label="Image">
+            {/* <Form.Item label="Image">
               <Upload
                 name="image"
                 listType="picture-card"
@@ -490,17 +602,19 @@ const ListingDashboard = () => {
                 beforeUpload={() => false}
                 onChange={onUploadChange}
               >
-                {editListingData?.image ? (
+                {editListingData?.imageUrl ? (
                   <Image
-                    src={editListingData?.image}
+                    src={editListingData?.imageUrl}
                     alt="avatar"
+                    width={300}
+                    height={200}
                     style={{ width: "100%" }}
                   />
                 ) : (
                   <UploadOutlined />
                 )}
               </Upload>
-            </Form.Item>
+            </Form.Item> */}
           </Form>
         </Modal>
 
@@ -532,10 +646,10 @@ const ListingDashboard = () => {
                 <span className={styles.description}>
                   {listing.description}
                 </span>
-                <span className={styles.address}>{listing.address}</span>
+                <span className={styles.address}>{listing.location}</span>
                 <span
                   className={styles.meta}
-                >{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
+                >{`${listing.amenities?.interior?.bedrooms} BEDS | ${listing.amenities?.interior?.bathrooms} BATHS | ${listing.sqft} SQ.FT.`}</span>
               </div>
             </div>
           ))}
