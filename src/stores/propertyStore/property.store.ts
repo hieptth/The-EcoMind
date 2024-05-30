@@ -10,7 +10,7 @@ export type Property = {
   sqft: string;
   status: string;
   location: string;
-  mapPosition?: {
+  mapPosition: {
     lat: number;
     lng: number;
   };

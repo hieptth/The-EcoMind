@@ -24,12 +24,15 @@ import {
 
 import { Property, PropertyService, PropertyStore } from "stores/propertyStore";
 import { useObservable } from "shared/useObservable";
-import { fa } from "@faker-js/faker";
 interface ModalFormData extends Partial<Property> {
   image?: string;
 }
-
-const ListingDashboard = () => {
+interface ListingDashboardProps {
+  onListingClick: (property: Property) => void;
+}
+const ListingDashboard: React.FC<ListingDashboardProps> = ({
+  onListingClick,
+}) => {
   const PAGE_SIZE = 9;
 
   // const [listings, setListings] = useState<Property[]>([]);
@@ -64,6 +67,12 @@ const ListingDashboard = () => {
   const fetchListings = async () => {
     // const allProperties = await PropertyService.getProperties();
     // setListings(allProperties);
+  };
+  const handleListingSelect = (id: number) => {
+    const property = listings.find((p) => p.id === id);
+    if (property) {
+      onListingClick(property);
+    }
   };
 
   const toggleSelectMode = () => {
@@ -307,6 +316,9 @@ const ListingDashboard = () => {
   if (!Array.isArray(listings)) {
     return <div>Loading...</div>; // Or some error handling
   }
+  const handleListingClick = (id: number) => {
+    window.location.href = `${window.location.origin}/dashboard/properties/${id}`;
+  };
 
   return (
     <>
@@ -620,7 +632,11 @@ const ListingDashboard = () => {
 
         <div className={styles.listings}>
           {currentListings.map((listing) => (
-            <div key={listing.id} className={styles.listingItem}>
+            <div
+              key={listing.id}
+              className={styles.listingItem}
+              onClick={() => handleListingSelect(listing.id)}
+            >
               {selectMode && (
                 <Checkbox
                   checked={selectedListings.has(listing.id)}
