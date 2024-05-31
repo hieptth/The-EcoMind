@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./propertyWishlist.module.css";
 import { Listing } from "./interface/listing";
@@ -8,33 +8,21 @@ import Footer from "app/component/footer/Footer";
 import { Pagination } from "antd";
 import { Input, Slider, Row, Col, Select } from "antd";
 import { Navbar } from "@components";
+import { useObservable } from "shared/useObservable";
+import { WishlistStore } from "stores/wishlistStore/wishlist.store";
 
 const PropertyWishlist = () => {
   const PAGE_SIZE = 9;
-  const [listings, setListings] = useState<Listing[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Using useObservable to subscribe to WishlistStore
+  const listings = useObservable(WishlistStore);
 
   const [propertyType, setPropertyType] = useState(undefined);
   const [bathrooms, setBathrooms] = useState(undefined);
   const [bedrooms, setBedrooms] = useState(undefined);
-
   const [price, setPrice] = useState<[number, number]>([1, 5]);
   const [sqft, setSqft] = useState<[number, number]>([500, 10000]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://65f04039da8c6584131b40de.mockapi.io/listing/v1/realestateapilisting"
-        );
-        const data = await response.json();
-        setListings(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const currentListings = listings.slice(
     (currentPage - 1) * PAGE_SIZE,
@@ -44,6 +32,7 @@ const PropertyWishlist = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
   const { Search } = Input;
   const { Option } = Select;
 
@@ -58,6 +47,7 @@ const PropertyWishlist = () => {
       setSqft(value as [number, number]);
     }
   };
+
   return (
     <>
       <Navbar />
@@ -69,10 +59,10 @@ const PropertyWishlist = () => {
           {currentListings.map((listing) => (
             <div key={listing.id} className={styles.listingItem}>
               <Image
-                src={"/div.image-wrap.png"}
+                src={"/div.image-wrap.png"} // Assume imageUrl might be part of your data
                 width={300}
                 height={200}
-                alt={"listingimage"}
+                alt={"listing image"}
                 layout="responsive"
               />
               <div className={styles.listingDetails}>
@@ -81,10 +71,10 @@ const PropertyWishlist = () => {
                 <span className={styles.description}>
                   {listing.description}
                 </span>
-                <span className={styles.address}>{listing.address}</span>
+                <span className={styles.address}>{listing.location}</span>
                 <span
                   className={styles.meta}
-                >{`${listing.beds} BEDS | ${listing.baths} BATHS | ${listing.sqft} SQ.FT.`}</span>
+                >{`${listing.amenities?.interior?.bedrooms} BEDS | ${listing.amenities?.interior?.bathrooms} BATHS | ${listing.sqft} SQ.FT.`}</span>
               </div>
             </div>
           ))}
