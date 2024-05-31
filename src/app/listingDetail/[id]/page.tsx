@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Form, Input, Button, Row, Col } from "antd";
 import modalStyles from "./Modal.module.css";
 import { Property, PropertyService, PropertyStore } from "stores/propertyStore";
+import { WishlistService } from "stores/wishlistStore/wishlist.service";
 
 import MapComponent from "app/component/map/MapComponent";
 import "swiper/css/navigation";
@@ -18,6 +19,7 @@ import { useObservable } from "shared/useObservable";
 import { useParams } from "next/navigation";
 
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { WishlistStore } from "stores/wishlistStore/wishlist.store";
 
 // install Swiper modules
 const propertyImages = [
@@ -46,11 +48,35 @@ const ListingDetailPage = () => {
       setProperty(foundProperty || null);
     }
   }, [id, listings]);
+  const Wishlist = useObservable(WishlistStore);
+  const [isInWishlist, setIsInWishlist] = useState(
+    property ? Wishlist.some((item) => item.id === property.id) : false
+  );
+  useEffect(() => {
+    if (property) {
+      setIsInWishlist(Wishlist.some((item) => item.id === property.id));
+    }
+  }, [Wishlist, property]);
+  const toggleWishlist = () => {
+    if (property) {
+      if (isInWishlist) {
+        WishlistService.deleteProperty(property.id);
+      } else {
+        WishlistService.createProperty(property);
+      }
+    }
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-  const showModal = () => setIsModalVisible(true);
-  const handleOk = () => setIsModalVisible(false);
-  const handleCancel = () => setIsModalVisible(false);
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
       {/* <Navbar /> */}
@@ -172,9 +198,13 @@ const ListingDetailPage = () => {
                     </div>
                   </div>
                 </Modal>
-                <div className={styles.outHeartIcon}>
+                <div className={styles.outHeartIcon} onClick={toggleWishlist}>
                   <div className={styles.heartIcon}>
-                    <HeartAdd size="24" color="#8f3524" />
+                    {isInWishlist ? (
+                      <HeartAdd size="24" color="white" />
+                    ) : (
+                      <HeartAdd size="24" color="red" />
+                    )}
                   </div>
                 </div>
               </div>

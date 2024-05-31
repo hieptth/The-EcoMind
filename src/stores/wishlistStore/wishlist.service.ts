@@ -29,7 +29,6 @@ export class WishlistService {
     console.log(WishlistStore.getValue());
   }
 
-  // Retrieves all properties from the store
   public static getProperties(): Property[] {
     return WishlistStore.getValue();
   }
