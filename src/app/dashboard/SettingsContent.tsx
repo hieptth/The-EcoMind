@@ -2,7 +2,7 @@
 import React from "react";
 
 const SettingsContent = () => {
-  return <div>Charts content goesssđư here</div>;
+  return <div>Setting content goesssđư here</div>;
 };
 
 export default SettingsContent;

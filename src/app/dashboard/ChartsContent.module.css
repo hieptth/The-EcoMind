@@ -1,0 +1,32 @@
+/* ChartsContent.module.css */
+.statsContainer {
+  padding: 20px;
+  margin: 50px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.topStats {
+  margin-bottom: 20px;
+}
+
+.statCard {
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chartArea {
+  margin-top: 20px;
+}
+.chartContainer {
+  height: 500px;
+}

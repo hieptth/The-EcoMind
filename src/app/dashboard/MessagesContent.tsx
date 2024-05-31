@@ -2,7 +2,7 @@
 import React from "react";
 
 const MessagesContent = () => {
-  return <div>Charts content goes here</div>;
+  return <div>Message content goes here</div>;
 };
 
 export default MessagesContent;
