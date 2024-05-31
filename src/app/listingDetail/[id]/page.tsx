@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./listingDetail.module.css";
 import Footer from "app/component/footer/Footer";
 import { Navbar } from "@components";
-import { HeartAdd, Facebook, Instagram } from "iconsax-react";
+import { HeartAdd, Facebook, Instagram, ArchiveTick } from "iconsax-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import React, { useState, useEffect } from "react";
@@ -36,14 +36,14 @@ const ListingDetailPage = () => {
   const listings = useObservable(PropertyStore);
 
   useEffect(() => {
-    console.log("Current ID from URL:", id); // Log the ID from URL
-    console.log("Listings available:", listings); // Log the available listings
+    // console.log("Current ID from URL:", id); // Log the ID from URL
+    // console.log("Listings available:", listings); // Log the available listings
 
     if (id && listings) {
       const foundProperty = listings.find(
         (p) => p.id.toString() === id.toString()
       );
-      console.log("Found property:", foundProperty); // Log the found property
+      // console.log("Found property:", foundProperty); // Log the found property
 
       setProperty(foundProperty || null);
     }
@@ -60,8 +60,10 @@ const ListingDetailPage = () => {
   const toggleWishlist = () => {
     if (property) {
       if (isInWishlist) {
+        console.log("Removing property from wishlist");
         WishlistService.deleteProperty(property.id);
       } else {
+        console.log("Adding property to wishlist");
         WishlistService.createProperty(property);
       }
     }
@@ -79,7 +81,7 @@ const ListingDetailPage = () => {
   };
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className={styles.container}>
         <div className={styles.slideContainer}>
           <Swiper
@@ -199,9 +201,13 @@ const ListingDetailPage = () => {
                   </div>
                 </Modal>
                 <div className={styles.outHeartIcon} onClick={toggleWishlist}>
-                  <div className={styles.heartIcon}>
+                  <div
+                    className={`${styles.heartIcon} ${
+                      isInWishlist ? styles.inWishlist : ""
+                    }`}
+                  >
                     {isInWishlist ? (
-                      <HeartAdd size="24" color="white" />
+                      <ArchiveTick size="24" color="white" />
                     ) : (
                       <HeartAdd size="24" color="red" />
                     )}
@@ -289,11 +295,11 @@ const ListingDetailPage = () => {
                 </div>
               </div>
             </div>
-            {/* <MapComponent
-          lat={property?.mapPosition.lat}
-          lng={property?.mapPosition.lng}
-          address={property?.location}
-        /> */}
+            <MapComponent
+              lat={property?.mapPosition.lat}
+              lng={property?.mapPosition.lng}
+              address={property?.location}
+            />
           </>
         )}
         <Footer />

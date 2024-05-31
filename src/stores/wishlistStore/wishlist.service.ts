@@ -5,6 +5,7 @@ export class WishlistService {
   // Adds a new property to the store
   public static async createProperty(property: Property) {
     WishlistStore.setStore([...WishlistStore.getValue(), property]);
+    console.log(WishlistStore.getValue());
   }
 
   // Updates an existing property in the store
