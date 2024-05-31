@@ -77,7 +77,7 @@ export const Navbar = () => {
                   {showDropdown && (
                     <ul className={"dropdown-menu"}>
                       <li>
-                        <Link href={"/wishlist"}>Wishlist</Link>
+                        <Link href={"/propertyWishlist"}>Wishlist</Link>
                       </li>
                       <li
                         onClick={() => {
