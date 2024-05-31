@@ -17,7 +17,7 @@ const ChatBot = () => {
 
   useEffect(() => {
     if (!geminiRef.current) {
-      const apiKey = "AIzaSyALck7ko4DXXWwQFj7lRHDKIa0H84SB3Vk";
+      const apiKey: string = "AIzaSyALck7ko4DXXWwQFj7lRHDKIa0H84SB3Vk";
       geminiRef.current = new GoogleGenerativeAI(apiKey);
     }
   }, []);
@@ -34,10 +34,11 @@ const ChatBot = () => {
 
     try {
       const model = geminiRef.current.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-pro",
       });
       const result = await model.generateContent(message);
-      const botMessage = await result.response.text();
+      const botMessage = result.response.text();
+
       setChatHistory((prev) => [
         ...prev,
         { sender: "bot", message: botMessage },
@@ -94,7 +95,14 @@ const ChatBot = () => {
                     />
                   </div>
                 )}
-                <div className={styles.messageContent}>{msg.message}</div>
+                <div className={styles.messageContent}>
+                  {msg.message.split("\n").map((line, index) => (
+                    <p key={index}>
+                      {line}
+                      <br />
+                    </p>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>

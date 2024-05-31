@@ -3,6 +3,8 @@
   height: 60%;
   overflow: hidden;
   background: #fbf6ed;
+  width: 100%;
+  height: 100%;
 }
 
 .modalCustomBody .ant-modal .ant-modal-body .ant-modal-content {
@@ -18,6 +20,7 @@
 .modalTitle {
   color: green;
 }
+
 .imageSection {
   flex: 2;
   position: relative;
@@ -28,7 +31,11 @@
 .contactDetails {
   padding: 24px;
   color: #fff;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: .5rem;
 }
+
 .ant-row {
   margin-bottom: 16px;
 }
@@ -38,15 +45,21 @@
 }
 
 .ant-form-item {
-  margin-bottom: 16px; /* Space between form items */
+  margin-bottom: 16px;
+  /* Space between form items */
 }
 
 .legalText {
-  font-size: 12px; /* Smaller font size for legal text */
-  color: #666; /* Grey text color */
-  line-height: 1.5; /* Spacing between lines */
-  margin-top: 20px; /* Space above the legal text */
+  font-size: 12px;
+  /* Smaller font size for legal text */
+  color: #666;
+  /* Grey text color */
+  line-height: 1.5;
+  /* Spacing between lines */
+  margin-top: 20px;
+  /* Space above the legal text */
 }
+
 .buttonSubmit {
   border-radius: 0px;
   color: green;
@@ -54,7 +67,9 @@
   padding: 8px;
   border-color: green;
 }
+
 .Input {
   background-color: green;
 }
+
 /* Add additional styling as needed */

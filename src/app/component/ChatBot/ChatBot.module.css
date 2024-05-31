@@ -10,7 +10,8 @@
     position: absolute;
     bottom: 80px;
     right: 0;
-    width: 500px; /* Adjusted width */
+    width: 500px;
+    /* Adjusted width */
     height: 500px;
     background-color: #242526;
     border: 1px solid #ccc;
@@ -52,7 +53,9 @@
 }
 
 .botAvatarContainer {
-    margin-right: 10px; /* Space between avatar and message */
+    margin-right: 10px;
+    /* Space between avatar and message */
+    margin-top: auto;
 }
 
 .botAvatar {

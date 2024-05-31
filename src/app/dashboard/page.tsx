@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Spin } from "antd";
 import { Chart, Building3, Calendar, Message, Setting2 } from "iconsax-react";
 import styles from "./dashboard.module.css";
+import Link from "next/link";
 
 const ChartsContent = React.lazy(() => import("./ChartsContent"));
 const PropertiesContent = React.lazy(() => import("./PropertiesContent"));
@@ -43,7 +44,9 @@ const DashboardPage = () => {
     <div className={styles.dashboardContainer}>
       <aside className={styles.sidebar}>
         <div className={styles.logo}>
-          <Image src="/logo.png" alt="Logo" width={50} height={50} />
+          <Link href="/">
+            <Image src="/logo.png" alt="Logo" width={50} height={50} />
+          </Link>
         </div>
         {["charts", "properties", "appointments", "messages", "settings"].map(
           (section) => (

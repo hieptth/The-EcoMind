@@ -1,42 +1,43 @@
 "use client";
-import React, { useEffect, useState, ChangeEvent } from "react";
-import Image from "next/image";
-import styles from "./listingDashboard.module.css";
-import { Pagination } from "antd";
-import { MoreOutlined, PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
+import { Pagination, Upload } from "antd";
 import { UploadChangeParam } from "antd/lib/upload/interface";
+import Image from "next/image";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import styles from "./listingDashboard.module.css";
 
 import {
-  Input,
-  Slider,
-  Row,
-  Col,
-  Select,
   Button,
   Checkbox,
-  Modal,
-  Upload,
-  Menu,
-  Form,
-  message,
+  Col,
   Dropdown,
+  Form,
+  Input,
+  Menu,
+  message,
+  Modal,
+  Row,
+  Select,
+  Slider,
 } from "antd";
 
-import { Property, PropertyService, PropertyStore } from "stores/propertyStore";
 import { useObservable } from "shared/useObservable";
+import { Property, PropertyService, PropertyStore } from "stores/propertyStore";
+import { UploadOutlined } from "@mui/icons-material";
 interface ModalFormData extends Partial<Property> {
   image?: string;
 }
 interface ListingDashboardProps {
   onListingClick: (property: Property) => void;
 }
+
 const ListingDashboard: React.FC<ListingDashboardProps> = ({
   onListingClick,
 }) => {
   const PAGE_SIZE = 9;
 
-  // const [listings, setListings] = useState<Property[]>([]);
-  const listings = useObservable(PropertyStore) || [];
+  const listings = useObservable(PropertyStore);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [selectMode, setSelectMode] = useState(false);
   const [selectedListings, setSelectedListings] = useState(new Set<number>());
@@ -142,7 +143,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       onOk: () => {
         selectedListings.forEach((id) => PropertyService.deleteProperty(id));
         setDel(!del);
-        fetchListings();
       },
     });
   };
@@ -153,7 +153,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       onOk: () => {
         PropertyService.deleteProperty(id);
         setDel(!del);
-        fetchListings();
       },
     });
   };
@@ -219,8 +218,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const showModal = () => setIsModalVisible(true);
   const handleModalCancel = () => setIsModalVisible(false);
   const handleModalSubmit = () => {
-    console.log("modalFormData", modalFormData);
-
     if (!modalFormData.price) {
       message.error("Please fill in all required fields.");
       return;
@@ -236,17 +233,26 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       status: modalFormData.status || "",
       location: modalFormData.location || "",
       mapPosition: modalFormData.mapPosition || {
-        lat: 0, // Default latitude if not specified
-        lng: 0, // Default longitude if not specified
+        lat: 0,
+        lng: 0,
       },
-      amenities: modalFormData.amenities || {
-        interior: {},
-        exterior: {},
-        areaLot: {},
-      }, // Provide defaults for complex nested structures
+      amenities: {
+        interior: {
+          kitchen: modalFormData.amenities?.interior?.kitchen || "",
+          laundry: modalFormData.amenities?.interior?.laundry || "",
+          fireplace: modalFormData.amenities?.interior?.fireplace || "",
+          appliances: modalFormData.amenities?.interior?.appliances || "",
+          flooring: modalFormData.amenities?.interior?.flooring || "",
+          bedrooms: modalFormData.amenities?.interior?.bedrooms || 0,
+          bathrooms: modalFormData.amenities?.interior?.bathrooms || 0,
+        },
+        exterior: modalFormData.amenities?.exterior || {},
+        areaLot: modalFormData.amenities?.areaLot || {},
+      },
     };
 
     PropertyService.createProperty(newProperty);
+    // setListings([...listings, newProperty]);
     console.log("listings", listings);
 
     setIsModalVisible(false);
@@ -254,7 +260,24 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
 
   const onModalFormChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setModalFormData((prev) => ({ ...prev, [name.toLowerCase()]: value }));
+    if (name === "bedrooms" || name === "bathrooms") {
+      // Update nested interior amenities
+      setModalFormData((prev) => ({
+        ...prev,
+        amenities: {
+          ...prev.amenities,
+          interior: {
+            ...prev.amenities?.interior,
+            [name]: parseInt(value),
+          },
+        },
+      }));
+    } else {
+      setModalFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const onUploadChange = (info: UploadChangeParam) => {
@@ -294,6 +317,18 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const handleEditListing = (id: number) => {
     const listing = listings.find((listing) => listing.id === id);
     if (listing) {
+      const {
+        id,
+        imageUrl,
+        title,
+        price,
+        description,
+        sqft,
+        status,
+        location,
+        amenities,
+      } = listing;
+      const { interior, exterior, areaLot } = amenities || {};
       setEditListingData({
         id: listing.id,
         imageUrl: listing.imageUrl,
@@ -308,7 +343,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
           lng: listing.mapPosition.lng,
         },
         amenities: {
-          interior: listing.amenities?.interior || {
+          interior: interior || {
             kitchen: "",
             laundry: "",
             fireplace: "",
@@ -317,7 +352,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
             bedrooms: 0,
             bathrooms: 0,
           },
-          exterior: listing.amenities?.exterior || {
+          exterior: exterior || {
             stories: "",
             pool: "",
             heat: "",
@@ -329,7 +364,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
             lotFeatures: "",
             roof: "",
           },
-          areaLot: listing.amenities?.areaLot || {
+          areaLot: areaLot || {
             lotArea: 0,
             livingArea: "",
             yearBuilt: "",
@@ -342,7 +377,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       setIsEditModalVisible(true);
     }
   };
-
   const menu = (id: number) => (
     <Menu>
       <Menu.Item key="1" onClick={() => handleEditListing(id)}>
@@ -504,14 +538,16 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                   <Form.Item label="Beds">
                     <Input
                       onChange={onModalFormChange}
-                      name="beds"
+                      name="bedrooms"
+                      type="number"
                       value={modalFormData.amenities?.interior?.bedrooms}
                     />
                   </Form.Item>
                   <Form.Item label="Baths">
                     <Input
                       onChange={onModalFormChange}
-                      name="baths"
+                      name="bathrooms"
+                      type="number"
                       value={modalFormData.amenities?.interior?.bathrooms}
                     />
                   </Form.Item>
@@ -522,7 +558,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                       value={modalFormData.sqft}
                     />
                   </Form.Item>
-                  {/* <Form.Item label="Property image">
+                  <Form.Item label="Property image">
                     <Upload
                       name="logo"
                       listType="picture-card"
@@ -531,10 +567,10 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                       beforeUpload={() => false}
                       onChange={onUploadChange}
                     >
-                      {<PlusOutlined />}
+                      <PlusOutlined />
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </Upload>
-                  </Form.Item> */}
+                  </Form.Item>
                 </Form>
               </Modal>
             </div>
@@ -655,7 +691,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
               >
                 {editListingData?.imageUrl ? (
                   <Image
-                    src={editListingData?.imageUrl}
+                    src={""}
                     alt="avatar"
                     width={300}
                     height={200}
@@ -688,7 +724,10 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
                 layout="responsive"
               />
               <div className={styles.listingDetails}>
-                <div className={styles.dropdownContainer}>
+                <div
+                  className={styles.dropdownContainer}
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Dropdown overlay={menu(listing.id)} trigger={["click"]}>
                     <Button icon={<MoreOutlined />} />
                   </Dropdown>

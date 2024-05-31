@@ -5,15 +5,26 @@ import { Image as ImageConstants } from "@constants";
 import Image from "next/image";
 import { useScrollDirection } from "@hooks";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { AccountService } from "stores";
 
 export const Navbar = () => {
   const [isOnTop, setIsOnTop] = useState(true);
   const scrollDirection = useScrollDirection();
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     window.onscroll = () => {
       setIsOnTop(window.scrollY < 50);
     };
+
+    const accountInfo = localStorage.getItem("accountInfo");
+    if (accountInfo) {
+      setRole(JSON.parse(accountInfo).role);
+      setUsername(JSON.parse(accountInfo).username);
+    }
   }, []);
 
   return (
@@ -26,37 +37,66 @@ export const Navbar = () => {
       <div className={"header"}>
         <div className={"header-container"}>
           <div className={"header-container__logo"}>
-            <a href={"/"} className={"logo"}>
+            <Link href={"/"} className={"logo"}>
               <Image
                 src={`${ImageConstants.LOGO}/ecomind-logo-w-text.png`}
                 alt={"The EcoMind"}
                 width={280}
                 height={100}
               />
-            </a>
+            </Link>
           </div>
           <div className={"header-container__nav"}>
             <ul className={"navigation"}>
+              {role === "agent" && (
+                <li className={"navigation__item"}>
+                  <Link href={"/dashboard"} className={"navigation__link"}>
+                    Dashboard
+                  </Link>
+                </li>
+              )}
               <li className={"navigation__item"}>
-                <a href={"#"} className={"navigation__link"}>
-                  Real Estate
-                </a>
-              </li>
-              <li className={"navigation__item"}>
-                <a href={"/messages"} className={"navigation__link"}>
+                <Link href={"/messages"} className={"navigation__link"}>
                   Message
-                </a>
+                </Link>
               </li>
               <li className={"navigation__item"}>
-                <a href={"/search"} className={"navigation__link"}>
+                <Link href={"/search"} className={"navigation__link"}>
                   Home Search
-                </a>
+                </Link>
               </li>
-              <li className={"navigation__item"}>
-                <a href={"/login"} className={"navigation__link"}>
-                  Login
-                </a>
-              </li>
+              {username ? (
+                <li
+                  className={"navigation__item"}
+                  onMouseEnter={() => setShowDropdown(true)}
+                  onMouseLeave={() => setShowDropdown(false)}
+                >
+                  <Link href={"/profile"} className={"navigation__link"}>
+                    {username}
+                  </Link>
+                  {showDropdown && (
+                    <ul className={"dropdown-menu"}>
+                      <li>
+                        <Link href={"/propertyWishlist"}>Wishlist</Link>
+                      </li>
+                      <li
+                        onClick={() => {
+                          AccountService.logout();
+                          window.location.href = "/";
+                        }}
+                      >
+                        Log out
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li className={"navigation__item"}>
+                  <Link href={"/login"} className={"navigation__link"}>
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
             <button className={"hamburger"}>
               <svg

@@ -1,36 +1,36 @@
-// Import the necessary definitions from your property store
-import { PropertyStore, Property } from "./property.store";
+import { Property } from "stores";
+import { WishlistStore } from "./wishlist.store";
 
-export class PropertyService {
+export class WishlistService {
   // Adds a new property to the store
   public static async createProperty(property: Property) {
-    PropertyStore.setStore([...PropertyStore.getValue(), property]);
+    WishlistStore.setStore([...WishlistStore.getValue(), property]);
   }
 
   // Updates an existing property in the store
   public static async updateProperty(property: Property) {
-    const properties = PropertyStore.getValue();
+    const properties = WishlistStore.getValue();
     const index = properties.findIndex((p) => p.id === property.id);
     if (index !== -1) {
       properties[index] = property;
-      PropertyStore.setStore(properties);
+      WishlistStore.setStore(properties);
     }
   }
 
   // Deletes a property from the store by its ID
   public static async deleteProperty(id: number) {
-    const properties = PropertyStore.getValue();
+    const properties = WishlistStore.getValue();
     const index = properties.findIndex((p) => p.id === id);
     if (index !== -1) {
       properties.splice(index, 1);
-      PropertyStore.setStore(properties);
+      WishlistStore.setStore(properties);
     }
 
-    console.log(PropertyStore.getValue());
+    console.log(WishlistStore.getValue());
   }
 
   // Retrieves all properties from the store
   public static getProperties(): Property[] {
-    return PropertyStore.getValue();
+    return WishlistStore.getValue();
   }
 }

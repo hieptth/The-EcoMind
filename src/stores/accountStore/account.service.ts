@@ -1,31 +1,53 @@
+import { AccountStore } from "./account.store";
+
 export class AccountService {
   public static async login(
-    username: string,
+    email: string,
     password: string
-  ): Promise<boolean> {
+  ): Promise<{ isLoggedIn: boolean; role: string; username: string }> {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
+      const accounts = AccountStore.getValue();
+      const account = accounts.find(
+        (account) => account.email === email && account.password === password
+      );
+
+      resolve({
+        isLoggedIn: account !== undefined,
+        role: account?.role || "",
+        username: account?.username || "",
+      });
     });
   }
 
   public static async logout(): Promise<boolean> {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
+      localStorage.removeItem("accountInfo");
+      resolve(true);
     });
   }
 
   public static async register(
-    username: string,
+    email: string,
     password: string
   ): Promise<boolean> {
     return new Promise((resolve) => {
-      setTimeout(() => {
+      const accounts = AccountStore.getValue();
+      const account = accounts.find((account) => account.email === email);
+
+      if (account) {
+        resolve(false);
+      } else {
+        AccountStore.updateStore([
+          ...accounts,
+          {
+            id: String(accounts.length + 1),
+            email,
+            password,
+            role: "user",
+          },
+        ]);
         resolve(true);
-      }, 1000);
+      }
     });
   }
 }
