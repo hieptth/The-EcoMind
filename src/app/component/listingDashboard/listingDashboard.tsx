@@ -36,8 +36,7 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
   const PAGE_SIZE = 9;
 
   // const [listings, setListings] = useState<Property[]>([]);
-  const listings = useObservable(PropertyStore);
-
+  const listings = useObservable(PropertyStore) || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [selectMode, setSelectMode] = useState(false);
   const [selectedListings, setSelectedListings] = useState(new Set<number>());
@@ -212,7 +211,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
     },
   });
 
-
   const handleSaveChanges = () => {
     PropertyService.updateProperty(editListingData);
     setIsEditModalVisible(false);
@@ -233,14 +231,14 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
       imageUrl: modalFormData.image || "",
       title: modalFormData.title || "",
       price: modalFormData.price,
-      mapPosition: {
-        lat: 0,
-        lng: 0,
-      },
-      description: modalFormData.description || "", // Default to empty string if undefined
+      description: modalFormData.description || "",
       sqft: modalFormData.sqft || "",
       status: modalFormData.status || "",
       location: modalFormData.location || "",
+      mapPosition: modalFormData.mapPosition || {
+        lat: 0, // Default latitude if not specified
+        lng: 0, // Default longitude if not specified
+      },
       amenities: modalFormData.amenities || {
         interior: {},
         exterior: {},
@@ -249,7 +247,6 @@ const ListingDashboard: React.FC<ListingDashboardProps> = ({
     };
 
     PropertyService.createProperty(newProperty);
-    // setListings([...listings, newProperty]);
     console.log("listings", listings);
 
     setIsModalVisible(false);
